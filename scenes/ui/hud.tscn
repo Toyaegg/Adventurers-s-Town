@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bg8lh35rex0fd"]
+[gd_scene load_steps=4 format=3 uid="uid://bg8lh35rex0fd"]
 
 [ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_3b4su"]
+[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/textures/common/white_block.png" id="2_wxpha"]
+[ext_resource type="Texture2D" uid="uid://dq0l85rsr887m" path="res://assets/textures/common/logo.jpg" id="3_5aeuy"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -10,3 +12,189 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3b4su")
+
+[node name="AdventurerUnion" type="Control" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="UnionEXP" type="TextureProgressBar" parent="AdventurerUnion"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+nine_patch_stretch = true
+texture_under = ExtResource("2_wxpha")
+texture_progress = ExtResource("2_wxpha")
+tint_under = Color(0.381703, 0.381703, 0.381703, 1)
+tint_progress = Color(0.126492, 0.750547, 4.62055e-06, 1)
+
+[node name="UnionEXPValue" type="Label" parent="AdventurerUnion"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -11.5
+offset_right = 210.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "0    (0.0%)"
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="AdventurerUnion"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -11.5
+offset_right = -10.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "工会经验值"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ResourcesDisplayList" type="Control" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ResourcesDisplayList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Gold" type="Control" parent="ResourcesDisplayList/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="GoldIcon" type="TextureRect" parent="ResourcesDisplayList/HBoxContainer/Gold"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_vertical = 2
+texture = ExtResource("3_5aeuy")
+expand_mode = 4
+
+[node name="GoldValue" type="Label" parent="ResourcesDisplayList/HBoxContainer/Gold"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -11.0
+offset_right = -10.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "2000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Gem" type="Control" parent="ResourcesDisplayList/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="GemIcon" type="TextureRect" parent="ResourcesDisplayList/HBoxContainer/Gem"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_vertical = 2
+texture = ExtResource("3_5aeuy")
+expand_mode = 4
+
+[node name="GemValue" type="Label" parent="ResourcesDisplayList/HBoxContainer/Gem"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -11.0
+offset_right = -10.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "2000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Gem2" type="Control" parent="ResourcesDisplayList/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ResourcesDisplayList/HBoxContainer/Gem2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_vertical = 2
+texture = ExtResource("3_5aeuy")
+expand_mode = 4
+
+[node name="Value" type="Label" parent="ResourcesDisplayList/HBoxContainer/Gem2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -11.0
+offset_right = -10.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "2000"
+horizontal_alignment = 2
+vertical_alignment = 1
