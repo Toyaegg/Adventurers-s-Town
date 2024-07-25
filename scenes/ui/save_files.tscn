@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://0h65dcncmejy"]
+
+[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/textures/common/white_block.png" id="1_708bl"]
+[ext_resource type="Script" path="res://scripts/ui/save_files.gd" id="1_ox1t8"]
+
+[node name="SaveFiles" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ox1t8")
+
+[node name="Background" type="TextureRect" parent="."]
+self_modulate = Color(0.351563, 0.351563, 0.351563, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_708bl")

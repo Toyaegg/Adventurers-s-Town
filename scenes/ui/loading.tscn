@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmrn7h6wnhyp1"]
+
+[ext_resource type="Script" path="res://scripts/ui/loading.gd" id="1_3tj08"]
+[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/textures/common/white_block.png" id="2_vxg50"]
+
+[node name="Loading" type="Control"]
+z_index = 1000
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3tj08")
+
+[node name="Background" type="TextureRect" parent="."]
+self_modulate = Color(0.303233, 0.303233, 0.303233, 1)
+z_index = 1000
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vxg50")
+
+[node name="LoadProgress" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+z_index = 1000
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -180.0
+offset_right = 500.0
+offset_bottom = -140.0
+grow_horizontal = 2
+grow_vertical = 0
+nine_patch_stretch = true
+texture_under = ExtResource("2_vxg50")
+texture_progress = ExtResource("2_vxg50")
+tint_under = Color(0.366595, 0.366595, 0.366595, 1)
+tint_progress = Color(1, 1, 0.439216, 1)
+
+[node name="ProgressValue" type="Label" parent="LoadProgress"]
+unique_name_in_owner = true
+z_index = 1000
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "0%"
+horizontal_alignment = 1
+vertical_alignment = 1

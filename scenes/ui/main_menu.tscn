@@ -1,0 +1,162 @@
+[gd_scene load_steps=3 format=3 uid="uid://blhe8becgrgd7"]
+
+[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_vmfd4"]
+[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/textures/common/white_block.png" id="2_0t6h5"]
+
+[node name="MainMenu" type="Control"]
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vmfd4")
+
+[node name="Background" type="TextureRect" parent="."]
+self_modulate = Color(0.255659, 0.255659, 0.255659, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("2_0t6h5")
+
+[node name="Title" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -174.0
+offset_right = 20.0
+offset_bottom = -134.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextTitle" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 150
+text = "勇者镇"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureTitle" type="TextureRect" parent="Title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 110.0
+offset_right = 20.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_right = 75.0
+offset_bottom = 320.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="StartGame" type="Button" parent="Buttons/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "开始游戏"
+
+[node name="ContinueGame" type="Button" parent="Buttons/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "继续游戏"
+
+[node name="LoadGame" type="Button" parent="Buttons/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "加载存档"
+
+[node name="Settings" type="Button" parent="Buttons/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "设置"
+
+[node name="Credits" type="Button" parent="Buttons/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "制作人员"
+
+[node name="ExitGame" type="Button" parent="Buttons/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "退出游戏"
+
+[node name="Version" type="Label" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(0.529067, 0.529067, 0.529067, 1)
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -301.0
+offset_top = -23.0
+offset_right = -1.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Ver      0.0.0.1.20240724"
+vertical_alignment = 1

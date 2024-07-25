@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmw45df7xs7ht"]
+
+[ext_resource type="Script" path="res://scripts/init.gd" id="1_v3k8e"]
+[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/textures/common/white_block.png" id="2_v0pg1"]
+[ext_resource type="Texture2D" uid="uid://dq0l85rsr887m" path="res://assets/textures/common/logo.jpg" id="3_ticv2"]
+
+[node name="Init" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v3k8e")
+
+[node name="FirstScreen" type="TextureRect" parent="."]
+self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_v0pg1")
+expand_mode = 1
+
+[node name="Icon" type="TextureRect" parent="FirstScreen"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -200.115
+offset_right = 100.0
+offset_bottom = -0.11499
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ticv2")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="FirstScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = 104.845
+offset_right = 96.0
+offset_bottom = 127.845
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "由【海鸥整点啥】团队制作"
+horizontal_alignment = 1
+vertical_alignment = 1

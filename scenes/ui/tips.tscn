@@ -1,0 +1,92 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyifm1i12v61w"]
+
+[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/textures/common/white_block.png" id="1_6ft4n"]
+[ext_resource type="Script" path="res://scripts/ui/tips.gd" id="1_vn2su"]
+
+[node name="Tips" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vn2su")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="NinePatchRect" parent="MarginContainer"]
+self_modulate = Color(0.462291, 0.462291, 0.462291, 1)
+layout_mode = 2
+texture = ExtResource("1_6ft4n")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="Control" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/MarginContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "提示"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Space" type="Control" parent="MarginContainer/MarginContainer/Control"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Content" type="Label" parent="MarginContainer/MarginContainer/Control"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+text = "提示内容"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Input" type="TextEdit" parent="MarginContainer/MarginContainer/Control"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer/MarginContainer/Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Confirm" type="Button" parent="MarginContainer/MarginContainer/Control/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+text = "确认"
+
+[node name="Space" type="Control" parent="MarginContainer/MarginContainer/Control/Buttons"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="MarginContainer/MarginContainer/Control/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+text = "取消"

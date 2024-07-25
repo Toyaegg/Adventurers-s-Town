@@ -1,0 +1,41 @@
+class_name UIManager
+extends CanvasLayer
+
+var loaded_ui : Dictionary
+var opened_ui : Dictionary
+
+func initialize() -> void:
+	loaded_ui.clear()
+	
+	EventBus.subscribe(GameEvents.UI_OPEN, open_ui)
+	EventBus.subscribe(GameEvents.UI_CLOSE, close_ui)
+	EventBus.subscribe(GameEvents.UI_TIPS_OPEN, open_tips)
+	
+	print("ui manager initialized")
+
+func open_ui(ui_name : String) -> void:
+	if not loaded_ui.has(ui_name):
+		print("要打开的UI未加载[" + ui_name + "]， 正在进行加载")
+		var ui = load("res://scenes/ui/" + ui_name + ".tscn")
+		if ui == null:
+			printerr("要打开的UI[" + ui_name + "]， 加载失败")
+		loaded_ui[ui_name] = ui
+	
+	var using_ui = (loaded_ui[ui_name] as PackedScene).instantiate()
+	opened_ui[ui_name] = using_ui
+	add_child(using_ui)
+	print("UI[" + ui_name + "]已经打开")
+
+func close_ui(ui_name : String) -> void:
+	if not opened_ui.has(ui_name):
+		print("要关闭的UI不存在[%s]" % ui_name)
+	else:
+		print("关闭的UI[%s]" % ui_name)
+		var ui = opened_ui[ui_name] as Control
+		opened_ui.erase(ui_name)
+		ui.queue_free()
+
+func open_tips(tip_type : Tip.TipType, content : String, conf : Callable = Callable(), canc : Callable = Callable(), title : String = "提示") -> void:
+	open_ui(UIPanel.Tips)
+	opened_ui[UIPanel.Tips].set_type(tip_type)
+	opened_ui[UIPanel.Tips].set_tip(content, conf, canc, title)
