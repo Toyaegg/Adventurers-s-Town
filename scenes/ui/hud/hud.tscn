@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg8lh35rex0fd"]
+[gd_scene load_steps=6 format=3 uid="uid://bg8lh35rex0fd"]
 
-[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_gfo3q"]
+[ext_resource type="Script" path="res://scripts/ui/panels/hud.gd" id="1_gfo3q"]
 [ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="2_rhxao"]
 [ext_resource type="Texture2D" uid="uid://dq0l85rsr887m" path="res://assets/texture/common/logo.jpg" id="3_3kl1t"]
 [ext_resource type="PackedScene" uid="uid://crfp4xalea1f4" path="res://scenes/ui/hud/building_info.tscn" id="4_jtqe7"]
+[ext_resource type="Script" path="res://scripts/ui/animations/ui_animation.gd" id="4_lqaur"]
 
 [node name="HUD" type="Control" node_paths=PackedStringArray("building_info")]
 layout_mode = 3
@@ -17,18 +18,100 @@ script = ExtResource("1_gfo3q")
 building_info = NodePath("BuildingInfo")
 
 [node name="AdventurerUnion" type="Control" parent="."]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="DisplayName" type="Control" parent="AdventurerUnion"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 120.0
+
+[node name="Background" type="TextureRect" parent="AdventurerUnion/DisplayName"]
+self_modulate = Color(0.537011, 0.537011, 0.537011, 1)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 100.0
+texture = ExtResource("2_rhxao")
+
+[node name="Name" type="Label" parent="AdventurerUnion/DisplayName"]
+unique_name_in_owner = true
+self_modulate = Color(1, 0.556863, 0.227451, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -36.565
+offset_right = 40.0
+offset_bottom = -13.565
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "冒险者工会"
+
+[node name="Level" type="Label" parent="AdventurerUnion/DisplayName"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 5.7
+offset_right = 20.0
+offset_bottom = 28.7
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "公会等级   1级"
+
+[node name="Sign" type="Control" parent="AdventurerUnion"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 150.0
+offset_right = 100.0
+offset_bottom = 230.0
+
+[node name="TextureRect" type="TextureRect" parent="AdventurerUnion/Sign"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_3kl1t")
+expand_mode = 1
+
+[node name="EXP" type="Control" parent="AdventurerUnion"]
+custom_minimum_size = Vector2(1920, 20)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -20.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 1
 
-[node name="UnionEXP" type="TextureProgressBar" parent="AdventurerUnion"]
+[node name="UnionEXP" type="TextureProgressBar" parent="AdventurerUnion/EXP"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 1
@@ -43,23 +126,25 @@ texture_progress = ExtResource("2_rhxao")
 tint_under = Color(0.381703, 0.381703, 0.381703, 1)
 tint_progress = Color(0.126492, 0.750547, 4.62055e-06, 1)
 
-[node name="UnionEXPValue" type="Label" parent="AdventurerUnion"]
+[node name="UnionEXPValue" type="Label" parent="AdventurerUnion/EXP"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 10.0
+offset_left = 20.0
 offset_top = -11.5
-offset_right = 210.0
+offset_right = 220.0
 offset_bottom = 11.5
 grow_vertical = 2
 mouse_filter = 1
-text = "0    (0.0%)"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "0    (0.0%1级)"
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="AdventurerUnion"]
+[node name="Label" type="Label" parent="AdventurerUnion/EXP"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
 anchors_preset = 6
@@ -67,27 +152,365 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -210.0
+offset_left = -230.0
 offset_top = -11.5
-offset_right = -10.0
+offset_right = -30.0
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 text = "工会经验值"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="ResourcesDisplayList" type="Control" parent="."]
+[node name="GameTime" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 500.0
+offset_top = 20.0
+offset_right = 700.0
+offset_bottom = 70.0
+
+[node name="Time" type="Label" parent="GameTime"]
 unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "第1234天 日间"
+
+[node name="ResourcesDisplayList" type="Control" parent="."]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_left = 221.0
+offset_top = 20.0
+offset_bottom = 122.0
 grow_horizontal = 2
 mouse_filter = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ResourcesDisplayList"]
+[node name="Resources" type="HBoxContainer" parent="ResourcesDisplayList"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -920.0
+offset_right = -312.0
+offset_bottom = 40.0
+grow_horizontal = 0
+alignment = 2
+
+[node name="Biomass" type="Control" parent="ResourcesDisplayList/Resources"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+tooltip_text = "生物质"
+
+[node name="Icon" type="TextureRect" parent="ResourcesDisplayList/Resources/Biomass"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_vertical = 2
+texture = ExtResource("3_3kl1t")
+expand_mode = 4
+
+[node name="BiomassValue" type="Label" parent="ResourcesDisplayList/Resources/Biomass"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -11.0
+offset_right = -10.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 30
+text = "2000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Mineral" type="Control" parent="ResourcesDisplayList/Resources"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+tooltip_text = "无机质"
+
+[node name="Icon" type="TextureRect" parent="ResourcesDisplayList/Resources/Mineral"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_vertical = 2
+texture = ExtResource("3_3kl1t")
+expand_mode = 4
+
+[node name="MineralValue" type="Label" parent="ResourcesDisplayList/Resources/Mineral"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -11.0
+offset_right = -10.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 30
+text = "2000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="EnergyCore" type="Control" parent="ResourcesDisplayList/Resources"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+tooltip_text = "能量核心"
+
+[node name="Icon" type="TextureRect" parent="ResourcesDisplayList/Resources/EnergyCore"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_vertical = 2
+texture = ExtResource("3_3kl1t")
+expand_mode = 4
+
+[node name="EnergyCoreValue" type="Label" parent="ResourcesDisplayList/Resources/EnergyCore"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -11.0
+offset_right = -10.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 30
+text = "2000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Reputation" type="Control" parent="ResourcesDisplayList"]
+anchors_preset = 0
+offset_left = 30.0
+offset_top = 6.0
+offset_right = 230.0
+offset_bottom = 46.0
+mouse_filter = 1
+
+[node name="Background" type="TextureRect" parent="ResourcesDisplayList/Reputation"]
+self_modulate = Color(0.65834, 0.65834, 0.65834, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rhxao")
+
+[node name="Label" type="Label" parent="ResourcesDisplayList/Reputation"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -11.5
+offset_right = 60.0
+offset_bottom = 11.5
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 25
+text = "声望"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReputationValue" type="Label" parent="ResourcesDisplayList/Reputation"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 25
+text = "100000"
+vertical_alignment = 1
+
+[node name="Gold" type="Control" parent="ResourcesDisplayList"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -46.0
+offset_right = 230.0
+offset_bottom = -6.0
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="Background" type="TextureRect" parent="ResourcesDisplayList/Gold"]
+self_modulate = Color(0.65834, 0.65834, 0.65834, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rhxao")
+
+[node name="Label" type="Label" parent="ResourcesDisplayList/Gold"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -11.5
+offset_right = 60.0
+offset_bottom = 11.5
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 25
+text = "金币"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoldValue" type="Label" parent="ResourcesDisplayList/Gold"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 25
+text = "100000"
+vertical_alignment = 1
+
+[node name="GameMenu" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 80.0
+grow_horizontal = 0
+mouse_filter = 1
+
+[node name="MenuButtons" type="HBoxContainer" parent="GameMenu"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -30.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Speed x1" type="TextureButton" parent="GameMenu/MenuButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture_normal = ExtResource("3_3kl1t")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Speed x2" type="TextureButton" parent="GameMenu/MenuButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture_normal = ExtResource("3_3kl1t")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Speed x4" type="TextureButton" parent="GameMenu/MenuButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture_normal = ExtResource("3_3kl1t")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Menu" type="TextureButton" parent="GameMenu/MenuButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture_normal = ExtResource("3_3kl1t")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Milestone" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -300.0
+offset_right = 260.0
+offset_bottom = 300.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Scroll" type="ScrollContainer" parent="Milestone"]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,122 +518,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Gold" type="Control" parent="ResourcesDisplayList/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+[node name="Content" type="VBoxContainer" parent="Milestone/Scroll"]
 layout_mode = 2
-mouse_filter = 1
 
-[node name="GoldIcon" type="TextureRect" parent="ResourcesDisplayList/HBoxContainer/Gold"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 10.0
-offset_top = -20.0
-offset_right = 50.0
-offset_bottom = 20.0
-grow_vertical = 2
-texture = ExtResource("3_3kl1t")
-expand_mode = 4
-
-[node name="GoldValue" type="Label" parent="ResourcesDisplayList/HBoxContainer/Gold"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -110.0
-offset_top = -11.0
-offset_right = -10.0
-offset_bottom = 12.0
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 1
-theme_override_font_sizes/font_size = 30
-text = "2000"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Gem" type="Control" parent="ResourcesDisplayList/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+[node name="Item" type="Control" parent="Milestone/Scroll/Content"]
+custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
-mouse_filter = 1
 
-[node name="GemIcon" type="TextureRect" parent="ResourcesDisplayList/HBoxContainer/Gem"]
+[node name="Background" type="TextureRect" parent="Milestone/Scroll/Content/Item"]
+self_modulate = Color(0.762528, 0.0757468, 7.70092e-07, 1)
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 10.0
-offset_top = -20.0
-offset_right = 50.0
-offset_bottom = 20.0
-grow_vertical = 2
-texture = ExtResource("3_3kl1t")
-expand_mode = 4
-
-[node name="GemValue" type="Label" parent="ResourcesDisplayList/HBoxContainer/Gem"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -110.0
-offset_top = -11.0
-offset_right = -10.0
-offset_bottom = 12.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
-theme_override_font_sizes/font_size = 30
-text = "2000"
-horizontal_alignment = 2
-vertical_alignment = 1
+texture = ExtResource("2_rhxao")
 
-[node name="Gem2" type="Control" parent="ResourcesDisplayList/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-mouse_filter = 1
-
-[node name="TextureRect" type="TextureRect" parent="ResourcesDisplayList/HBoxContainer/Gem2"]
+[node name="Content" type="Label" parent="Milestone/Scroll/Content/Item"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 10.0
-offset_top = -20.0
-offset_right = 50.0
-offset_bottom = 20.0
-grow_vertical = 2
-texture = ExtResource("3_3kl1t")
-expand_mode = 4
-
-[node name="Value" type="Label" parent="ResourcesDisplayList/HBoxContainer/Gem2"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -110.0
-offset_top = -11.0
+anchor_bottom = 1.0
+offset_left = 10.0
 offset_right = -10.0
-offset_bottom = 12.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
-theme_override_font_sizes/font_size = 30
-text = "2000"
-horizontal_alignment = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
 vertical_alignment = 1
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 4
+
+[node name="UIAnimation" type="Node" parent="Milestone/Scroll/Content/Item"]
+script = ExtResource("4_lqaur")
+hover_position = Vector2(-250, 0)
 
 [node name="BuildingList" type="Control" parent="."]
 visible = false
@@ -237,24 +581,34 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_rhxao")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BuildingList"]
+[node name="ScrollContainer" type="ScrollContainer" parent="BuildingList"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 25.0
-offset_top = 10.0
-offset_right = -25.0
-offset_bottom = -30.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
 
-[node name="Building" type="Control" parent="BuildingList/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="BuildingList/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BuildingList/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Building" type="Control" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 160)
 layout_mode = 2
 
-[node name="Background" type="TextureRect" parent="BuildingList/HBoxContainer/Building"]
+[node name="Background" type="TextureRect" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
 self_modulate = Color(0.493545, 0.493546, 0.493546, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -264,7 +618,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_rhxao")
 
-[node name="BuildingIcon" type="TextureRect" parent="BuildingList/HBoxContainer/Building"]
+[node name="BuildingIcon" type="TextureRect" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -279,7 +633,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_rhxao")
 
-[node name="BuildingName" type="Label" parent="BuildingList/HBoxContainer/Building"]
+[node name="BuildingName" type="Label" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -295,34 +649,38 @@ text = "冒险者工会"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="BuildingList/HBoxContainer/Building"]
+[node name="Control" type="Control" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -80.0
-offset_top = -80.0
-offset_right = -10.0
-offset_bottom = -10.0
-grow_horizontal = 0
-grow_vertical = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BuildingList/HBoxContainer/Building/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 35.0
+offset_right = 15.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="ResourceNeed" type="Control" parent="BuildingList/HBoxContainer/Building/Control/VBoxContainer"]
+[node name="ResourceNeed" type="Control" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="ResourceIcon" type="TextureRect" parent="BuildingList/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
+[node name="ResourceIcon" type="TextureRect" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
 self_modulate = Color(1, 0.454902, 1, 1)
 layout_mode = 1
 anchors_preset = 4
@@ -334,7 +692,7 @@ offset_bottom = 7.5
 grow_vertical = 2
 texture = ExtResource("2_rhxao")
 
-[node name="ResourceNeedValue" type="Label" parent="BuildingList/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
+[node name="ResourceNeedValue" type="Label" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -377,24 +735,34 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_rhxao")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="AdventurerList"]
+[node name="ScrollContainer" type="ScrollContainer" parent="AdventurerList"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 25.0
-offset_top = 10.0
-offset_right = -25.0
-offset_bottom = -30.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
 
-[node name="Building" type="Control" parent="AdventurerList/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="AdventurerList/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AdventurerList/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Building" type="Control" parent="AdventurerList/ScrollContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 160)
 layout_mode = 2
 
-[node name="Background" type="TextureRect" parent="AdventurerList/HBoxContainer/Building"]
+[node name="Background" type="TextureRect" parent="AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
 self_modulate = Color(0.493545, 0.493546, 0.493546, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -404,7 +772,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_rhxao")
 
-[node name="BuildingIcon" type="TextureRect" parent="AdventurerList/HBoxContainer/Building"]
+[node name="BuildingIcon" type="TextureRect" parent="AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -419,7 +787,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_rhxao")
 
-[node name="BuildingName" type="Label" parent="AdventurerList/HBoxContainer/Building"]
+[node name="BuildingName" type="Label" parent="AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -435,34 +803,38 @@ text = "冒险者工会"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="AdventurerList/HBoxContainer/Building"]
+[node name="Control" type="Control" parent="AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -80.0
-offset_top = -80.0
-offset_right = -10.0
-offset_bottom = -10.0
-grow_horizontal = 0
-grow_vertical = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AdventurerList/HBoxContainer/Building/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 35.0
+offset_right = 15.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="ResourceNeed" type="Control" parent="AdventurerList/HBoxContainer/Building/Control/VBoxContainer"]
+[node name="ResourceNeed" type="Control" parent="AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="ResourceIcon" type="TextureRect" parent="AdventurerList/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
+[node name="ResourceIcon" type="TextureRect" parent="AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
 self_modulate = Color(1, 0.454902, 1, 1)
 layout_mode = 1
 anchors_preset = 4
@@ -474,7 +846,7 @@ offset_bottom = 7.5
 grow_vertical = 2
 texture = ExtResource("2_rhxao")
 
-[node name="ResourceNeedValue" type="Label" parent="AdventurerList/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
+[node name="ResourceNeedValue" type="Label" parent="AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -494,6 +866,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="BuildingInfo" parent="." instance=ExtResource("4_jtqe7")]
+visible = false
 layout_mode = 1
 offset_left = -150.0
 offset_top = -100.0

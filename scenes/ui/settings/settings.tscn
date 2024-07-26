@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://drdlf7q3804km"]
 
-[ext_resource type="Script" path="res://scripts/ui/settings.gd" id="1_nq6q0"]
+[ext_resource type="Script" path="res://scripts/ui/panels/settings.gd" id="1_nq6q0"]
 [ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="2_0xp0k"]
 
 [node name="Settings" type="Control"]

@@ -4,9 +4,9 @@ extends Control
 @onready var resources_display_list : Control = $ResourcesDisplayList
 @onready var union_exp: TextureProgressBar = %UnionEXP
 @onready var union_exp_value: Label = %UnionEXPValue
-@onready var gold_value: Label = %GoldValue
-@onready var gem_value: Label = %GemValue
-@onready var value: Label = %Value
+@onready var biomass_value: Label = %BiomassValue
+@onready var mineral_value: Label = %MineralValue
+@onready var energy_core_value: Label = %EnergyCoreValue
 
 @export var building_info : Control
 
