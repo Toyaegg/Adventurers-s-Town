@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://drdlf7q3804km"]
 
-[ext_resource type="Script" path="res://scripts/ui/settings.gd" id="1_0g1ah"]
-[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/textures/common/white_block.png" id="1_ejdya"]
+[ext_resource type="Script" path="res://scripts/ui/settings.gd" id="1_nq6q0"]
+[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="2_0xp0k"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_0g1ah")
+script = ExtResource("1_nq6q0")
 
 [node name="Background" type="TextureRect" parent="."]
 self_modulate = Color(0.351563, 0.351563, 0.351563, 1)
@@ -20,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_ejdya")
+texture = ExtResource("2_0xp0k")
 
 [node name="Control" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -41,15 +41,36 @@ layout_mode = 2
 self_modulate = Color(0.533037, 0.533037, 0.533037, 1)
 custom_minimum_size = Vector2(0, 69)
 layout_mode = 2
-texture = ExtResource("1_ejdya")
+texture = ExtResource("2_0xp0k")
 
 [node name="Title" type="Label" parent="Control/VBoxContainer/TextureRect"]
-layout_mode = 2
-offset_right = 1520.0
-offset_bottom = 69.0
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -34.5
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "设置"
 vertical_alignment = 1
+
+[node name="Close" type="Button" parent="Control/VBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -34.5
+offset_bottom = 34.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "X"
 
 [node name="Space" type="Control" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
@@ -101,68 +122,11 @@ layout_mode = 2
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "屏幕"
+text = "反反复复"
 
 [node name="ScreenSelectOption" type="OptionButton" parent="Control/VBoxContainer/PanelContainer/Game/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer/PanelContainer/Game/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/VBoxContainer/PanelContainer/Game/MarginContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "分辨率"
-
-[node name="ResolutionSelectOption" type="OptionButton" parent="Control/VBoxContainer/PanelContainer/Game/MarginContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="Control/VBoxContainer/PanelContainer/Game/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/VBoxContainer/PanelContainer/Game/MarginContainer/VBoxContainer/HBoxContainer3"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "显示模式"
-
-[node name="ScreenModeSelectOption" type="OptionButton" parent="Control/VBoxContainer/PanelContainer/Game/MarginContainer/VBoxContainer/HBoxContainer3"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="Control/VBoxContainer/PanelContainer/Game/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/VBoxContainer/PanelContainer/Game/MarginContainer/VBoxContainer/HBoxContainer4"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "最大帧率"
-
-[node name="MaxFrameRateSelectOption" type="OptionButton" parent="Control/VBoxContainer/PanelContainer/Game/MarginContainer/VBoxContainer/HBoxContainer4"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-
-[node name="HBoxContainer5" type="HBoxContainer" parent="Control/VBoxContainer/PanelContainer/Game/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/VBoxContainer/PanelContainer/Game/MarginContainer/VBoxContainer/HBoxContainer5"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "亮度"
-
-[node name="LightSlider" type="HSlider" parent="Control/VBoxContainer/PanelContainer/Game/MarginContainer/VBoxContainer/HBoxContainer5"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_vertical = 4
-rounded = true
-scrollable = false
-tick_count = 5
-ticks_on_borders = true
 
 [node name="Video" type="ScrollContainer" parent="Control/VBoxContainer/PanelContainer"]
 unique_name_in_owner = true

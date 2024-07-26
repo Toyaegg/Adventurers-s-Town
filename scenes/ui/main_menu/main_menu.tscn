@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://blhe8becgrgd7"]
 
-[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_vmfd4"]
-[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/textures/common/white_block.png" id="2_0t6h5"]
+[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_pfdev"]
+[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="2_47taw"]
 
 [node name="MainMenu" type="Control"]
 top_level = true
@@ -11,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_vmfd4")
+script = ExtResource("1_pfdev")
 
 [node name="Background" type="TextureRect" parent="."]
 self_modulate = Color(0.255659, 0.255659, 0.255659, 1)
@@ -22,7 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
-texture = ExtResource("2_0t6h5")
+texture = ExtResource("2_47taw")
 
 [node name="Title" type="Control" parent="."]
 layout_mode = 1
@@ -39,6 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextTitle" type="Label" parent="Title"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -52,7 +53,7 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 150
-text = "勇者镇"
+text = "冒险者小镇"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -1,0 +1,501 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg8lh35rex0fd"]
+
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_gfo3q"]
+[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="2_rhxao"]
+[ext_resource type="Texture2D" uid="uid://dq0l85rsr887m" path="res://assets/texture/common/logo.jpg" id="3_3kl1t"]
+[ext_resource type="PackedScene" uid="uid://crfp4xalea1f4" path="res://scenes/ui/hud/building_info.tscn" id="4_jtqe7"]
+
+[node name="HUD" type="Control" node_paths=PackedStringArray("building_info")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_gfo3q")
+building_info = NodePath("BuildingInfo")
+
+[node name="AdventurerUnion" type="Control" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="UnionEXP" type="TextureProgressBar" parent="AdventurerUnion"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+nine_patch_stretch = true
+texture_under = ExtResource("2_rhxao")
+texture_progress = ExtResource("2_rhxao")
+tint_under = Color(0.381703, 0.381703, 0.381703, 1)
+tint_progress = Color(0.126492, 0.750547, 4.62055e-06, 1)
+
+[node name="UnionEXPValue" type="Label" parent="AdventurerUnion"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -11.5
+offset_right = 210.0
+offset_bottom = 11.5
+grow_vertical = 2
+mouse_filter = 1
+text = "0    (0.0%)"
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="AdventurerUnion"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -11.5
+offset_right = -10.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+text = "工会经验值"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ResourcesDisplayList" type="Control" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ResourcesDisplayList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Gold" type="Control" parent="ResourcesDisplayList/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="GoldIcon" type="TextureRect" parent="ResourcesDisplayList/HBoxContainer/Gold"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_vertical = 2
+texture = ExtResource("3_3kl1t")
+expand_mode = 4
+
+[node name="GoldValue" type="Label" parent="ResourcesDisplayList/HBoxContainer/Gold"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -11.0
+offset_right = -10.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 30
+text = "2000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Gem" type="Control" parent="ResourcesDisplayList/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="GemIcon" type="TextureRect" parent="ResourcesDisplayList/HBoxContainer/Gem"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_vertical = 2
+texture = ExtResource("3_3kl1t")
+expand_mode = 4
+
+[node name="GemValue" type="Label" parent="ResourcesDisplayList/HBoxContainer/Gem"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -11.0
+offset_right = -10.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 30
+text = "2000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Gem2" type="Control" parent="ResourcesDisplayList/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="ResourcesDisplayList/HBoxContainer/Gem2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_vertical = 2
+texture = ExtResource("3_3kl1t")
+expand_mode = 4
+
+[node name="Value" type="Label" parent="ResourcesDisplayList/HBoxContainer/Gem2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -11.0
+offset_right = -10.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 30
+text = "2000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BuildingList" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -600.0
+offset_top = -200.0
+offset_right = 600.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Background" type="TextureRect" parent="BuildingList"]
+self_modulate = Color(0.336608, 0.336608, 0.336608, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rhxao")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BuildingList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 10.0
+offset_right = -25.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Building" type="Control" parent="BuildingList/HBoxContainer"]
+custom_minimum_size = Vector2(120, 160)
+layout_mode = 2
+
+[node name="Background" type="TextureRect" parent="BuildingList/HBoxContainer/Building"]
+self_modulate = Color(0.493545, 0.493546, 0.493546, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rhxao")
+
+[node name="BuildingIcon" type="TextureRect" parent="BuildingList/HBoxContainer/Building"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -70.0
+offset_right = 50.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rhxao")
+
+[node name="BuildingName" type="Label" parent="BuildingList/HBoxContainer/Building"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 10.025
+offset_right = 40.0
+offset_bottom = 40.025
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "冒险者工会"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="BuildingList/HBoxContainer/Building"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -80.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BuildingList/HBoxContainer/Building/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="ResourceNeed" type="Control" parent="BuildingList/HBoxContainer/Building/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ResourceIcon" type="TextureRect" parent="BuildingList/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
+self_modulate = Color(1, 0.454902, 1, 1)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -7.5
+offset_right = 15.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("2_rhxao")
+
+[node name="ResourceNeedValue" type="Label" parent="BuildingList/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -11.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 15
+text = "3000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AdventurerList" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -600.0
+offset_top = -200.0
+offset_right = 600.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Background" type="TextureRect" parent="AdventurerList"]
+self_modulate = Color(0.336608, 0.336608, 0.336608, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rhxao")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AdventurerList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 10.0
+offset_right = -25.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Building" type="Control" parent="AdventurerList/HBoxContainer"]
+custom_minimum_size = Vector2(120, 160)
+layout_mode = 2
+
+[node name="Background" type="TextureRect" parent="AdventurerList/HBoxContainer/Building"]
+self_modulate = Color(0.493545, 0.493546, 0.493546, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rhxao")
+
+[node name="BuildingIcon" type="TextureRect" parent="AdventurerList/HBoxContainer/Building"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -70.0
+offset_right = 50.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rhxao")
+
+[node name="BuildingName" type="Label" parent="AdventurerList/HBoxContainer/Building"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 10.025
+offset_right = 40.0
+offset_bottom = 40.025
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "冒险者工会"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="AdventurerList/HBoxContainer/Building"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -80.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AdventurerList/HBoxContainer/Building/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="ResourceNeed" type="Control" parent="AdventurerList/HBoxContainer/Building/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ResourceIcon" type="TextureRect" parent="AdventurerList/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
+self_modulate = Color(1, 0.454902, 1, 1)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -7.5
+offset_right = 15.0
+offset_bottom = 7.5
+grow_vertical = 2
+texture = ExtResource("2_rhxao")
+
+[node name="ResourceNeedValue" type="Label" parent="AdventurerList/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -11.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 15
+text = "3000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BuildingInfo" parent="." instance=ExtResource("4_jtqe7")]
+layout_mode = 1
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0

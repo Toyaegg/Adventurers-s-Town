@@ -7,3 +7,7 @@ func _ready() -> void:
 
 func update_focused(v : bool) -> void:
 	print("update_focused " + str(v))
+	EventBus.push_event(GameEvents.UI_VISIBLE_BUILDING_INFO, [self, v])
+
+#func show_info(config : BuildingConfig) -> void:
+#	pass

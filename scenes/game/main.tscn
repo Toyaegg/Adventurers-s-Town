@@ -1,23 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://16rl1x65ikpd"]
+[gd_scene load_steps=8 format=3 uid="uid://16rl1x65ikpd"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_4wq2m"]
 [ext_resource type="Script" path="res://scripts/game/input_control/camera_controller.gd" id="2_opefa"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_t7qba"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_lighq"]
 [ext_resource type="TileSet" uid="uid://r7p2fblmw3ql" path="res://assets/map/town_map_set.tres" id="4_c8o7t"]
-[ext_resource type="Script" path="res://scripts/game/adventurer_union.gd" id="6_pdpoh"]
-[ext_resource type="Resource" uid="uid://3gelx8g55jii" path="res://scripts/game/adventurer_union_config.tres" id="7_8d1nj"]
-[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/textures/common/white_block.png" id="8_lk081"]
-[ext_resource type="Texture2D" uid="uid://dq0l85rsr887m" path="res://assets/textures/common/logo.jpg" id="9_d3g45"]
+[ext_resource type="PackedScene" uid="uid://dsy6m6nb21lpc" path="res://scenes/game/building/adventurer_union.tscn" id="6_5ken4"]
 
 [sub_resource type="Resource" id="Resource_vy6rr"]
 script = ExtResource("3_lighq")
 duration = 1.0
 transition = 0
 ease = 2
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rltw4"]
-size = Vector2(117, 184)
 
 [node name="Game" type="Node2D"]
 
@@ -50,27 +44,4 @@ layer_0/tile_data = PackedInt32Array(196590, 0, 0, 196591, 0, 0, 196592, 0, 0, 1
 
 [node name="Weather" type="Node2D" parent="Environment"]
 
-[node name="AdventurerUnion" type="Node2D" parent="."]
-position = Vector2(0, 129)
-script = ExtResource("6_pdpoh")
-building_config = ExtResource("7_8d1nj")
-
-[node name="BuildingTexture" type="Sprite2D" parent="AdventurerUnion"]
-position = Vector2(-2, -90)
-scale = Vector2(7.3125, 11.4375)
-texture = ExtResource("8_lk081")
-
-[node name="Door" type="Sprite2D" parent="AdventurerUnion"]
-self_modulate = Color(0.921569, 0, 0.266667, 1)
-position = Vector2(-2.00002, -28)
-scale = Vector2(0.058, 0.122)
-texture = ExtResource("9_d3g45")
-
-[node name="Area2D" type="Area2D" parent="AdventurerUnion"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AdventurerUnion/Area2D"]
-position = Vector2(-1.5, -90)
-shape = SubResource("RectangleShape2D_rltw4")
-
-[connection signal="mouse_entered" from="AdventurerUnion/Area2D" to="AdventurerUnion" method="on_pointer_enter"]
-[connection signal="mouse_exited" from="AdventurerUnion/Area2D" to="AdventurerUnion" method="on_pointer_exit"]
+[node name="AdventurerUnion" parent="." instance=ExtResource("6_5ken4")]

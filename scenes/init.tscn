@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmw45df7xs7ht"]
 
-[ext_resource type="Script" path="res://scripts/init.gd" id="1_v3k8e"]
-[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/textures/common/white_block.png" id="2_v0pg1"]
-[ext_resource type="Texture2D" uid="uid://dq0l85rsr887m" path="res://assets/textures/common/logo.jpg" id="3_ticv2"]
+[ext_resource type="Script" path="res://scripts/ui/init.gd" id="1_v3k8e"]
+[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="2_v0pg1"]
+[ext_resource type="Texture2D" uid="uid://dq0l85rsr887m" path="res://assets/texture/common/logo.jpg" id="3_ticv2"]
 
 [node name="Init" type="Control"]
 layout_mode = 3

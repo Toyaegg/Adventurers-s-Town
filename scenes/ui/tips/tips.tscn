@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cyifm1i12v61w"]
 
-[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/textures/common/white_block.png" id="1_6ft4n"]
-[ext_resource type="Script" path="res://scripts/ui/tips.gd" id="1_vn2su"]
+[ext_resource type="Script" path="res://scripts/ui/tips.gd" id="1_uursd"]
+[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="2_ghc0m"]
 
 [node name="Tips" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_vn2su")
+script = ExtResource("1_uursd")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(500, 300)
@@ -30,7 +30,7 @@ grow_vertical = 2
 [node name="TextureRect" type="NinePatchRect" parent="MarginContainer"]
 self_modulate = Color(0.462291, 0.462291, 0.462291, 1)
 layout_mode = 2
-texture = ExtResource("1_6ft4n")
+texture = ExtResource("2_ghc0m")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2

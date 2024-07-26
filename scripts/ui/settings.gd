@@ -37,7 +37,7 @@ func switch_content(index : int) -> void:
 			game_input.visible = true
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_released("ui_cancel"):		
+	if event.is_action_released("ui_cancel"):
 		EventBus.push_event(GameEvents.UI_OPEN, UIPanel.MainMenu)
 		EventBus.push_event(GameEvents.UI_CLOSE, UIPanel.Settings)
 		get_viewport().set_input_as_handled()

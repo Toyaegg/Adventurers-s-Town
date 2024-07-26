@@ -1,0 +1,124 @@
+[gd_scene load_steps=2 format=3 uid="uid://crfp4xalea1f4"]
+
+[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="1_3ucey"]
+
+[node name="BuildingInfo" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 280.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+self_modulate = Color(0.581033, 0.581033, 0.581033, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3ucey")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = 7.82
+offset_right = 32.0
+offset_bottom = 30.82
+grow_horizontal = 2
+text = "建筑信息"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Info" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -45.0
+offset_right = 125.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="Info"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Control" parent="Info/Content"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Info/Content/Name"]
+custom_minimum_size = Vector2(80, 30)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 80.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "建筑名称"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameValue" type="Label" parent="Info/Content/Name"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Control" parent="Info/Content"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Info/Content/Description"]
+custom_minimum_size = Vector2(80, 30)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "建筑说明"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescriptionValue" type="Label" parent="Info/Content/Description"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = -30.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 2
