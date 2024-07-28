@@ -3,7 +3,7 @@ extends Node
 
 @export_group("Options")
 @export var from_center : bool = true
-@export var parallel : bool = true
+@export var parallel_animation : bool = true
 @export var properties : Array = [
 	"scale",
 	"position",
@@ -35,14 +35,14 @@ func _ready() -> void:
 func connect_signals() -> void:
 	target.mouse_entered.connect(add_tween.bind(
 		hover_values,
-		parallel,
+		parallel_animation,
 		hover_time,
 		hover_transition,
 		hover_easing,
 	))
 	target.mouse_exited.connect(add_tween.bind(
 		default_values,
-		parallel,
+		parallel_animation,
 		hover_time,
 		hover_transition,
 		hover_easing,

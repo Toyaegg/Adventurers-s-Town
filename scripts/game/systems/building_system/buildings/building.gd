@@ -8,7 +8,6 @@ var focused : ValueWithSignal
 
 @export_category("conponents")
 @export var door : Node2D
-@export var info_position : Marker2D
 @export_category("config")
 @export var building_config : BuildingConfig
 

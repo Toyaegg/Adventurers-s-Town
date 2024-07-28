@@ -1,0 +1,30 @@
+[gd_resource type="BehaviorTree" load_steps=8 format=3 uid="uid://f3yn7iro8hc7"]
+
+[ext_resource type="Script" path="res://ai/tasks/move_to_building.gd" id="1_7vx0i"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_1xo44"]
+
+[sub_resource type="BBVariant" id="BBVariant_ouin0"]
+type = 2
+saved_value = 100
+resource_name = "100"
+
+[sub_resource type="BTCheckAgentProperty" id="BTCheckAgentProperty_xu0lk"]
+property = &"gold"
+check_type = 1
+value = SubResource("BBVariant_ouin0")
+custom_name = "NotEnoughMoney"
+
+[sub_resource type="BTAction" id="BTAction_pyuxe"]
+script = ExtResource("1_7vx0i")
+
+[sub_resource type="BTSequence" id="BTSequence_321kj"]
+custom_name = "MakeMoney"
+children = [SubResource("BTAction_pyuxe")]
+
+[sub_resource type="BTSelector" id="BTSelector_y7vvi"]
+children = [SubResource("BTCheckAgentProperty_xu0lk"), SubResource("BTSequence_321kj")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_1xo44")
+root_task = SubResource("BTSelector_y7vvi")

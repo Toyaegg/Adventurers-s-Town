@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BuildingConfig" load_steps=2 format=3 uid="uid://dd2kwsnc2xopr"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/building_config.gd" id="1_voy7u"]
+
+[resource]
+script = ExtResource("1_voy7u")
+id = &"i"
+display_name = "小酒馆"
+description = "为冒险者提供临时的居住场所。"
+level = 0
+adv_exp = 0
+exp_per_level = Array[int]([100, 200])
+max_member = 0
+resource_need = Array[Array]([[10, 10, 10], [50, 50, 50]])
+max_member_per_level = Array[int]([10, 15])
+only_one = true

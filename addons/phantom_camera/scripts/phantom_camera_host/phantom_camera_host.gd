@@ -699,3 +699,7 @@ func get_trigger_pcam_tween() -> bool:
 	#return interpolation_mode
 
 #endregion
+
+
+func _on_click(event: InputEvent) -> void:
+	pass # Replace with function body.

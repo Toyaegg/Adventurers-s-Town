@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BuildingConfig" load_steps=2 format=3 uid="uid://df4uunb6ci5fd"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/building_config.gd" id="1_acp8c"]
+
+[resource]
+script = ExtResource("1_acp8c")
+id = &"fg"
+display_name = "闪金商会"
+description = "全大陆最有名的大商人家族——闪金家族成立的大商会，全大陆各种商品应有尽有。"
+level = 0
+adv_exp = 0
+exp_per_level = Array[int]([100, 200])
+max_member = 0
+resource_need = Array[Array]([[10, 10, 10], [50, 50, 50]])
+max_member_per_level = Array[int]([10, 15])
+only_one = true

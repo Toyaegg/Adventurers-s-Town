@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BuildingConfig" load_steps=2 format=3 uid="uid://8fis3qgqtcxd"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/building_config.gd" id="1_8mqef"]
+
+[resource]
+script = ExtResource("1_8mqef")
+id = &"h"
+display_name = "住宅"
+description = "冒险者可以买的住宅。"
+level = 0
+adv_exp = 0
+exp_per_level = Array[int]([100, 200])
+max_member = 0
+resource_need = Array[Array]([[10, 10, 10], [50, 50, 50]])
+max_member_per_level = Array[int]([10, 15])
+only_one = false

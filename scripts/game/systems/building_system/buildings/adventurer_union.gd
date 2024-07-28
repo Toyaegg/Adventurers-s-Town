@@ -11,3 +11,5 @@ func update_focused(v : bool) -> void:
 
 #func show_info(config : BuildingConfig) -> void:
 #	pass
+#region
+#endregion

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://0h65dcncmejy"]
 
-[ext_resource type="Script" path="res://scripts/ui/panels/save_files.gd" id="1_21w66"]
+[ext_resource type="Script" path="res://scripts/ui/panels/save_files/save_files.gd" id="1_21w66"]
 [ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="2_6g8dc"]
 
 [node name="SaveFiles" type="Control"]

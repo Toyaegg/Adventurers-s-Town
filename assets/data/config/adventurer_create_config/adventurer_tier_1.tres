@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AdventurerCreateConfig" load_steps=2 format=3 uid="uid://huddir2vol2a"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/adventurer_create_config.gd" id="1_1k3vb"]
+
+[resource]
+script = ExtResource("1_1k3vb")
+tier = 0
+potential = 20.0
+base_attack = 5.0
+base_defence = 10.0
+base_hp = 150.0
+base_Influence = 0.0
+min_growth = 0.1
+max_growth = 0.5
