@@ -1,16 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://16rl1x65ikpd"]
+[gd_scene load_steps=21 format=3 uid="uid://16rl1x65ikpd"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_4wq2m"]
 [ext_resource type="Script" path="res://scripts/game/input_control/camera_controller.gd" id="2_opefa"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_t7qba"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_lighq"]
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/world.gd" id="5_6icwk"]
-[ext_resource type="Texture2D" uid="uid://bkcs8p2g8svju" path="res://assets/texture/background/f_od.png" id="6_cgep4"]
+[ext_resource type="Texture2D" uid="uid://cu3fs6hxooord" path="res://assets/texture/background/Day_Sky.png" id="6_ahokp"]
 [ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="6_e4mlb"]
-[ext_resource type="Texture2D" uid="uid://wtul05x17m10" path="res://assets/texture/background/dd.png" id="6_ot06h"]
+[ext_resource type="Texture2D" uid="uid://ndp2wfaoifc5" path="res://assets/texture/background/Day_Clouds_01.png" id="7_7vc18"]
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/building_manager.gd" id="8_idxec"]
+[ext_resource type="Texture2D" uid="uid://cb5y8qhditlny" path="res://assets/texture/background/Day_Mountains_01.png" id="8_lqjk1"]
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/building_slot.gd" id="9_kc4qa"]
+[ext_resource type="Texture2D" uid="uid://born1dn01rioo" path="res://assets/texture/background/Day_Trees_03.png" id="9_tv71j"]
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/click_build_menu.gd" id="10_hlsdr"]
+[ext_resource type="Texture2D" uid="uid://df6gu1siabmso" path="res://assets/texture/background/g.png" id="10_tahd5"]
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/build_menu.gd" id="12_5cvrb"]
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/building_item.gd" id="12_bbqcn"]
 
@@ -21,6 +24,13 @@ transition = 0
 ease = 2
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gv60b"]
+
+[sub_resource type="Environment" id="Environment_hrihn"]
+ambient_light_source = 2
+ambient_light_color = Color(0.643686, 0.286961, 0.515705, 1)
+ambient_light_energy = 0.46
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_3tl3u"]
 
 [node name="Game" type="Node2D"]
 
@@ -51,23 +61,57 @@ shape = SubResource("WorldBoundaryShape2D_gv60b")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="World/Background"]
 
+[node name="BackgroundSkyLayer" type="ParallaxLayer" parent="World/Background/ParallaxBackground"]
+self_modulate = Color(1, 1, 1, 0.513726)
+scale = Vector2(0.8, 0.8)
+motion_scale = Vector2(0.1, 0)
+motion_mirroring = Vector2(3840, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Background/ParallaxBackground/BackgroundSkyLayer"]
+texture = ExtResource("6_ahokp")
+centered = false
+
 [node name="BackgroundFarLayer" type="ParallaxLayer" parent="World/Background/ParallaxBackground"]
 self_modulate = Color(1, 1, 1, 0.513726)
-motion_scale = Vector2(0.8, 0)
-motion_mirroring = Vector2(1920, 0)
+scale = Vector2(0.8, 0.8)
+motion_scale = Vector2(0.3, 0)
+motion_mirroring = Vector2(3840, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Background/ParallaxBackground/BackgroundFarLayer"]
-texture = ExtResource("6_ot06h")
+position = Vector2(0, 133)
+texture = ExtResource("7_7vc18")
+centered = false
+
+[node name="BackgroundMidiumLayer" type="ParallaxLayer" parent="World/Background/ParallaxBackground"]
+self_modulate = Color(1, 1, 1, 0.513726)
+scale = Vector2(0.8, 0.8)
+motion_scale = Vector2(0.5, 0)
+motion_mirroring = Vector2(3840, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Background/ParallaxBackground/BackgroundMidiumLayer"]
+position = Vector2(4, 623)
+texture = ExtResource("8_lqjk1")
+centered = false
+
+[node name="BackgroundNearLayer" type="ParallaxLayer" parent="World/Background/ParallaxBackground"]
+self_modulate = Color(1, 1, 1, 0.513726)
+scale = Vector2(0.8, 0.8)
+motion_scale = Vector2(0.8, 0)
+motion_mirroring = Vector2(3840, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Background/ParallaxBackground/BackgroundNearLayer"]
+position = Vector2(0, 891)
+texture = ExtResource("9_tv71j")
 centered = false
 
 [node name="GroundLayer" type="ParallaxLayer" parent="World/Background/ParallaxBackground"]
-z_index = -3
 motion_scale = Vector2(1, 0)
 motion_offset = Vector2(0.5, 0)
 motion_mirroring = Vector2(1920, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Background/ParallaxBackground/GroundLayer"]
-texture = ExtResource("6_cgep4")
+position = Vector2(1, 960)
+texture = ExtResource("10_tahd5")
 centered = false
 
 [node name="BuildingManager" type="Node2D" parent="World" node_paths=PackedStringArray("slot", "slots", "build_menu")]
@@ -258,6 +302,10 @@ texture = ExtResource("6_e4mlb")
 [node name="Sun" type="DirectionalLight2D" parent="Environment"]
 
 [node name="Weather" type="Node2D" parent="Environment"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_hrihn")
+camera_attributes = SubResource("CameraAttributesPhysical_3tl3u")
 
 [connection signal="gui_input" from="World/BuildingManager/BuildingSlots/Slot/Control" to="World/BuildingManager/BuildingSlots/Slot/Control" method="_unhandled_input"]
 [connection signal="mouse_entered" from="World/BuildingManager/BuildingSlots/Slot/Control" to="World/BuildingManager/BuildingSlots/Slot/Control" method="on_pointer_enter"]

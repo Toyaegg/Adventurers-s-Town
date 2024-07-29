@@ -8,6 +8,7 @@ var focused : ValueWithSignal
 
 @export_category("conponents")
 @export var door : Node2D
+@export var name_label : Label
 @export_category("config")
 @export var building_config : BuildingConfig
 
@@ -18,21 +19,21 @@ func on_pointer_enter() -> void:
 		func ():
 			if pointer_entered:
 				focused.value = true)
-	pass
+
+	name_label.text = building_config.display_name
+	name_label.show()
 
 func on_pointer_exit() -> void:
 	print("on_pointer_exit")
 	pointer_entered = false
 	focused.value = false
-	pass
+	name_label.hide()
 
 func on_pointer_press() -> void:
 	print("on_pointer_press")
-	pass
 
 func on_pointer_release() -> void:
 	print("on_pointer_release")
-	pass
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("click") and focused.value:

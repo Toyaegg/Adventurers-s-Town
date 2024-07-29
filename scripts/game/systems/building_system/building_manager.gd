@@ -7,6 +7,11 @@ extends Node2D
 @export var build_menu : Control
 
 var adventurer_union : PackedScene = preload("res://scenes/game/building/adventurer_union.tscn")
+var flash_gold : PackedScene = preload("res://scenes/game/building/flash_gold.tscn")
+var church : PackedScene = preload("res://scenes/game/building/church.tscn")
+var house : PackedScene = preload("res://scenes/game/building/house.tscn")
+var inn : PackedScene = preload("res://scenes/game/building/inn.tscn")
+var training_ground : PackedScene = preload("res://scenes/game/building/training_ground.tscn")
 
 var slots_dic : Dictionary
 
@@ -43,6 +48,21 @@ func build(slot_id : int, id : StringName) -> void:
 	match id :
 		&"au":
 			var b : Building = adventurer_union.instantiate()
+			slots_dic[slot_id].build(b)
+		&"c":
+			var b : Building = church.instantiate()
+			slots_dic[slot_id].build(b)
+		&"fg":
+			var b : Building = flash_gold.instantiate()
+			slots_dic[slot_id].build(b)
+		&"h":
+			var b : Building = house.instantiate()
+			slots_dic[slot_id].build(b)
+		&"tg":
+			var b : Building = training_ground.instantiate()
+			slots_dic[slot_id].build(b)
+		&"i":
+			var b : Building = inn.instantiate()
 			slots_dic[slot_id].build(b)
 
 func open_build_menu(slot_id : int, open_pos : Vector2) -> void:

@@ -8,9 +8,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rltw4"]
 size = Vector2(118, 183)
 
-[node name="AdventurerUnion" type="Node2D" node_paths=PackedStringArray("door")]
+[node name="AdventurerUnion" type="Node2D" node_paths=PackedStringArray("door", "name_label")]
 script = ExtResource("1_xcvix")
 door = NodePath("Door")
+name_label = NodePath("Label")
 building_config = ExtResource("2_iqdx2")
 
 [node name="BuildingTexture" type="Sprite2D" parent="."]
@@ -23,6 +24,15 @@ self_modulate = Color(0.921569, 0, 0.266667, 1)
 position = Vector2(0, -31)
 scale = Vector2(0.058, 0.122)
 texture = ExtResource("4_joggm")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -181.0
+offset_right = 20.0
+offset_bottom = -153.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
 
 [node name="Area2D" type="Area2D" parent="."]
 
