@@ -22,10 +22,13 @@ var adventurer_model : AdventurerModel
 
 var systems : Node
 var building_system : BuildingSystem
+var time_system : TimeSystem
 
 var player_display_name : String = "test"
 
 var build_mode_progress : ValueWithSignal = ValueWithSignal.new()
+
+var game_config := preload("res://assets/data/config/game_config/game_config.tres")
 
 func initialize() -> void:
 	create_managers()
@@ -62,6 +65,7 @@ func initialize_systems() -> void:
 	add_child(systems)
 
 	create_building_system()
+	create_time_system()
 
 func subscribe_events() -> void:
 	EventBus.subscribe(GameEvents.GAME_START, start_game)
@@ -94,6 +98,13 @@ func create_building_system() -> void:
 	building_system = BuildingSystem.new()
 	building_system.name = "BuildingSystem"
 	systems.add_child(building_system)
+
+func create_time_system() -> void:
+	time_system = TimeSystem.new()
+	time_system.name = "BuildTimeSystemingSystem"
+	time_system.second_as_hour = game_config.second_as_hour
+	time_system.day_time = game_config.day_time
+	systems.add_child(time_system)
 
 func start_game(method : int) -> void:
 	match method:

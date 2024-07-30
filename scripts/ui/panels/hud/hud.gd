@@ -7,6 +7,7 @@ extends Control
 @onready var biomass_value: Label = %BiomassValue
 @onready var mineral_value: Label = %MineralValue
 @onready var energy_core_value: Label = %EnergyCoreValue
+@onready var time: Label = %Time
 
 @export var building_info : Control
 
@@ -14,24 +15,18 @@ func _ready() -> void:
 	#EventBus.subscribe(GameEvents.UI_VISIBLE_BUILDING_INFO, visible_building_info)
 	building_info.hide()
 	EventBus.subscribe(GameEvents.GAME_HANDLE_ENTER_BUILD_MODE, enter_build_mode)
+	EventBus.subscribe(GameEvents.GAME_INNER_TIME_CHANGED, update_time)
 
-#func _unhandled_input(event: InputEvent) -> void:
-	#if event.is_action_released("ui_cancel"):
-		#EventBus.push_event(GameEvents.UI_OPEN, UIPanel.MainMenu)
-		#EventBus.push_event(GameEvents.UI_CLOSE, UIPanel.SaveFiles)
-		#get_viewport().set_input_as_handled()
-	#va.value += "2"
-	#pass
+	EventBus.push_event(GameEvents.GAME_INNER_TIME_START)
 
-#func visible_building_info(building : Building, can_visible : bool) -> void:
-	#print("visible_building_info %s %s" % [building.display_name, building.get_info_position()])
-	#if can_visible:
-		#building_info.show()
-		#building_info.position = building.get_info_position()
-		#building_info.get_node("Info/Content/Name/NameValue").text = building.building_config.display_name
-		#building_info.get_node("Info/Content/Description/DescriptionValue").text = building.building_config.description
-	#else:
-		#building_info.hide()
+func update_time(data : TimeSystem.TimeData) -> void:
+	var str : String = "第%d天 " % data.day
+	if data.in_night:
+		str += "夜晚"
+	else:
+		str += "白天"
+
+	time.text = str
 
 func enter_build_mode(v: bool) -> void:
 		visible = not v

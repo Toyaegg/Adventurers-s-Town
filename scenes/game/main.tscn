@@ -50,8 +50,28 @@ tween_resource = SubResource("Resource_vy6rr")
 script = ExtResource("2_opefa")
 camera_move_speed = 1000.0
 
-[node name="World" type="Node2D" parent="."]
+[node name="SunAndMoon" type="Node2D" parent="."]
+position = Vector2(0, -409)
+
+[node name="Sun" type="Sprite2D" parent="SunAndMoon"]
+modulate = Color(0.901961, 0.301961, 0, 1)
+position = Vector2(-32, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("6_e4mlb")
+
+[node name="Moon" type="Sprite2D" parent="SunAndMoon"]
+modulate = Color(0.921039, 0.914499, 7.70092e-07, 1)
+position = Vector2(20, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("6_e4mlb")
+
+[node name="World" type="Node2D" parent="." node_paths=PackedStringArray("sprites", "sun", "moon")]
 script = ExtResource("5_6icwk")
+sprites = [NodePath("Background/ParallaxBackground/BackgroundSkyLayer/Sprite2D"), NodePath("Background/ParallaxBackground/BackgroundFarLayer/Sprite2D"), NodePath("Background/ParallaxBackground/BackgroundMidiumLayer/Sprite2D"), NodePath("Background/ParallaxBackground/BackgroundNearLayer/Sprite2D"), NodePath("Background/ParallaxBackground/GroundLayer/Sprite2D3"), NodePath("Background/ParallaxBackground/GroundLayer/Sprite2D2"), NodePath("Background/ParallaxBackground/GroundLayer/Sprite2D")]
+day_color = Color(1, 1, 1, 1)
+night_color = Color(0.129412, 0.231373, 0.545098, 1)
+sun = NodePath("../SunAndMoon/Sun")
+moon = NodePath("../SunAndMoon/Moon")
 
 [node name="Background" type="StaticBody2D" parent="World"]
 
@@ -109,8 +129,18 @@ motion_scale = Vector2(1, 0)
 motion_offset = Vector2(0.5, 0)
 motion_mirroring = Vector2(1920, 0)
 
+[node name="Sprite2D3" type="Sprite2D" parent="World/Background/ParallaxBackground/GroundLayer"]
+position = Vector2(1, 943.88)
+texture = ExtResource("10_tahd5")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="World/Background/ParallaxBackground/GroundLayer"]
+position = Vector2(1, 879.155)
+texture = ExtResource("10_tahd5")
+centered = false
+
 [node name="Sprite2D" type="Sprite2D" parent="World/Background/ParallaxBackground/GroundLayer"]
-position = Vector2(1, 960)
+position = Vector2(1, 813)
 texture = ExtResource("10_tahd5")
 centered = false
 
@@ -160,8 +190,9 @@ visible = false
 custom_minimum_size = Vector2(1000, 200)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = -1144.0
+offset_right = 1000.0
+offset_bottom = -944.0
 script = ExtResource("12_5cvrb")
 
 [node name="Background" type="TextureRect" parent="World/BuildingManager/BuildMenu"]
@@ -300,6 +331,7 @@ texture = ExtResource("6_e4mlb")
 [node name="Environment" type="Node2D" parent="."]
 
 [node name="Sun" type="DirectionalLight2D" parent="Environment"]
+energy = 0.0
 
 [node name="Weather" type="Node2D" parent="Environment"]
 

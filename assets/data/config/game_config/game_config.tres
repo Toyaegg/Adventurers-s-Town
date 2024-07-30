@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GameConfig" load_steps=2 format=3 uid="uid://bga77vgs5nbie"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/game_config.gd" id="1_i8w62"]
+
+[resource]
+script = ExtResource("1_i8w62")
+second_as_hour = 1
+day_time = 18

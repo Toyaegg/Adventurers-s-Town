@@ -1,12 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://diu3gwnl3d4p7"]
+[gd_scene load_steps=5 format=3 uid="uid://diu3gwnl3d4p7"]
 
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/buildings/inn.gd" id="1_hbe8e"]
 [ext_resource type="Resource" uid="uid://dd2kwsnc2xopr" path="res://assets/data/config/building_config/inn_config.tres" id="2_3em0q"]
-[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="3_ch0wc"]
-[ext_resource type="Texture2D" uid="uid://dq0l85rsr887m" path="res://assets/texture/common/logo.jpg" id="4_58dcd"]
+[ext_resource type="Texture2D" uid="uid://b5mdu7yqqi7s8" path="res://assets/texture/game/building/i.png" id="3_2kxoy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rltw4"]
-size = Vector2(118, 183)
+size = Vector2(176, 135)
 
 [node name="Inn" type="Node2D" node_paths=PackedStringArray("door", "name_label")]
 script = ExtResource("1_hbe8e")
@@ -15,15 +14,12 @@ name_label = NodePath("Label")
 building_config = ExtResource("2_3em0q")
 
 [node name="BuildingTexture" type="Sprite2D" parent="."]
-position = Vector2(0, -91.65)
-scale = Vector2(7.3125, 11.4375)
-texture = ExtResource("3_ch0wc")
+position = Vector2(0, -68)
+texture = ExtResource("3_2kxoy")
 
-[node name="Door" type="Sprite2D" parent="."]
+[node name="Door" type="Marker2D" parent="."]
 self_modulate = Color(0.921569, 0, 0.266667, 1)
-position = Vector2(0, -31)
 scale = Vector2(0.058, 0.122)
-texture = ExtResource("4_58dcd")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -20.0
@@ -33,11 +29,13 @@ offset_bottom = -153.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -91.5)
+position = Vector2(0, -67.5)
 shape = SubResource("RectangleShape2D_rltw4")
 
 [connection signal="mouse_entered" from="Area2D" to="." method="on_pointer_enter"]

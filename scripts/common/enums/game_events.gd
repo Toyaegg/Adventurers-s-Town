@@ -23,3 +23,9 @@ const GAME_HANDLE_BUILDING := "game_handle_building"
 const GAME_HANDLE_CLICK_BUILD_MENU := "game_handle_click_build_menu"
 const GAME_HANDLE_BUILDING_COMPLETE := "game_handle_building_complete"
 const GAME_HANDLE_ENTER_BUILD_MODE := "game_handle_enter_build_mode"
+
+##游戏内部
+const GAME_INNER_TIME_CHANGED := "game_inner_time_changed"
+const GAME_INNER_TIME_START := "game_inner_time_start"
+const GAME_INNER_TIME_STOP := "game_inner_time_stop"
+const GAME_INNER_SET_TIME_SPEED := "game_inner_set_time_speed"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bg8lh35rex0fd"]
+[gd_scene load_steps=14 format=3 uid="uid://bg8lh35rex0fd"]
 
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/hud.gd" id="1_gfo3q"]
 [ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="2_rhxao"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/common/base/toggle.gd" id="5_s8n8x"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/building_list.gd" id="5_sw8ek"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/adventurer_list.gd" id="6_0hngo"]
+[ext_resource type="Script" path="res://scripts/ui/panels/hud/lists.gd" id="6_ag4ln"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/building_info_item.gd" id="6_m8hrg"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/adventurer_info_item.gd" id="8_r84d3"]
 
@@ -572,8 +573,202 @@ text_overrun_behavior = 4
 script = ExtResource("4_lqaur")
 hover_position = Vector2(-250, 0)
 
-[node name="BuildingList" type="Control" parent="." node_paths=PackedStringArray("item_prefab", "content")]
-visible = false
+[node name="Lists" type="Control" parent="." node_paths=PackedStringArray("building_list", "adventurer_list")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -750.0
+offset_top = -200.0
+offset_right = 750.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+script = ExtResource("6_ag4ln")
+building_list = NodePath("BuildingList")
+adventurer_list = NodePath("AdventurerList")
+
+[node name="AdventurerList" type="Control" parent="Lists" node_paths=PackedStringArray("item_prefab", "content")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -600.0
+offset_top = -200.0
+offset_right = 600.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+script = ExtResource("6_0hngo")
+item_prefab = NodePath("ScrollContainer/MarginContainer/HBoxContainer/Adventurer")
+content = NodePath("ScrollContainer/MarginContainer/HBoxContainer")
+
+[node name="Background" type="TextureRect" parent="Lists/AdventurerList"]
+self_modulate = Color(0.336608, 0.336608, 0.336608, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rhxao")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Lists/AdventurerList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Lists/AdventurerList/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Lists/AdventurerList/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Adventurer" type="Control" parent="Lists/AdventurerList/ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 160)
+layout_mode = 2
+script = ExtResource("8_r84d3")
+
+[node name="Background" type="TextureRect" parent="Lists/AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Adventurer"]
+self_modulate = Color(0.493545, 0.493546, 0.493546, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rhxao")
+
+[node name="AdventurerIcon" type="TextureRect" parent="Lists/AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Adventurer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -70.0
+offset_right = 50.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rhxao")
+
+[node name="AdventurerName" type="Label" parent="Lists/AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Adventurer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 10.025
+offset_right = 40.0
+offset_bottom = 40.025
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "冒险者工会"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="Lists/AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Adventurer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Lists/AdventurerList"]
+layout_mode = 0
+offset_left = 1200.0
+offset_right = 1350.0
+offset_bottom = 180.0
+
+[node name="FilterToggle" type="Control" parent="Lists/AdventurerList/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="CheckButton" type="Button" parent="Lists/AdventurerList/VBoxContainer/FilterToggle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+toggle_mode = true
+button_group = SubResource("ButtonGroup_1x56v")
+text = "普通冒险者"
+script = ExtResource("5_s8n8x")
+select_color = Color(0.317647, 1, 1, 1)
+
+[node name="FilterToggle2" type="Control" parent="Lists/AdventurerList/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="CheckButton" type="Button" parent="Lists/AdventurerList/VBoxContainer/FilterToggle2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+toggle_mode = true
+button_group = SubResource("ButtonGroup_1x56v")
+text = "精英冒险者"
+script = ExtResource("5_s8n8x")
+select_color = Color(0.317647, 1, 1, 1)
+
+[node name="FilterToggle3" type="Control" parent="Lists/AdventurerList/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="CheckButton" type="Button" parent="Lists/AdventurerList/VBoxContainer/FilterToggle3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+toggle_mode = true
+button_group = SubResource("ButtonGroup_1x56v")
+text = "终极冒险者"
+script = ExtResource("5_s8n8x")
+select_color = Color(0.317647, 1, 1, 1)
+
+[node name="BuildingList" type="Control" parent="Lists" node_paths=PackedStringArray("item_prefab", "content")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -590,7 +785,7 @@ script = ExtResource("5_sw8ek")
 item_prefab = NodePath("ScrollContainer/MarginContainer/HBoxContainer/Building")
 content = NodePath("ScrollContainer/MarginContainer/HBoxContainer")
 
-[node name="Background" type="TextureRect" parent="BuildingList"]
+[node name="Background" type="TextureRect" parent="Lists/BuildingList"]
 self_modulate = Color(0.336608, 0.336608, 0.336608, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -601,7 +796,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_rhxao")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="BuildingList"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Lists/BuildingList"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -612,7 +807,7 @@ grow_vertical = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="BuildingList/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Lists/BuildingList/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -621,15 +816,15 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BuildingList/ScrollContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Lists/BuildingList/ScrollContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Building" type="Control" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer"]
+[node name="Building" type="Control" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 160)
 layout_mode = 2
 script = ExtResource("6_m8hrg")
 
-[node name="Background" type="TextureRect" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
+[node name="Background" type="TextureRect" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
 self_modulate = Color(0.493545, 0.493546, 0.493546, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -639,7 +834,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_rhxao")
 
-[node name="BuildingIcon" type="TextureRect" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
+[node name="BuildingIcon" type="TextureRect" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -654,7 +849,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_rhxao")
 
-[node name="BuildingName" type="Label" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
+[node name="BuildingName" type="Label" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -670,7 +865,7 @@ text = "冒险者工会"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
+[node name="Control" type="Control" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -684,7 +879,7 @@ offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -697,11 +892,11 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="ResourceNeed" type="Control" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer"]
+[node name="ResourceNeed" type="Control" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="ResourceIcon" type="TextureRect" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
+[node name="ResourceIcon" type="TextureRect" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
 self_modulate = Color(1, 0.454902, 1, 1)
 layout_mode = 1
 anchors_preset = 4
@@ -713,7 +908,7 @@ offset_bottom = 7.5
 grow_vertical = 2
 texture = ExtResource("2_rhxao")
 
-[node name="ResourceNeedValue" type="Label" parent="BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
+[node name="ResourceNeedValue" type="Label" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -732,129 +927,15 @@ text = "3000"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="AdventurerList" type="Control" parent="." node_paths=PackedStringArray("item_prefab", "content")]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -600.0
-offset_top = -200.0
-offset_right = 600.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 1
-script = ExtResource("6_0hngo")
-item_prefab = NodePath("ScrollContainer/MarginContainer/HBoxContainer/Adventurer")
-content = NodePath("ScrollContainer/MarginContainer/HBoxContainer")
-
-[node name="Background" type="TextureRect" parent="AdventurerList"]
-self_modulate = Color(0.336608, 0.336608, 0.336608, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_rhxao")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="AdventurerList"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="AdventurerList/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="AdventurerList/ScrollContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Adventurer" type="Control" parent="AdventurerList/ScrollContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(120, 160)
-layout_mode = 2
-script = ExtResource("8_r84d3")
-
-[node name="Background" type="TextureRect" parent="AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Adventurer"]
-self_modulate = Color(0.493545, 0.493546, 0.493546, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_rhxao")
-
-[node name="AdventurerIcon" type="TextureRect" parent="AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Adventurer"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -70.0
-offset_right = 50.0
-offset_bottom = 70.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_rhxao")
-
-[node name="AdventurerName" type="Label" parent="AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Adventurer"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -40.0
-offset_top = 10.025
-offset_right = 40.0
-offset_bottom = 40.025
-grow_horizontal = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-text = "冒险者工会"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Control" type="Control" parent="AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Adventurer"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -35.0
-offset_right = 35.0
-offset_bottom = 35.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="AdventurerList"]
-layout_mode = 0
-offset_left = 1200.0
-offset_right = 1350.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Lists"]
+offset_right = 150.0
 offset_bottom = 180.0
 
-[node name="FilterToggle" type="Control" parent="AdventurerList/VBoxContainer"]
+[node name="FilterToggle" type="Control" parent="Lists/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="CheckButton" type="Button" parent="AdventurerList/VBoxContainer/FilterToggle"]
+[node name="CheckButton" type="Button" parent="Lists/VBoxContainer/FilterToggle"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -866,19 +947,21 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 20
 toggle_mode = true
 button_group = SubResource("ButtonGroup_1x56v")
-text = "普通冒险者"
+text = "建筑"
 script = ExtResource("5_s8n8x")
 select_color = Color(0.317647, 1, 1, 1)
 
-[node name="FilterToggle2" type="Control" parent="AdventurerList/VBoxContainer"]
+[node name="FilterToggle2" type="Control" parent="Lists/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="CheckButton" type="Button" parent="AdventurerList/VBoxContainer/FilterToggle2"]
+[node name="CheckButton" type="Button" parent="Lists/VBoxContainer/FilterToggle2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -886,29 +969,10 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 20
 toggle_mode = true
 button_group = SubResource("ButtonGroup_1x56v")
-text = "精英冒险者"
+text = "冒险者"
 script = ExtResource("5_s8n8x")
 select_color = Color(0.317647, 1, 1, 1)
-
-[node name="FilterToggle3" type="Control" parent="AdventurerList/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-
-[node name="CheckButton" type="Button" parent="AdventurerList/VBoxContainer/FilterToggle3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 20
-toggle_mode = true
-button_group = SubResource("ButtonGroup_1x56v")
-text = "终极冒险者"
-script = ExtResource("5_s8n8x")
-select_color = Color(0.317647, 1, 1, 1)
+bind_data = 1
 
 [node name="BuildingInfo" parent="." instance=ExtResource("4_jtqe7")]
 visible = false
@@ -917,3 +981,8 @@ offset_left = -150.0
 offset_top = -100.0
 offset_right = 150.0
 offset_bottom = 100.0
+
+[connection signal="selected" from="Lists/VBoxContainer/FilterToggle/CheckButton" to="Lists" method="_on_check_button_selected"]
+[connection signal="unselected" from="Lists/VBoxContainer/FilterToggle/CheckButton" to="Lists" method="_on_check_button_unselected"]
+[connection signal="selected" from="Lists/VBoxContainer/FilterToggle2/CheckButton" to="Lists" method="_on_check_button_selected"]
+[connection signal="unselected" from="Lists/VBoxContainer/FilterToggle2/CheckButton" to="Lists" method="_on_check_button_unselected"]

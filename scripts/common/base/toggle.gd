@@ -5,10 +5,10 @@ extends Button
 @export var select_color : Color
 var normal_color : Color
 
-var bind_data
+@export var bind_data : int
 
-signal selected(bind_data)
-signal unselected(bind_data)
+signal selected(bind_data : int)
+signal unselected(bind_data : int)
 
 func _init() -> void:
 	toggle_mode = true
