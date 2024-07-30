@@ -23,9 +23,9 @@ func _ready() -> void:
 	for slot_id in slots_dic:
 		slots_dic[slot_id].show_build_item(GameManager.build_mode_progress.value)
 
-	EventBus.subscribe(GameEvents.GAME_HANDLE_BUILDING, build)
-	EventBus.subscribe(GameEvents.GAME_HANDLE_CLICK_BUILD_MENU, open_build_menu)
-	EventBus.subscribe(GameEvents.GAME_HANDLE_ENTER_BUILD_MODE, enter_build_mode)
+	EventBus.subscribe(GameEvents.BUILD_BUILDING, build)
+	EventBus.subscribe(GameEvents.BUILD_CLICK_BUILD_MENU, open_build_menu)
+	EventBus.subscribe(GameEvents.BUILD_ENTER_BUILD_MODE, enter_build_mode)
 
 func create_slots() -> void:
 	create_slot(0)

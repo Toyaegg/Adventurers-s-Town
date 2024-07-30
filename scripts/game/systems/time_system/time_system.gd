@@ -26,7 +26,7 @@ func _ready() -> void:
 	start_time.value_changed.connect(time_changed)
 	second_as_day = second_as_hour * 24
 
-	EventBus.subscribe(GameEvents.GAME_INNER_TIME_START, start)
+	EventBus.subscribe(GameEvents.TIME_SYSTEM_START, start)
 
 func _process(delta: float) -> void:
 	if is_running :
@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 
 func start() -> void:
 	is_running = true
-	EventBus.push_event(GameEvents.GAME_INNER_TIME_CHANGED, time)
+	EventBus.push_event(GameEvents.TIME_VALUE_CHANGED, time)
 
 func stop() -> void:
 	is_running = false
@@ -48,7 +48,7 @@ func time_changed(v : float) -> void:
 		print("time changed ", v, " ", time.in_night, " ", is_night)
 		time.day = day
 		time.in_night = is_night
-		EventBus.push_event(GameEvents.GAME_INNER_TIME_CHANGED, time)
+		EventBus.push_event(GameEvents.TIME_VALUE_CHANGED, time)
 
 
 

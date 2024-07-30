@@ -602,7 +602,6 @@ offset_top = -200.0
 offset_right = 600.0
 grow_horizontal = 2
 grow_vertical = 0
-mouse_filter = 1
 script = ExtResource("6_0hngo")
 item_prefab = NodePath("ScrollContainer/MarginContainer/HBoxContainer/Adventurer")
 content = NodePath("ScrollContainer/MarginContainer/HBoxContainer")
@@ -780,7 +779,6 @@ offset_top = -200.0
 offset_right = 600.0
 grow_horizontal = 2
 grow_vertical = 0
-mouse_filter = 1
 script = ExtResource("5_sw8ek")
 item_prefab = NodePath("ScrollContainer/MarginContainer/HBoxContainer/Building")
 content = NodePath("ScrollContainer/MarginContainer/HBoxContainer")
@@ -819,7 +817,7 @@ theme_override_constants/margin_bottom = 5
 [node name="HBoxContainer" type="HBoxContainer" parent="Lists/BuildingList/ScrollContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Building" type="Control" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer"]
+[node name="Building" type="TextureButton" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 160)
 layout_mode = 2
 script = ExtResource("6_m8hrg")
@@ -878,6 +876,7 @@ offset_right = 35.0
 offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control"]
 layout_mode = 1
@@ -895,6 +894,7 @@ alignment = 2
 [node name="ResourceNeed" type="Control" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="ResourceIcon" type="TextureRect" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
 self_modulate = Color(1, 0.454902, 1, 1)
@@ -928,6 +928,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Lists"]
+layout_mode = 0
 offset_right = 150.0
 offset_bottom = 180.0
 
@@ -982,6 +983,7 @@ offset_top = -100.0
 offset_right = 150.0
 offset_bottom = 100.0
 
+[connection signal="pressed" from="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building" to="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building" method="click"]
 [connection signal="selected" from="Lists/VBoxContainer/FilterToggle/CheckButton" to="Lists" method="_on_check_button_selected"]
 [connection signal="unselected" from="Lists/VBoxContainer/FilterToggle/CheckButton" to="Lists" method="_on_check_button_unselected"]
 [connection signal="selected" from="Lists/VBoxContainer/FilterToggle2/CheckButton" to="Lists" method="_on_check_button_selected"]

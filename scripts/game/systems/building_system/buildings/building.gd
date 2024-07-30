@@ -31,14 +31,14 @@ func on_pointer_exit() -> void:
 
 func on_pointer_press() -> void:
 	print("on_pointer_press")
+	get_viewport().set_input_as_handled()
 
 func on_pointer_release() -> void:
 	print("on_pointer_release")
+	get_viewport().set_input_as_handled()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("click") and focused.value:
 		on_pointer_press()
-		get_viewport().set_input_as_handled()
 	if event.is_action_released("click") and focused.value:
 		on_pointer_release()
-		get_viewport().set_input_as_handled()
