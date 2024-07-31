@@ -7,6 +7,7 @@ script = ExtResource("1_acp8c")
 id = &"fg"
 display_name = "闪金商会"
 description = "全大陆最有名的大商人家族——闪金家族成立的大商会，全大陆各种商品应有尽有。"
+feature = Array[int]([2, 3])
 level = 0
 adv_exp = 0
 exp_per_level = Array[int]([100, 200])

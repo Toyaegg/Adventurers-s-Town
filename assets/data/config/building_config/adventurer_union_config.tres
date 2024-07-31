@@ -7,6 +7,7 @@ script = ExtResource("1_5nkde")
 id = &"au"
 display_name = "冒险者工会"
 description = "由%s创建的冒险者工会"
+feature = Array[int]([0, 1])
 level = 0
 adv_exp = 0
 exp_per_level = Array[int]([100, 200])

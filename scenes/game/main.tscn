@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://16rl1x65ikpd"]
+[gd_scene load_steps=22 format=3 uid="uid://16rl1x65ikpd"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_4wq2m"]
 [ext_resource type="Script" path="res://scripts/game/input_control/camera_controller.gd" id="2_opefa"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://df6gu1siabmso" path="res://assets/texture/background/g.png" id="10_tahd5"]
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/build_menu.gd" id="12_5cvrb"]
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/building_item.gd" id="12_bbqcn"]
+[ext_resource type="PackedScene" uid="uid://rr31o7uf3xxc" path="res://scenes/game/adventurer.tscn" id="17_opglh"]
 
 [sub_resource type="Resource" id="Resource_vy6rr"]
 script = ExtResource("3_lighq")
@@ -74,6 +75,7 @@ sun = NodePath("../SunAndMoon/Sun")
 moon = NodePath("../SunAndMoon/Moon")
 
 [node name="Background" type="StaticBody2D" parent="World"]
+collision_layer = 2
 
 [node name="GroundCollision" type="CollisionShape2D" parent="World/Background"]
 position = Vector2(0, 355)
@@ -327,6 +329,11 @@ offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_e4mlb")
+
+[node name="Adventurers" type="Node2D" parent="World"]
+position = Vector2(0, 342)
+
+[node name="Adventurer" parent="World/Adventurers" instance=ExtResource("17_opglh")]
 
 [node name="Environment" type="Node2D" parent="."]
 

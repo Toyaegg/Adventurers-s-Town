@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://rr31o7uf3xxc"]
+
+[ext_resource type="Script" path="res://scripts/game/systems/adventurer_system/adventurer/adventurer.gd" id="1_s6p47"]
+[ext_resource type="SpriteFrames" uid="uid://058l6hpd46jk" path="res://assets/animation/001/idle.tres" id="2_6qk1f"]
+[ext_resource type="BehaviorTree" uid="uid://f3yn7iro8hc7" path="res://ai/bt_task/adventurer.tres" id="3_c31il"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qn0gv"]
+size = Vector2(20, 14)
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_tyxvi"]
+
+[node name="Adventurer" type="CharacterBody2D" node_paths=PackedStringArray("animation")]
+collision_mask = 2
+script = ExtResource("1_s6p47")
+display_name = "kkkkk"
+move_speed = 6000.0
+animation = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -30)
+scale = Vector2(0.1, 0.1)
+sprite_frames = ExtResource("2_6qk1f")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_qn0gv")
+
+[node name="BTPlayer" type="BTPlayer" parent="."]
+behavior_tree = ExtResource("3_c31il")
+blackboard_plan = SubResource("BlackboardPlan_tyxvi")

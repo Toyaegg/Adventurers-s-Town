@@ -1,29 +1,155 @@
-[gd_resource type="BehaviorTree" load_steps=8 format=3 uid="uid://f3yn7iro8hc7"]
+[gd_resource type="BehaviorTree" load_steps=40 format=3 uid="uid://f3yn7iro8hc7"]
 
-[ext_resource type="Script" path="res://ai/tasks/move_to_building.gd" id="1_7vx0i"]
+[ext_resource type="Script" path="res://ai/tasks/find_building.gd" id="1_o36ml"]
+[ext_resource type="Script" path="res://ai/tasks/move_to_position.gd" id="2_5uimt"]
+[ext_resource type="Script" path="res://ai/tasks/find_building_position.gd" id="2_eou0p"]
+[ext_resource type="Script" path="res://ai/tasks/enter_building.gd" id="3_jww56"]
+[ext_resource type="Script" path="res://ai/tasks/use_building.gd" id="4_t111f"]
+[ext_resource type="Script" path="res://ai/tasks/exit_building.gd" id="5_qtkdm"]
+[ext_resource type="Script" path="res://ai/tasks/adventurer_rest.gd" id="5_thn84"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_1xo44"]
 
-[sub_resource type="BBVariant" id="BBVariant_ouin0"]
-type = 2
-saved_value = 100
-resource_name = "100"
+[sub_resource type="BBVariant" id="BBVariant_6wtsr"]
+type = 3
+saved_value = 0.2
+resource_name = "0.2"
 
-[sub_resource type="BTCheckAgentProperty" id="BTCheckAgentProperty_xu0lk"]
-property = &"gold"
+[sub_resource type="BTCheckAgentProperty" id="BTCheckAgentProperty_xtcfi"]
+property = &"hp_amount"
 check_type = 1
-value = SubResource("BBVariant_ouin0")
-custom_name = "NotEnoughMoney"
+value = SubResource("BBVariant_6wtsr")
+
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_aox8r"]
+text = "生命值低，去进行治疗"
+
+[sub_resource type="BTAction" id="BTAction_u66ck"]
+custom_name = "寻找教堂"
+script = ExtResource("1_o36ml")
+building_id = &"c"
+building_var = &"building"
+feature = 4
+
+[sub_resource type="BTAction" id="BTAction_6wbs3"]
+custom_name = "寻找教堂位置"
+script = ExtResource("2_eou0p")
+building_position_var = &"building_position"
+building_var = &"building"
 
 [sub_resource type="BTAction" id="BTAction_pyuxe"]
-script = ExtResource("1_7vx0i")
+custom_name = "移动到教堂"
+script = ExtResource("2_5uimt")
+building_position_var = &"building_position"
+tolerance = 10.0
 
-[sub_resource type="BTSequence" id="BTSequence_321kj"]
-custom_name = "MakeMoney"
-children = [SubResource("BTAction_pyuxe")]
+[sub_resource type="BTAction" id="BTAction_lbds2"]
+custom_name = "进入教堂"
+script = ExtResource("3_jww56")
+building_var = &"building"
+
+[sub_resource type="BTWait" id="BTWait_bg51w"]
+duration = 3.0
+
+[sub_resource type="BTAction" id="BTAction_x6c5k"]
+custom_name = "使用教堂治疗"
+script = ExtResource("4_t111f")
+building_var = &"building"
+feature = 4
+
+[sub_resource type="BTAction" id="BTAction_w6yp8"]
+custom_name = "退出教堂"
+script = ExtResource("5_qtkdm")
+building_var = &"building"
+
+[sub_resource type="BTWait" id="BTWait_jgng7"]
+
+[sub_resource type="BTSequence" id="BTSequence_m0kir"]
+custom_name = "检查生命值"
+children = [SubResource("BTCheckAgentProperty_xtcfi"), SubResource("BTConsolePrint_aox8r"), SubResource("BTAction_u66ck"), SubResource("BTAction_6wbs3"), SubResource("BTAction_pyuxe"), SubResource("BTAction_lbds2"), SubResource("BTWait_bg51w"), SubResource("BTAction_x6c5k"), SubResource("BTAction_w6yp8"), SubResource("BTWait_jgng7")]
+
+[sub_resource type="BBVariant" id="BBVariant_sykiv"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTCheckAgentProperty" id="BTCheckAgentProperty_pdrsj"]
+property = &"has_curse"
+value = SubResource("BBVariant_sykiv")
+
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_7yqhh"]
+text = "被诅咒了，去驱散诅咒"
+
+[sub_resource type="BTAction" id="BTAction_0oxdx"]
+custom_name = "寻找教堂"
+script = ExtResource("1_o36ml")
+building_id = &"c"
+building_var = &"building"
+feature = 5
+
+[sub_resource type="BTAction" id="BTAction_ik662"]
+custom_name = "寻找教堂位置"
+script = ExtResource("2_eou0p")
+building_position_var = &"building_position"
+building_var = &"building"
+
+[sub_resource type="BTAction" id="BTAction_q2yc6"]
+custom_name = "移动到教堂"
+script = ExtResource("2_5uimt")
+building_position_var = &"building_position"
+tolerance = 10.0
+
+[sub_resource type="BTAction" id="BTAction_j3jn1"]
+custom_name = "进入教堂"
+script = ExtResource("3_jww56")
+building_var = &"building"
+
+[sub_resource type="BTWait" id="BTWait_eemrs"]
+duration = 3.0
+
+[sub_resource type="BTAction" id="BTAction_2upkc"]
+custom_name = "使用教堂驱散"
+script = ExtResource("4_t111f")
+building_var = &"building"
+feature = 5
+
+[sub_resource type="BTAction" id="BTAction_gx8oh"]
+custom_name = "退出教堂"
+script = ExtResource("5_qtkdm")
+building_var = &"building"
+
+[sub_resource type="BTWait" id="BTWait_ushmx"]
+
+[sub_resource type="BTSequence" id="BTSequence_vlor8"]
+custom_name = "检查诅咒"
+children = [SubResource("BTCheckAgentProperty_pdrsj"), SubResource("BTConsolePrint_7yqhh"), SubResource("BTAction_0oxdx"), SubResource("BTAction_ik662"), SubResource("BTAction_q2yc6"), SubResource("BTAction_j3jn1"), SubResource("BTWait_eemrs"), SubResource("BTAction_2upkc"), SubResource("BTAction_gx8oh"), SubResource("BTWait_ushmx")]
+
+[sub_resource type="BBVariant" id="BBVariant_svfsk"]
+type = 3
+saved_value = 15.0
+resource_name = "15"
+
+[sub_resource type="BTCheckAgentProperty" id="BTCheckAgentProperty_21qes"]
+property = &"mp"
+check_type = 4
+value = SubResource("BBVariant_svfsk")
+
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_qloky"]
+text = "状态良好，去打副本"
+
+[sub_resource type="BTSequence" id="BTSequence_vdnma"]
+custom_name = "检查状态"
+children = [SubResource("BTCheckAgentProperty_21qes"), SubResource("BTConsolePrint_qloky")]
+
+[sub_resource type="BTAction" id="BTAction_pgdwd"]
+script = ExtResource("5_thn84")
+
+[sub_resource type="BTSequence" id="BTSequence_ta14u"]
+custom_name = "休息"
+children = [SubResource("BTAction_pgdwd")]
 
 [sub_resource type="BTSelector" id="BTSelector_y7vvi"]
-children = [SubResource("BTCheckAgentProperty_xu0lk"), SubResource("BTSequence_321kj")]
+custom_name = "冒险者行为"
+children = [SubResource("BTSequence_m0kir"), SubResource("BTSequence_vlor8"), SubResource("BTSequence_vdnma"), SubResource("BTSequence_ta14u")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_1xo44")

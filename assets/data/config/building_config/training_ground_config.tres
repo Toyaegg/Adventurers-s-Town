@@ -7,6 +7,7 @@ script = ExtResource("1_18kt3")
 id = &"tg"
 display_name = "训练场"
 description = "提高冒险者技能熟练度。"
+feature = Array[int]([8])
 level = 0
 adv_exp = 0
 exp_per_level = Array[int]([100, 200])

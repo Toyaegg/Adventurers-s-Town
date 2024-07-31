@@ -7,6 +7,7 @@ script = ExtResource("1_5nkde")
 id = &"c"
 display_name = "教堂"
 description = "勇气与幸运女神的教堂，治疗外伤，驱散诅咒，冒险者的安眠之所。"
+feature = Array[int]([4, 5, 6])
 level = 0
 adv_exp = 0
 exp_per_level = Array[int]([100, 200])

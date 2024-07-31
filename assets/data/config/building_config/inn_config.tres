@@ -7,6 +7,7 @@ script = ExtResource("1_voy7u")
 id = &"i"
 display_name = "小酒馆"
 description = "为冒险者提供临时的居住场所。"
+feature = Array[int]([7])
 level = 0
 adv_exp = 0
 exp_per_level = Array[int]([100, 200])

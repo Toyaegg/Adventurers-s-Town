@@ -1,6 +1,7 @@
 class_name Adventurer
-extends Node
+extends CharacterBody2D
 
+#region 枚举和常量
 enum Tier{
 	Normal,
 	Elite,
@@ -12,8 +13,6 @@ enum PotentialTendency{
 	Defence,
 	HP,
 }
-
-const ADVENTURER_MAX_LEVEL = 1000
 
 enum State{
 	Idel,
@@ -33,3 +32,116 @@ enum State{
 	ChallengeDungeon,
 	EnhanceStrength,
 }
+
+const MAX_LEVEL = 1000
+const MAX_GROWTH = 1
+const MAX_MAIN_TENDENCY = 0.5
+#const MAX_MAIN_TENDENCY = 0.5
+
+#endregion
+
+@export var display_name : String
+@export var tier : Tier
+@export var tendency : PotentialTendency
+@export var state : State
+@export var exp_multiply_factor : float = 2
+
+@export var move_speed : float = 200
+@export var animation : AnimatedSprite2D
+
+var id : int
+
+var attack : float
+var defence : float
+var hp : float
+var mp : float
+
+var cur_attack : float
+var cur_defence : float
+var cur_hp : float
+var cur_mp : float
+
+var potential : float
+var growth : float
+var exp_multiply : float
+
+var attack_growth : float
+var defence_growth : float
+var hp_growth : float
+
+const GRAVITY = 200.0
+
+var hp_amount : float:
+	get:
+		return cur_hp / hp;
+
+var mp_amount : float:
+	get:
+		return cur_mp / mp;
+
+var has_curse : bool:
+	get:
+		return true;
+
+func initialize(pattack : float, pdefence : float, php : float, ppotential : float, pgrowth : float) -> void:
+	potential = ppotential
+	growth = pgrowth
+	attack = pattack
+	defence = pdefence
+	hp = php
+
+	exp_multiply = (MAX_GROWTH - growth) * exp_multiply_factor
+
+	compute_growth()
+
+	print()
+
+func compute_growth() -> void:
+	match tendency:
+		PotentialTendency.Attack:
+			attack_growth = potential * MAX_MAIN_TENDENCY
+			var left_potential = potential * (1 - MAX_MAIN_TENDENCY)
+			defence_growth = left_potential * randf_range(0.2, 0.8)
+			hp_growth = left_potential - defence_growth
+		PotentialTendency.Defence:
+			defence_growth = potential * MAX_MAIN_TENDENCY
+			var left_potential = potential * (1 - MAX_MAIN_TENDENCY)
+			attack_growth = left_potential * randf_range(0.2, 0.8)
+			hp_growth = left_potential - attack_growth
+		PotentialTendency.HP:
+			hp_growth = potential * MAX_MAIN_TENDENCY
+			var left_potential = potential * (1 - MAX_MAIN_TENDENCY)
+			defence_growth = left_potential * randf_range(0.2, 0.8)
+			attack_growth = left_potential - defence_growth
+
+func _ready() -> void:
+	pass
+
+func _physics_process(delta) -> void:
+	velocity.y += delta * GRAVITY
+	var motion = velocity * delta
+	move_and_collide(motion)
+
+func move_dir(dir : int, tick : float) -> void:
+	if dir > 0:
+		velocity.x = Vector2.RIGHT.x * move_speed * tick
+		animation.flip_h = false
+	elif dir < 0:
+		velocity.x = Vector2.LEFT.x * move_speed * tick
+		animation.flip_h = true
+	else:
+		velocity.x = 0
+
+	if abs(velocity.x) > 0.1:
+		animation.play(&"walk")
+	else:
+		animation.play(&"idle")
+
+	move_and_slide()
+
+func add_hp(value : float) -> void:
+	print("血量+", value)
+	cur_hp += value
+
+
+

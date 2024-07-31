@@ -1,16 +1,54 @@
 class_name Building
 extends Node2D
 
-var id : String
-var display_name : String
-var pointer_entered : bool = false
-var focused : ValueWithSignal
+enum Feature{
+	AcceptTask,
+	CompleteTask,
+	Shopping,
+	Selling,
+	Treat,#治疗
+	Lift,#驱散
+	Blessing,
+	Rest,
+	Training,
+	Trainingff,
+}
 
 @export_category("conponents")
 @export var door : Node2D
 @export var name_label : Label
 @export_category("config")
 @export var building_config : BuildingConfig
+
+var id : String
+var display_name : String
+var pointer_entered : bool = false
+var focused : ValueWithSignal
+
+var belong_to : StringName
+
+@onready var visitors : Visitors
+var feature_componnents : Array
+var build_completed : bool = false
+
+func set_ready() -> void:
+	print("building ready")
+	visitors = get_node("Visitors")
+	print("building ready")
+	position.y = 200
+	get_tree().create_timer(3).timeout.connect(func(): build_completed = true)
+	get_tree().create_tween().tween_property(self, "position", Vector2.ZERO, 3)
+
+func has_feature(f : Feature) -> bool:
+	return building_config.feature.has(f)
+
+func enter(user : Adventurer) -> void:
+	visitors.enter(user)
+	print(user.display_name, "进入", building_config.display_name)
+
+func exit(user : Adventurer) -> void:
+	visitors.exit(user)
+	print(user.display_name, "退出", building_config.display_name)
 
 func on_pointer_enter() -> void:
 	print("on_pointer_enter")
