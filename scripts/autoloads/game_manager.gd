@@ -40,7 +40,7 @@ func initialize() -> void:
 	subscribe_events()
 
 	build_mode_progress.value = false
-	build_mode_progress.value_changed.connect(func(v): EventBus.push_event(GameEvents.GAME_HANDLE_ENTER_BUILD_MODE, v))
+	build_mode_progress.value_changed.connect(func(v): EventBus.push_event(GameEvents.BUILD_ENTER_BUILD_MODE, v))
 	print("game initialized")
 
 func create_managers() -> void:

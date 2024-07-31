@@ -6,7 +6,7 @@ var house_count : int = 0
 
 func _ready() -> void:
 	print("TownModel ready")
-	EventBus.subscribe(GameEvents.GAME_HANDLE_BUILDING_COMPLETE, build_complete)
+	EventBus.subscribe(GameEvents.BUILD_BUILDING_COMPLETE, build_complete)
 
 func build_complete(b : Building) -> void:
 	#if b.id == &"au":

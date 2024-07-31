@@ -18,14 +18,14 @@ const UI_PROGRESS_CHANGED := "ui_progress_changed"
 const UI_VISIBLE_BUILDING_INFO := "ui_visible_building_info"
 
 
-##游戏控制
-const GAME_HANDLE_BUILDING := "game_handle_building"
-const GAME_HANDLE_CLICK_BUILD_MENU := "game_handle_click_build_menu"
-const GAME_HANDLE_BUILDING_COMPLETE := "game_handle_building_complete"
-const GAME_HANDLE_ENTER_BUILD_MODE := "game_handle_enter_build_mode"
+##建造
+const BUILD_BUILDING := "build_building"
+const BUILD_CLICK_BUILD_MENU := "build_click_build_menu"
+const BUILD_BUILDING_COMPLETE := "build_building_complete"
+const BUILD_ENTER_BUILD_MODE := "build_enter_build_mode"
 
-##游戏内部
-const GAME_INNER_TIME_CHANGED := "game_inner_time_changed"
-const GAME_INNER_TIME_START := "game_inner_time_start"
-const GAME_INNER_TIME_STOP := "game_inner_time_stop"
-const GAME_INNER_SET_TIME_SPEED := "game_inner_set_time_speed"
+##时间
+const TIME_VALUE_CHANGED := "time_value_changed"
+const TIME_SYSTEM_START := "time_system_start"
+const TIME_SYSTEM_STOP := "time_system_stop"
+const TIME_SET_TIME_SPEED := "time_set_time_speed"

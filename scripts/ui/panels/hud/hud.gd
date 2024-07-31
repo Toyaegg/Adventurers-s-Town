@@ -14,10 +14,10 @@ extends Control
 func _ready() -> void:
 	#EventBus.subscribe(GameEvents.UI_VISIBLE_BUILDING_INFO, visible_building_info)
 	building_info.hide()
-	EventBus.subscribe(GameEvents.GAME_HANDLE_ENTER_BUILD_MODE, enter_build_mode)
-	EventBus.subscribe(GameEvents.GAME_INNER_TIME_CHANGED, update_time)
+	EventBus.subscribe(GameEvents.BUILD_ENTER_BUILD_MODE, enter_build_mode)
+	EventBus.subscribe(GameEvents.TIME_VALUE_CHANGED, update_time)
 
-	EventBus.push_event(GameEvents.GAME_INNER_TIME_START)
+	EventBus.push_event(GameEvents.TIME_SYSTEM_START)
 
 func update_time(data : TimeSystem.TimeData) -> void:
 	var str : String = "第%d天 " % data.day
