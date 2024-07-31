@@ -13,11 +13,13 @@ func enter(user : Adventurer) -> void:
 
 func exit(user : Adventurer) -> void:
 	if users.has(user):
-		users.erase(user)
 		print(users[users.size() - 1].display_name)
+		users.erase(user)
 
 func has_user(user : Adventurer) -> bool:
-	return users.has(user)
+	var result : bool = users.has(user)
+	print("visitor ",result)
+	return result
 
 #func use(user : Adventurer, f : Feature) -> bool:
 	#return false

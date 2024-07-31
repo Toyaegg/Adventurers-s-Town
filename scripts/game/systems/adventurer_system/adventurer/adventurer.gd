@@ -70,6 +70,7 @@ var defence_growth : float
 var hp_growth : float
 
 const GRAVITY = 200.0
+var curses : Array[int]
 
 var hp_amount : float:
 	get:
@@ -81,7 +82,7 @@ var mp_amount : float:
 
 var has_curse : bool:
 	get:
-		return true;
+		return curses.size() != 0;
 
 func initialize(pattack : float, pdefence : float, php : float, ppotential : float, pgrowth : float) -> void:
 	potential = ppotential
@@ -115,7 +116,17 @@ func compute_growth() -> void:
 			attack_growth = left_potential - defence_growth
 
 func _ready() -> void:
-	pass
+	tier = Tier.Ultimate
+	tendency = PotentialTendency.HP
+	initialize(20, 30, 50, 200, 0.8)
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_released("ui_down"):
+		print("cur_hp = 0")
+		cur_hp = 0
+	if Input.is_action_just_released("ui_up"):
+		print("curses.append(0)")
+		curses.append(0)
 
 func _physics_process(delta) -> void:
 	velocity.y += delta * GRAVITY
@@ -142,6 +153,10 @@ func move_dir(dir : int, tick : float) -> void:
 func add_hp(value : float) -> void:
 	print("血量+", value)
 	cur_hp += value
+
+func lift_curse() -> void:
+	print("诅咒驱散")
+	curses.clear()
 
 
 

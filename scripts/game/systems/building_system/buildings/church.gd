@@ -14,7 +14,12 @@ func use(user : Adventurer, f : Feature) -> bool:
 	if visitors.has_user(user):
 		match f:
 			Feature.Treat:
+				print("治疗")
 				user.add_hp(100)
+				result = true
+			Feature.Lift:
+				print("驱散")
+				user.lift_curse()
 				result = true
 
 	return result
