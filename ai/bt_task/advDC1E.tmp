@@ -32,7 +32,6 @@ children = [SubResource("BTCheckAgentProperty_21qes"), SubResource("BTWait_hbq2f
 [sub_resource type="BTAction" id="BTAction_vhv1w"]
 custom_name = "获取传送位置"
 script = ExtResource("1_04iu7")
-position_var = &"position"
 
 [sub_resource type="BTAction" id="BTAction_r3yw2"]
 custom_name = "移动到传送位置"
@@ -43,7 +42,6 @@ tolerance = 10.0
 [sub_resource type="BTAction" id="BTAction_xrspp"]
 custom_name = "使用传送"
 script = ExtResource("3_e3vvl")
-dungeon_var = &"dungeon"
 
 [sub_resource type="BTSequence" id="BTSequence_ctqig"]
 custom_name = "前往副本"
@@ -60,7 +58,6 @@ children = [SubResource("BTWait_d5ukf")]
 [sub_resource type="BTAction" id="BTAction_a60mh"]
 custom_name = "使用传送"
 script = ExtResource("3_e3vvl")
-dungeon_var = &"dungeon"
 
 [sub_resource type="BTSequence" id="BTSequence_c6l1x"]
 custom_name = "副本完成"

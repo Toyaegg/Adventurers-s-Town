@@ -10,7 +10,6 @@ func _ready() -> void:
 func enter_game() -> void:
 	var main = load("res://scenes/game/main.tscn")
 	get_tree().change_scene_to_packed(main)
-	#GameManager.open_ui(UIPanel.MainMenu)
 	EventBus.push_event(GameEvents.UI_OPEN, UIPanel.MainMenu)
 
 func initialize_game_data() -> void:

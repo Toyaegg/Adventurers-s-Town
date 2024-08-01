@@ -36,7 +36,8 @@ enum State{
 const MAX_LEVEL = 1000
 const MAX_GROWTH = 1
 const MAX_MAIN_TENDENCY = 0.5
-#const MAX_MAIN_TENDENCY = 0.5
+
+const GRAVITY = 200.0
 
 #endregion
 
@@ -69,8 +70,12 @@ var attack_growth : float
 var defence_growth : float
 var hp_growth : float
 
-const GRAVITY = 200.0
+var gold : int
+var items : Array
+
 var curses : Array[int]
+var buffs : Array[int]
+var equipment : Array[int]
 
 var hp_amount : float:
 	get:
@@ -119,6 +124,8 @@ func _ready() -> void:
 	tier = Tier.Ultimate
 	tendency = PotentialTendency.HP
 	initialize(20, 30, 50, 200, 0.8)
+	mp = 100
+	cur_mp = 100
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("ui_down"):
@@ -150,6 +157,18 @@ func move_dir(dir : int, tick : float) -> void:
 
 	move_and_slide()
 
+func accept_task() -> void:
+	pass
+
+func complete_task() -> void:
+	pass
+
+func shopping() -> void:
+	pass
+
+func selling() -> void:
+	pass
+
 func add_hp(value : float) -> void:
 	print("血量+", value)
 	cur_hp += value
@@ -157,6 +176,18 @@ func add_hp(value : float) -> void:
 func lift_curse() -> void:
 	print("诅咒驱散")
 	curses.clear()
+
+
+func blessing() -> void:
+	pass
+
+func rest() -> void:
+	pass
+
+func training() -> void:
+	pass
+
+
 
 
 

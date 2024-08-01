@@ -3,15 +3,13 @@ extends Node
 
 var buildings : Array[Building]
 var house_count : int = 0
+var transport_position : float
 
 func _ready() -> void:
 	print("TownModel ready")
 	EventBus.subscribe(GameEvents.BUILD_BUILDING_COMPLETE, build_complete)
 
 func build_complete(b : Building) -> void:
-	#if b.id == &"au":
-		#print("建筑物[%s]加入town_model" % b.display_name)
-		#adventurer_union = b
 	var key : String = b.id
 	if not b.building_config.only_one:
 		pass
@@ -27,3 +25,8 @@ func find_building(id : String, feature : Building.Feature) -> Building:
 			building = b
 
 	return building
+
+func get_transport_position() -> float:
+	return transport_position
+
+

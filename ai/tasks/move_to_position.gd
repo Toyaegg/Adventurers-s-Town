@@ -1,10 +1,10 @@
 extends BTAction
 
-@export var building_position_var : StringName = &"building_position"
+@export var position_var : StringName = &"position"
 @export var tolerance : float = 10
 
 func _tick(tick : float) -> Status:
-	var target_position : float = blackboard.get_var(building_position_var)
+	var target_position : float = blackboard.get_var(position_var)
 	var distance : float = target_position - agent.global_position.x
 
 	var dir : int

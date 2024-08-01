@@ -87,6 +87,7 @@ func create_audio_manager() -> void:
 func create_town_model() -> void:
 	town_model = TownModel.new()
 	town_model.name = "TownModel"
+	town_model.transport_position = 9000
 	models.add_child(town_model)
 
 func create_adventurer_model() -> void:

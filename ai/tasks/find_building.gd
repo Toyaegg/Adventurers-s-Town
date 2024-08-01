@@ -4,7 +4,7 @@ extends BTAction
 @export var building_var : StringName = &"building"
 @export var feature : Building.Feature
 
-func _tick(tick ) -> Status:
+func _tick(tick : float) -> Status:
 	var building : Building= GameManager.town_model.find_building(String(building_id), feature)
 
 	if building == null:

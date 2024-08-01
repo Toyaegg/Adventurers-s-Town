@@ -11,7 +11,6 @@ enum Feature{
 	Blessing,
 	Rest,
 	Training,
-	Trainingff,
 }
 
 @export_category("conponents")
@@ -31,13 +30,68 @@ var belong_to : StringName
 var feature_componnents : Array
 var build_completed : bool = false
 
+func _ready() -> void:
+	focused = ValueWithSignal.new()
+	focused.value_changed.connect(update_focused)
+	set_ready()
+
 func set_ready() -> void:
 	print("building ready")
 	visitors = get_node("Visitors")
-	print("building ready")
+
 	position.y = 200
+
 	get_tree().create_timer(3).timeout.connect(func(): build_completed = true)
 	get_tree().create_tween().tween_property(self, "position", Vector2.ZERO, 3)
+
+
+func use(user : Adventurer, f : Feature) -> bool:
+	var result : bool = false
+
+	if visitors.has_user(user):
+		match f:
+			Feature.AcceptTask:
+				print("接任务")
+				user.accept_task()
+				result = true
+			Feature.CompleteTask:
+				print("完成任务")
+				user.complete_task()
+				result = true
+			Feature.Shopping:
+				print("购买")
+				user.shopping()
+				result = true
+			Feature.Selling:
+				print("出售")
+				user.selling()
+				result = true
+			Feature.Treat:
+				print("治疗")
+				user.add_hp(100)
+				result = true
+			Feature.Lift:
+				print("驱散")
+				user.lift_curse()
+				result = true
+			Feature.Blessing:
+				print("祈福")
+				user.blessing()
+				result = true
+			Feature.Rest:
+				print("休息")
+				user.rest()
+				result = true
+			Feature.Training:
+				print("训练")
+				user.training()
+				result = true
+
+	return result
+
+func update_focused(v : bool) -> void:
+	print("update_focused " + str(v))
+	EventBus.push_event(GameEvents.UI_VISIBLE_BUILDING_INFO, [self, v])
 
 func has_feature(f : Feature) -> bool:
 	return building_config.feature.has(f)
