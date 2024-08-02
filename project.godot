@@ -51,7 +51,7 @@ window/vsync/vsync_mode=2
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/QuickSceneRunner/plugin.cfg", "res://addons/SimpleTODO/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/dictionary_inspector/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/procedural_world_map/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/save_system/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/save_system/plugin.cfg")
 
 [file_customization]
 

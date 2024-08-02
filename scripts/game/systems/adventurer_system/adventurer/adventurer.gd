@@ -56,11 +56,14 @@ var attack : float
 var defence : float
 var hp : float
 var mp : float
+var level : int
 
 var cur_attack : float
 var cur_defence : float
+var max_hp : float
 var cur_hp : float
 var cur_mp : float
+var cur_exp : float
 
 var potential : float
 var growth : float
@@ -71,7 +74,7 @@ var defence_growth : float
 var hp_growth : float
 
 var gold : int
-var items : Array
+var items : Array[int]
 
 var curses : Array[int]
 var buffs : Array[int]
@@ -99,8 +102,9 @@ func initialize(pattack : float, pdefence : float, php : float, ppotential : flo
 	exp_multiply = (MAX_GROWTH - growth) * exp_multiply_factor
 
 	compute_growth()
+	compute_attribute()
 
-	print()
+	print("adventurer created")
 
 func compute_growth() -> void:
 	match tendency:
@@ -120,12 +124,19 @@ func compute_growth() -> void:
 			defence_growth = left_potential * randf_range(0.2, 0.8)
 			attack_growth = left_potential - defence_growth
 
-func _ready() -> void:
-	tier = Tier.Ultimate
-	tendency = PotentialTendency.HP
-	initialize(20, 30, 50, 200, 0.8)
-	mp = 100
-	cur_mp = 100
+#func _ready() -> void:
+	#tier = Tier.Ultimate
+	#tendency = PotentialTendency.HP
+	#initialize(20, 30, 50, 200, 0.8)
+	#mp = 100
+	#cur_mp = 100
+
+func compute_attribute() -> void:
+	for i in level:
+		cur_attack += attack_growth
+		cur_defence += defence_growth
+		cur_hp += hp_growth
+		max_hp = cur_hp
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("ui_down"):
@@ -157,18 +168,6 @@ func move_dir(dir : int, tick : float) -> void:
 
 	move_and_slide()
 
-func accept_task() -> void:
-	pass
-
-func complete_task() -> void:
-	pass
-
-func shopping() -> void:
-	pass
-
-func selling() -> void:
-	pass
-
 func add_hp(value : float) -> void:
 	print("血量+", value)
 	cur_hp += value
@@ -179,14 +178,19 @@ func lift_curse() -> void:
 
 
 func blessing() -> void:
-	pass
+	print("祈福BUFF")
 
-func rest() -> void:
-	pass
+func equip_equipment() -> void:
+	print("穿装备")
 
-func training() -> void:
-	pass
+func unequip_equipment() -> void:
+	print("脱装备")
 
+func add_item() -> void:
+	print("添加物品")
+
+func use_item() -> void:
+	print("使用物品")
 
 
 

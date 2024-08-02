@@ -23,6 +23,7 @@ var adventurer_model : AdventurerModel
 var systems : Node
 var building_system : BuildingSystem
 var time_system : TimeSystem
+var adventurer_system : AdventurerSystem
 
 var player_display_name : String = "test"
 
@@ -64,8 +65,9 @@ func initialize_systems() -> void:
 	systems.name = "Systems"
 	add_child(systems)
 
-	create_building_system()
 	create_time_system()
+	create_building_system()
+	create_adventurer_system()
 
 func subscribe_events() -> void:
 	EventBus.subscribe(GameEvents.GAME_START, start_game)
@@ -100,9 +102,14 @@ func create_building_system() -> void:
 	building_system.name = "BuildingSystem"
 	systems.add_child(building_system)
 
+func create_adventurer_system() -> void:
+	adventurer_system = AdventurerSystem.new()
+	adventurer_system.name = "AdventurerSystem"
+	systems.add_child(adventurer_system)
+
 func create_time_system() -> void:
 	time_system = TimeSystem.new()
-	time_system.name = "BuildTimeSystemingSystem"
+	time_system.name = "TimeSystem"
 	time_system.second_as_hour = game_config.second_as_hour
 	time_system.day_time = game_config.day_time
 	systems.add_child(time_system)

@@ -35,5 +35,5 @@ const BUILD_ENTER_BUILD_MODE := "build_enter_build_mode"
 
 
 ##冒险者
-
+const ADVENTURER_CREATED := "adventurer_created"
 

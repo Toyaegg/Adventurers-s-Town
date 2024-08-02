@@ -1,12 +1,14 @@
-[gd_scene load_steps=22 format=3 uid="uid://16rl1x65ikpd"]
+[gd_scene load_steps=31 format=3 uid="uid://16rl1x65ikpd"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_4wq2m"]
 [ext_resource type="Script" path="res://scripts/game/input_control/camera_controller.gd" id="2_opefa"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_t7qba"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_lighq"]
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/world.gd" id="5_6icwk"]
+[ext_resource type="Texture2D" uid="uid://d1inlct2rt4rx" path="res://assets/texture/game/environment/TY.png" id="5_n5ueg"]
 [ext_resource type="Texture2D" uid="uid://cu3fs6hxooord" path="res://assets/texture/background/Day_Sky.png" id="6_ahokp"]
 [ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="6_e4mlb"]
+[ext_resource type="Texture2D" uid="uid://bw8eip8ptbh3m" path="res://assets/texture/game/environment/YL.png" id="6_i8ipl"]
 [ext_resource type="Texture2D" uid="uid://ndp2wfaoifc5" path="res://assets/texture/background/Day_Clouds_01.png" id="7_7vc18"]
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/building_manager.gd" id="8_idxec"]
 [ext_resource type="Texture2D" uid="uid://cb5y8qhditlny" path="res://assets/texture/background/Day_Mountains_01.png" id="8_lqjk1"]
@@ -16,7 +18,14 @@
 [ext_resource type="Texture2D" uid="uid://df6gu1siabmso" path="res://assets/texture/background/g.png" id="10_tahd5"]
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/build_menu.gd" id="12_5cvrb"]
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/building_item.gd" id="12_bbqcn"]
-[ext_resource type="PackedScene" uid="uid://rr31o7uf3xxc" path="res://scenes/game/adventurer.tscn" id="17_opglh"]
+[ext_resource type="Texture2D" uid="uid://dyjl441v7umub" path="res://assets/texture/ui/+.png" id="15_tlddb"]
+[ext_resource type="Texture2D" uid="uid://fcdxbei6wbw4" path="res://assets/texture/game/building/au.png" id="18_qwqt1"]
+[ext_resource type="Texture2D" uid="uid://b5mdu7yqqi7s8" path="res://assets/texture/game/building/i.png" id="19_lsg7o"]
+[ext_resource type="Texture2D" uid="uid://baorpnqqkokhj" path="res://assets/texture/game/building/c.png" id="20_06iuu"]
+[ext_resource type="Texture2D" uid="uid://cap3lqrpe4r42" path="res://assets/texture/game/building/fg.png" id="21_5m4xg"]
+[ext_resource type="Texture2D" uid="uid://dmx16gtwceyo6" path="res://assets/texture/game/building/tg.png" id="22_p7vdh"]
+[ext_resource type="Texture2D" uid="uid://kvpm4qy1gp1n" path="res://assets/texture/game/building/h.png" id="23_gyc2m"]
+[ext_resource type="Script" path="res://scripts/game/systems/adventurer_system/adventurer_manager.gd" id="24_ip3hu"]
 
 [sub_resource type="Resource" id="Resource_vy6rr"]
 script = ExtResource("3_lighq")
@@ -55,16 +64,14 @@ camera_move_speed = 1000.0
 position = Vector2(0, -409)
 
 [node name="Sun" type="Sprite2D" parent="CameraController/SunAndMoon"]
-modulate = Color(0.901961, 0.301961, 0, 1)
 position = Vector2(-32, 0)
-scale = Vector2(4, 4)
-texture = ExtResource("6_e4mlb")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_n5ueg")
 
 [node name="Moon" type="Sprite2D" parent="CameraController/SunAndMoon"]
-modulate = Color(0.921039, 0.914499, 7.70092e-07, 1)
 position = Vector2(20, 0)
-scale = Vector2(4, 4)
-texture = ExtResource("6_e4mlb")
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("6_i8ipl")
 
 [node name="World" type="Node2D" parent="." node_paths=PackedStringArray("sprites", "sun", "moon")]
 script = ExtResource("5_6icwk")
@@ -174,18 +181,21 @@ grow_vertical = 0
 script = ExtResource("10_hlsdr")
 
 [node name="TextureRect" type="TextureRect" parent="World/BuildingManager/BuildingSlots/Slot/Control"]
+self_modulate = Color(0.60636, 0.261183, 2.5028e-06, 1)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
+offset_left = -51.0
+offset_top = -146.0
+offset_right = 49.0
+offset_bottom = -46.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("6_e4mlb")
+texture = ExtResource("15_tlddb")
+expand_mode = 1
 
 [node name="BuildMenu" type="Control" parent="World/BuildingManager"]
 visible = false
@@ -230,15 +240,40 @@ building_id = &"au"
 menu = NodePath("../../..")
 
 [node name="TextureRect" type="TextureRect" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer/au"]
+custom_minimum_size = Vector2(160, 180)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 1.0
-offset_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -90.0
+offset_right = 80.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_e4mlb")
+texture = ExtResource("18_qwqt1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer/au"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "冒险者公会"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="i" type="Control" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer" node_paths=PackedStringArray("menu")]
 custom_minimum_size = Vector2(160, 160)
@@ -248,15 +283,41 @@ building_id = &"i"
 menu = NodePath("../../..")
 
 [node name="TextureRect" type="TextureRect" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer/i"]
+custom_minimum_size = Vector2(160, 180)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 1.0
-offset_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -90.0
+offset_right = 80.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_e4mlb")
+texture = ExtResource("19_lsg7o")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer/i"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "小酒馆"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="c" type="Control" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer" node_paths=PackedStringArray("menu")]
 custom_minimum_size = Vector2(160, 160)
@@ -266,15 +327,38 @@ building_id = &"c"
 menu = NodePath("../../..")
 
 [node name="TextureRect" type="TextureRect" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer/c"]
+custom_minimum_size = Vector2(160, 180)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 1.0
-offset_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.1414
+offset_right = 63.1414
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_e4mlb")
+texture = ExtResource("20_06iuu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer/c"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "教堂"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="fg" type="Control" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer" node_paths=PackedStringArray("menu")]
 custom_minimum_size = Vector2(160, 160)
@@ -284,15 +368,40 @@ building_id = &"fg"
 menu = NodePath("../../..")
 
 [node name="TextureRect" type="TextureRect" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer/fg"]
+custom_minimum_size = Vector2(160, 180)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 1.0
-offset_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -90.0
+offset_right = 80.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_e4mlb")
+texture = ExtResource("21_5m4xg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer/fg"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "闪金商会"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="tg" type="Control" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer" node_paths=PackedStringArray("menu")]
 custom_minimum_size = Vector2(160, 160)
@@ -302,15 +411,40 @@ building_id = &"tg"
 menu = NodePath("../../..")
 
 [node name="TextureRect" type="TextureRect" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer/tg"]
+custom_minimum_size = Vector2(160, 180)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 1.0
-offset_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -90.0
+offset_right = 80.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_e4mlb")
+texture = ExtResource("22_p7vdh")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer/tg"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "训练场"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="h" type="Control" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer" node_paths=PackedStringArray("menu")]
 custom_minimum_size = Vector2(160, 160)
@@ -320,20 +454,42 @@ building_id = &"h"
 menu = NodePath("../../..")
 
 [node name="TextureRect" type="TextureRect" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer/h"]
+custom_minimum_size = Vector2(160, 180)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 1.0
-offset_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 3.0
+offset_right = 3.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_e4mlb")
+texture = ExtResource("23_gyc2m")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Adventurers" type="Node2D" parent="World"]
-position = Vector2(0, 342)
+[node name="Label" type="Label" parent="World/BuildingManager/BuildMenu/MarginContainer/HBoxContainer/h"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "住宅"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Adventurer" parent="World/Adventurers" instance=ExtResource("17_opglh")]
+[node name="AdventurerManager" type="Node2D" parent="World"]
+position = Vector2(0, 259)
+script = ExtResource("24_ip3hu")
 
 [node name="Environment" type="Node2D" parent="."]
 

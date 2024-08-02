@@ -16,7 +16,7 @@ func change_color(data : TimeSystem.TimeData) -> void:
 		fc = night_color
 	else:
 		fc = day_color
-	print(data.in_night)
+	#print(data.in_night)
 	create_tween().tween_property(self, "modulate", fc, 2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).finished.connect(func() :
 		sun.visible = not data.in_night
 		moon.visible = data.in_night
