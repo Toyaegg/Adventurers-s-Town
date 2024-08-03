@@ -1,17 +1,18 @@
-[gd_resource type="Resource" script_class="BuildingConfig" load_steps=2 format=3 uid="uid://8fis3qgqtcxd"]
+[gd_resource type="Resource" script_class="BuildingConfig" load_steps=4 format=3 uid="uid://8fis3qgqtcxd"]
 
 [ext_resource type="Script" path="res://scripts/game/data_res/building_config.gd" id="1_8mqef"]
+[ext_resource type="Resource" uid="uid://c8gr14x7qbvtd" path="res://assets/data/config/building_feature/rest.tres" id="1_12nse"]
+[ext_resource type="Texture2D" uid="uid://kvpm4qy1gp1n" path="res://assets/texture/game/building/h.png" id="2_jj74s"]
 
 [resource]
 script = ExtResource("1_8mqef")
 id = &"h"
 display_name = "住宅"
 description = "冒险者可以买的住宅。"
-feature = Array[int]([7])
-level = 0
-adv_exp = 0
+feature = Array[Resource("res://scripts/game/systems/building_system/features/building_feature.gd")]([ExtResource("1_12nse")])
+icon = ExtResource("2_jj74s")
 exp_per_level = Array[int]([100, 200])
-max_member = 0
+max_member = Array[int]([])
 resource_need = Array[Array]([[10, 10, 10], [50, 50, 50]])
 max_member_per_level = Array[int]([10, 15])
 only_one = false

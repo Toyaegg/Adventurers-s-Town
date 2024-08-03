@@ -18,7 +18,7 @@ func set_value(node : Control, value):
 	while children.size() < value.size():
 		children.append(Label.new())
 		node.get_node("Box").add_child(children[children.size() - 1])
-	
+
 	var column_hints = hint_strings_array[node.get_index() % hint_strings_array.size()]
 	for i in children.size():
 		if i >= value.size():

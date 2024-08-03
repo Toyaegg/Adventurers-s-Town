@@ -1,17 +1,19 @@
-[gd_resource type="Resource" script_class="BuildingConfig" load_steps=2 format=3 uid="uid://df4uunb6ci5fd"]
+[gd_resource type="Resource" script_class="BuildingConfig" load_steps=5 format=3 uid="uid://df4uunb6ci5fd"]
 
 [ext_resource type="Script" path="res://scripts/game/data_res/building_config.gd" id="1_acp8c"]
+[ext_resource type="Resource" uid="uid://bgyfnixnb26qj" path="res://assets/data/config/building_feature/shopping.tres" id="1_ewtod"]
+[ext_resource type="Resource" uid="uid://u8l1iy8u86au" path="res://assets/data/config/building_feature/selling.tres" id="2_wscxb"]
+[ext_resource type="Texture2D" uid="uid://cap3lqrpe4r42" path="res://assets/texture/game/building/fg.png" id="3_wtgoo"]
 
 [resource]
 script = ExtResource("1_acp8c")
 id = &"fg"
 display_name = "闪金商会"
 description = "全大陆最有名的大商人家族——闪金家族成立的大商会，全大陆各种商品应有尽有。"
-feature = Array[int]([2, 3])
-level = 0
-adv_exp = 0
+feature = Array[Resource("res://scripts/game/systems/building_system/features/building_feature.gd")]([ExtResource("1_ewtod"), ExtResource("2_wscxb")])
+icon = ExtResource("3_wtgoo")
 exp_per_level = Array[int]([100, 200])
-max_member = 0
+max_member = Array[int]([])
 resource_need = Array[Array]([[10, 10, 10], [50, 50, 50]])
 max_member_per_level = Array[int]([10, 15])
 only_one = true

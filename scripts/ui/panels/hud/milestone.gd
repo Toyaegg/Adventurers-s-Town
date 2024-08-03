@@ -1,3 +1,4 @@
+class_name Milestone
 extends Control
 
 @export var item_prefab : Control

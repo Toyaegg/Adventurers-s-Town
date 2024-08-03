@@ -1,9 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://16rl1x65ikpd"]
+[gd_scene load_steps=29 format=3 uid="uid://16rl1x65ikpd"]
 
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_4wq2m"]
 [ext_resource type="Script" path="res://scripts/game/input_control/camera_controller.gd" id="2_opefa"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_t7qba"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_lighq"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="4_6tndb"]
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/world.gd" id="5_6icwk"]
 [ext_resource type="Texture2D" uid="uid://d1inlct2rt4rx" path="res://assets/texture/game/environment/TY.png" id="5_n5ueg"]
 [ext_resource type="Texture2D" uid="uid://cu3fs6hxooord" path="res://assets/texture/background/Day_Sky.png" id="6_ahokp"]
@@ -26,12 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dmx16gtwceyo6" path="res://assets/texture/game/building/tg.png" id="22_p7vdh"]
 [ext_resource type="Texture2D" uid="uid://kvpm4qy1gp1n" path="res://assets/texture/game/building/h.png" id="23_gyc2m"]
 [ext_resource type="Script" path="res://scripts/game/systems/adventurer_system/adventurer_manager.gd" id="24_ip3hu"]
-
-[sub_resource type="Resource" id="Resource_vy6rr"]
-script = ExtResource("3_lighq")
-duration = 1.0
-transition = 0
-ease = 2
+[ext_resource type="PackedScene" uid="uid://rr31o7uf3xxc" path="res://scenes/game/adventurer.tscn" id="25_tw7d6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gv60b"]
 
@@ -43,18 +36,6 @@ ambient_light_energy = 0.46
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_3tl3u"]
 
 [node name="Game" type="Node2D"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-limit_smoothed = true
-
-[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-script = ExtResource("1_4wq2m")
-
-[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
-script = ExtResource("2_t7qba")
-follow_mode = 2
-follow_target = NodePath("../CameraController")
-tween_resource = SubResource("Resource_vy6rr")
 
 [node name="CameraController" type="Node2D" parent="."]
 script = ExtResource("2_opefa")
@@ -72,6 +53,21 @@ texture = ExtResource("5_n5ueg")
 position = Vector2(20, 0)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("6_i8ipl")
+
+[node name="Camera2D" type="Camera2D" parent="CameraController"]
+limit_smoothed = true
+
+[node name="StateChartDebugger" parent="CameraController" instance=ExtResource("4_6tndb")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -962.0
+offset_top = -270.0
+offset_right = -294.0
+offset_bottom = 206.0
+grow_horizontal = 1
+grow_vertical = 1
+initial_node_to_watch = NodePath("../../World/AdventurerManager/Adventurer")
 
 [node name="World" type="Node2D" parent="." node_paths=PackedStringArray("sprites", "sun", "moon")]
 script = ExtResource("5_6icwk")
@@ -490,6 +486,8 @@ vertical_alignment = 1
 [node name="AdventurerManager" type="Node2D" parent="World"]
 position = Vector2(0, 259)
 script = ExtResource("24_ip3hu")
+
+[node name="Adventurer" parent="World/AdventurerManager" instance=ExtResource("25_tw7d6")]
 
 [node name="Environment" type="Node2D" parent="."]
 

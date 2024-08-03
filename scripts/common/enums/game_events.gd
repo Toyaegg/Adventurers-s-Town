@@ -36,4 +36,13 @@ const BUILD_ENTER_BUILD_MODE := "build_enter_build_mode"
 
 ##冒险者
 const ADVENTURER_CREATED := "adventurer_created"
+const ADVENTURER_ACCEPT_TASK := "adventurer_accept_task"
+const ADVENTURER_COMPLETE_TASK := "adventurer_complete_task"
+const ADVENTURER_SHOPPING := "adventurer_shopping"
+const ADVENTURER_SELLING := "adventurer_selling"
+const ADVENTURER_TREAT := "adventurer_treat"
+const ADVENTURER_LIFT := "adventurer_lift"
+const ADVENTURER_BLESSING := "adventurer_blessing"
+const ADVENTURER_REST := "adventurer_rest"
+const ADVENTURER_TRAINING := "adventurer_training"
 

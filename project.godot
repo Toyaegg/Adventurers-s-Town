@@ -18,7 +18,7 @@ resources_spreadsheet_view/array_color_tint=100.0
 resources_spreadsheet_view/color_rows=true
 resources_spreadsheet_view/array_min_width=128.0
 resources_spreadsheet_view/resource_preview_size=32.0
-resources_spreadsheet_view/clip_headers=false
+resources_spreadsheet_view/clip_headers=true
 resources_spreadsheet_view/dupe_arrays=true
 resources_spreadsheet_view/context_menu_on_leftclick=false
 quick_scenes/scene_list=PackedStringArray("res://scenes/Init.tscn", "res://scenes/Main.tscn")
@@ -35,7 +35,6 @@ config/icon="res://icon.svg"
 
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 SaveSystem="*res://addons/save_system/save_system.gd"
 GameManager="*res://scripts/autoloads/game_manager.gd"
 EventBus="*res://scripts/autoloads/event_bus.gd"
@@ -51,13 +50,12 @@ window/vsync/vsync_mode=2
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/save_system/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/save_system/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
 "res://addons/": "gray",
-"res://ai/": "orange",
 "res://assets/": "red",
 "res://scenes/": "green",
 "res://scripts/": "blue"

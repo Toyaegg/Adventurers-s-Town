@@ -43,27 +43,28 @@ func create_slot(id : int) -> void:
 	slots_dic[id] = tslot
 
 func build(slot_id : int, id : StringName) -> void:
+	if GameManager.town_model.has_building_only_one(id):
+		print("唯一建筑，不可以多次建造")
+		return
+
 	print("在[%s]处建造[%s]" % [str(slot_id), id])
 	build_menu.hide()
-	match id :
+	var b : Building
+	match id:
 		&"au":
-			var b : Building = adventurer_union.instantiate()
-			slots_dic[slot_id].build(b)
+			b = adventurer_union.instantiate()
 		&"c":
-			var b : Building = church.instantiate()
-			slots_dic[slot_id].build(b)
+			b = church.instantiate()
 		&"fg":
-			var b : Building = flash_gold.instantiate()
-			slots_dic[slot_id].build(b)
+			b = flash_gold.instantiate()
 		&"h":
-			var b : Building = house.instantiate()
-			slots_dic[slot_id].build(b)
+			b = house.instantiate()
 		&"tg":
-			var b : Building = training_ground.instantiate()
-			slots_dic[slot_id].build(b)
+			b = training_ground.instantiate()
 		&"i":
-			var b : Building = inn.instantiate()
-			slots_dic[slot_id].build(b)
+			b= inn.instantiate()
+
+	GameManager.building_system.build(slots_dic[slot_id], b)
 
 func open_build_menu(slot_id : int, open_pos : Vector2) -> void:
 	build_menu.show()

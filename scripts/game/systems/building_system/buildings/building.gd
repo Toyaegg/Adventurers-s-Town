@@ -45,56 +45,26 @@ func set_ready() -> void:
 	get_tree().create_tween().tween_property(self, "position", Vector2.ZERO, 3)
 
 
-func use(user : Adventurer, f : Feature) -> bool:
-	var result : bool = false
-
+func use(user : Adventurer, f : Feature) -> void:
 	if visitors.has_user(user):
-		match f:
-			Feature.AcceptTask:
-				print("接任务")
-				user.accept_task()
-				result = true
-			Feature.CompleteTask:
-				print("完成任务")
-				user.complete_task()
-				result = true
-			Feature.Shopping:
-				print("购买")
-				user.shopping()
-				result = true
-			Feature.Selling:
-				print("出售")
-				user.selling()
-				result = true
-			Feature.Treat:
-				print("治疗")
-				user.add_hp(100)
-				result = true
-			Feature.Lift:
-				print("驱散")
-				user.lift_curse()
-				result = true
-			Feature.Blessing:
-				print("祈福")
-				user.blessing()
-				result = true
-			Feature.Rest:
-				print("休息")
-				user.rest()
-				result = true
-			Feature.Training:
-				print("训练")
-				user.training()
-				result = true
-
-	return result
+		var feature : BuildingFeature
+		for ft in building_config.feature:
+			if f == ft.feature:
+				feature = ft
+		feature.use(user)
 
 func update_focused(v : bool) -> void:
 	print("update_focused " + str(v))
 	EventBus.push_event(GameEvents.UI_VISIBLE_BUILDING_INFO, [self, v])
 
 func has_feature(f : Feature) -> bool:
-	return building_config.feature.has(f)
+	var result : bool = false
+
+	for feature in building_config.feature:
+		if f == feature.feature:
+			result = true
+
+	return result
 
 func enter(user : Adventurer) -> void:
 	visitors.enter(user)

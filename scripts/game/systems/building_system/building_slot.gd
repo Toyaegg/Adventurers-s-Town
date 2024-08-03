@@ -19,7 +19,6 @@ func build(b : Building) -> bool:
 		used = true
 		add_child(building)
 		print("建造完成")
-		EventBus.push_event(GameEvents.BUILD_BUILDING_COMPLETE, building)
 		return true
 
 func show_build_item(active : bool) -> void:

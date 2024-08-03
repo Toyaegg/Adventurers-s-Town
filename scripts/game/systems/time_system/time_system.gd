@@ -16,7 +16,7 @@ var day_time : int :
 
 var is_running : bool = false
 
-var time : TimeData
+static var time : TimeData
 
 func _ready() -> void:
 	start_time = ValueWithSignal.new()
@@ -55,6 +55,11 @@ func time_changed(v : float) -> void:
 		time.in_night = is_night
 		EventBus.push_event(GameEvents.TIME_VALUE_CHANGED, time)
 
+static func get_day() -> int:
+	return time.day
+
+static func get_is_night() -> bool:
+	return time.in_night
 
 
 

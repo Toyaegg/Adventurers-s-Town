@@ -1,17 +1,19 @@
-[gd_resource type="Resource" script_class="BuildingConfig" load_steps=2 format=3 uid="uid://d203qmk4l3cj1"]
+[gd_resource type="Resource" script_class="BuildingConfig" load_steps=5 format=3 uid="uid://d203qmk4l3cj1"]
 
+[ext_resource type="Resource" uid="uid://buxxs1h51bkeb" path="res://assets/data/config/building_feature/accept_task.tres" id="1_2k35e"]
 [ext_resource type="Script" path="res://scripts/game/data_res/building_config.gd" id="1_5nkde"]
+[ext_resource type="Resource" uid="uid://dbmmwgimrt6us" path="res://assets/data/config/building_feature/complete_task.tres" id="2_16e26"]
+[ext_resource type="Texture2D" uid="uid://fcdxbei6wbw4" path="res://assets/texture/game/building/au.png" id="3_rl2xy"]
 
 [resource]
 script = ExtResource("1_5nkde")
 id = &"au"
 display_name = "冒险者工会"
 description = "由%s创建的冒险者工会"
-feature = Array[int]([0, 1])
-level = 0
-adv_exp = 0
-exp_per_level = Array[int]([100, 200])
-max_member = 0
+feature = Array[Resource("res://scripts/game/systems/building_system/features/building_feature.gd")]([ExtResource("1_2k35e"), ExtResource("2_16e26")])
+icon = ExtResource("3_rl2xy")
+exp_per_level = Array[int]([])
+max_member = Array[int]([])
 resource_need = Array[Array]([[10, 10, 10], [50, 50, 50]])
 max_member_per_level = Array[int]([10, 15])
 only_one = true

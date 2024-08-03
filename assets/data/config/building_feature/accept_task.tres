@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BuildingFeature" load_steps=2 format=3 uid="uid://buxxs1h51bkeb"]
+
+[ext_resource type="Script" path="res://scripts/game/systems/building_system/features/building_feature.gd" id="1_je6b5"]
+
+[resource]
+script = ExtResource("1_je6b5")
+feature = 0
+feature_day = 0

@@ -34,8 +34,6 @@ enum State{
 }
 
 const MAX_LEVEL = 1000
-const MAX_GROWTH = 1
-const MAX_MAIN_TENDENCY = 0.5
 
 const GRAVITY = 200.0
 
@@ -43,105 +41,39 @@ const GRAVITY = 200.0
 
 @export var display_name : String
 @export var tier : Tier
-@export var tendency : PotentialTendency
 @export var state : State
-@export var exp_multiply_factor : float = 2
 
 @export var move_speed : float = 200
 @export var animation : AnimatedSprite2D
+@export var state_chart : StateChart
+
+@export var attribute : Attribute
+@export var curses : Curses
+@export var buffs : Buffs
+@export var mp : MP
+@export var exp : EXP
+@export var inventory : Inventory
+@export var wallet : Wallet
 
 var id : int
 
-var attack : float
-var defence : float
-var hp : float
-var mp : float
-var level : int
+var busy : bool = false
+var target_building : Building
+#var
 
-var cur_attack : float
-var cur_defence : float
-var max_hp : float
-var cur_hp : float
-var cur_mp : float
-var cur_exp : float
-
-var potential : float
-var growth : float
-var exp_multiply : float
-
-var attack_growth : float
-var defence_growth : float
-var hp_growth : float
-
-var gold : int
-var items : Array[int]
-
-var curses : Array[int]
-var buffs : Array[int]
-var equipment : Array[int]
-
-var hp_amount : float:
+var sundries_count : int:
 	get:
-		return cur_hp / hp;
+		return inventory.get_sundries().size()
 
-var mp_amount : float:
-	get:
-		return cur_mp / mp;
+signal my_feature_complete
 
-var has_curse : bool:
-	get:
-		return curses.size() != 0;
-
-func initialize(pattack : float, pdefence : float, php : float, ppotential : float, pgrowth : float) -> void:
-	potential = ppotential
-	growth = pgrowth
-	attack = pattack
-	defence = pdefence
-	hp = php
-
-	exp_multiply = (MAX_GROWTH - growth) * exp_multiply_factor
-
-	compute_growth()
-	compute_attribute()
-
+func _ready() -> void:
 	print("adventurer created")
-
-func compute_growth() -> void:
-	match tendency:
-		PotentialTendency.Attack:
-			attack_growth = potential * MAX_MAIN_TENDENCY
-			var left_potential = potential * (1 - MAX_MAIN_TENDENCY)
-			defence_growth = left_potential * randf_range(0.2, 0.8)
-			hp_growth = left_potential - defence_growth
-		PotentialTendency.Defence:
-			defence_growth = potential * MAX_MAIN_TENDENCY
-			var left_potential = potential * (1 - MAX_MAIN_TENDENCY)
-			attack_growth = left_potential * randf_range(0.2, 0.8)
-			hp_growth = left_potential - attack_growth
-		PotentialTendency.HP:
-			hp_growth = potential * MAX_MAIN_TENDENCY
-			var left_potential = potential * (1 - MAX_MAIN_TENDENCY)
-			defence_growth = left_potential * randf_range(0.2, 0.8)
-			attack_growth = left_potential - defence_growth
-
-#func _ready() -> void:
-	#tier = Tier.Ultimate
-	#tendency = PotentialTendency.HP
-	#initialize(20, 30, 50, 200, 0.8)
-	#mp = 100
-	#cur_mp = 100
-
-func compute_attribute() -> void:
-	for i in level:
-		cur_attack += attack_growth
-		cur_defence += defence_growth
-		cur_hp += hp_growth
-		max_hp = cur_hp
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("ui_down"):
 		print("cur_hp = 0")
-		cur_hp = 0
+		attribute.cur_hp = 0
 	if Input.is_action_just_released("ui_up"):
 		print("curses.append(0)")
 		curses.append(0)
@@ -168,9 +100,13 @@ func move_dir(dir : int, tick : float) -> void:
 
 	move_and_slide()
 
+func feature_complete() -> void:
+	busy = false
+	my_feature_complete.emit()
+
 func add_hp(value : float) -> void:
 	print("血量+", value)
-	cur_hp += value
+	attribute.cur_hp += value
 
 func lift_curse() -> void:
 	print("诅咒驱散")
@@ -195,3 +131,17 @@ func use_item() -> void:
 
 
 
+
+
+func _on_idle_state_processing(delta: float) -> void:
+	#检查冒险者状态
+	if attribute.hp_amount < 0.2:
+		state_chart.send_event("hp_low")
+	elif wallet.gold < 100:
+		state_chart.send_event("gold_low")
+	elif mp.cur_mp < 15:
+		state_chart.send_event("mp_low")
+	elif busy:
+		state_chart.send_event("skill_low")
+	elif mp.cur_mp < 15:
+		state_chart.send_event("skill_low")

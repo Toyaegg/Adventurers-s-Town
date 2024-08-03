@@ -46,7 +46,8 @@ func can_create_adventurer() -> bool:
 func get_tier_probability(tier : Adventurer.Tier) -> float:
 	# TODO 完成获取冒险者公会等级，并且不同等级有不同的概率
 	#var adventurer_union_level = GameManager.town_model.get_adventurer_union_level()
-	return randf_range(0.01, 0.42)
+	#return randf_range(0.3, 0.42)
+	return 0
 
 func get_random_level(tier : Adventurer.Tier) -> int:
 	# TODO 完成获取冒险者公会等级，并且不同等级有不同的等级范围
@@ -57,7 +58,7 @@ func get_random_level(tier : Adventurer.Tier) -> int:
 func create_random_adventurer(tier : Adventurer.Tier) -> Adventurer:
 	var adv : Adventurer = adventurer_prefab.instantiate() as Adventurer
 	adv.tier = tier
-	adv.tendency = random_tendency()
+	adv.attribute.tendency = random_tendency()
 	var cof
 	match tier:
 		Adventurer.Tier.Normal:
@@ -67,10 +68,11 @@ func create_random_adventurer(tier : Adventurer.Tier) -> Adventurer:
 		Adventurer.Tier.Ultimate:
 			cof = config_3
 
-	adv.level = get_random_level(tier)
-	adv.initialize(cof.base_attack, cof.base_defence, cof.base_hp, cof.potential, get_growth(cof.min_growth, cof.max_growth))
-	adv.mp = 100
-	adv.cur_mp = randi_range(50, 100)
+	adv.exp.level = get_random_level(tier)
+	adv.attribute.initialize(cof.base_attack, cof.base_defence, cof.base_hp, cof.potential, get_growth(cof.min_growth, cof.max_growth))
+	adv.mp.mp = 100
+	adv.mp.cur_mp = randi_range(50, 100)
+	adv.display_name = str(adv.get_instance_id())
 	return adv
 
 func random_tendency() -> Adventurer.PotentialTendency:

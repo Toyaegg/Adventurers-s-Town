@@ -5,7 +5,7 @@ func _ready() -> void:
 
 
 func add_adventurer(adventurer : Adventurer) -> void:
-	print("添加冒险者", adventurer.attack_growth)
+	print("添加冒险者[%s]" % adventurer.display_name)
 	add_child(adventurer)
 
 
