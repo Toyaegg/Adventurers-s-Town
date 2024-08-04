@@ -161,16 +161,17 @@ func _on_move_to_building(delta: float) -> void:
 func _on_find_building(extra_arg_0: StringName) -> void:
 	print("寻找id[%s]" % extra_arg_0)
 	target_building_id = extra_arg_0
+	
 	var buildings : Array[Building] = GameManager.town_model.find_buildings(extra_arg_0)
-	if buildings.size() == 1:
+	
+	if buildings.size() == 0:
+		print("没找到")
+	elif buildings.size() == 1:
 		target_building = buildings[0]
-	else:
+	elif buildings.size() > 1:
 		for building in buildings:
 			if building.belong_to == display_name:
 				target_building = building
-	
-	if target_building == null:
-		print("没找到")
 
 
 func _on_accept_task() -> void:
@@ -186,4 +187,12 @@ func _on_accept_task() -> void:
 
 func _on_find_dungeon() -> void:
 	print("寻找适的地牢")
+	var dungeons = GameManager.dungeon_model.find_suitable_dungeons(exp.level)
+	for dungeon in dungeons:
+		print("地牢的成功率 [%2f]%" % (dungeon.success_probability * 100))
+		if dungeon.success_drop.filter(func(item : Item): return item.display_name == target_task.target.display_name):
+			target_dungeon = dungeon
+	
+	print("找到的地牢名字 [%s]" % target_dungeon.display_name)
+	
 	pass # Replace with function body.

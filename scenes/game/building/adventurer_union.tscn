@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dsy6m6nb21lpc"]
 
-[ext_resource type="Script" path="res://scripts/game/systems/building_system/buildings/adventurer_union.gd" id="1_xcvix"]
+[ext_resource type="Script" path="res://scripts/game/systems/building_system/buildings/building.gd" id="1_1g5qc"]
 [ext_resource type="Resource" uid="uid://d203qmk4l3cj1" path="res://assets/data/config/building_config/adventurer_union_config.tres" id="2_iqdx2"]
 [ext_resource type="Texture2D" uid="uid://fcdxbei6wbw4" path="res://assets/texture/game/building/au.png" id="3_o0n4e"]
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/buildings/visitors.gd" id="4_4op8m"]
@@ -10,7 +10,7 @@
 size = Vector2(251, 135)
 
 [node name="AdventurerUnion" type="Node2D" node_paths=PackedStringArray("door", "name_label")]
-script = ExtResource("1_xcvix")
+script = ExtResource("1_1g5qc")
 door = NodePath("Door")
 name_label = NodePath("Label")
 building_config = ExtResource("2_iqdx2")

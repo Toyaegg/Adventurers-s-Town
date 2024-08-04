@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="TaskCreateConfig" load_steps=2 format=3 uid="uid://d2mi8vhwvcjbj"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/task_create_config.gd" id="1_6wxjt"]
+
+[resource]
+script = ExtResource("1_6wxjt")

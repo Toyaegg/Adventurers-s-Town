@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgiwrkk0kijip"]
 
-[ext_resource type="Script" path="res://scripts/game/systems/building_system/buildings/house.gd" id="1_48ddc"]
+[ext_resource type="Script" path="res://scripts/game/systems/building_system/buildings/building.gd" id="1_3e8il"]
 [ext_resource type="Resource" uid="uid://8fis3qgqtcxd" path="res://assets/data/config/building_config/house_config.tres" id="2_vry36"]
 [ext_resource type="Texture2D" uid="uid://kvpm4qy1gp1n" path="res://assets/texture/game/building/h.png" id="3_suwi4"]
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/buildings/visitors.gd" id="4_pnkad"]
@@ -9,7 +9,7 @@
 size = Vector2(112, 62)
 
 [node name="House" type="Node2D" node_paths=PackedStringArray("door", "name_label")]
-script = ExtResource("1_48ddc")
+script = ExtResource("1_3e8il")
 door = NodePath("Door")
 name_label = NodePath("Label")
 building_config = ExtResource("2_vry36")

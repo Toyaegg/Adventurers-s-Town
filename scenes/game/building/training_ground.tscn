@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bug5ie5f3emjf"]
 
-[ext_resource type="Script" path="res://scripts/game/systems/building_system/buildings/training_ground.gd" id="1_rnt8m"]
+[ext_resource type="Script" path="res://scripts/game/systems/building_system/buildings/building.gd" id="1_82pk0"]
 [ext_resource type="Resource" uid="uid://cqttheymusoq" path="res://assets/data/config/building_config/training_ground_config.tres" id="2_71e43"]
 [ext_resource type="Texture2D" uid="uid://dmx16gtwceyo6" path="res://assets/texture/game/building/tg.png" id="3_2jfv7"]
 [ext_resource type="Script" path="res://scripts/game/systems/building_system/buildings/visitors.gd" id="4_6io81"]
@@ -9,7 +9,7 @@
 size = Vector2(242, 138)
 
 [node name="TrainingGround" type="Node2D" node_paths=PackedStringArray("door", "name_label")]
-script = ExtResource("1_rnt8m")
+script = ExtResource("1_82pk0")
 door = NodePath("Door")
 name_label = NodePath("Label")
 building_config = ExtResource("2_71e43")

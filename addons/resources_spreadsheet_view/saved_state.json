@@ -11,12 +11,17 @@
     "res://assets/data/config/building_config/": {
       "resource_local_to_scene": true,
       "resource_name": true
+    },
+    "res://assets/data/config/dungeon_create_config/": {
+      "resource_local_to_scene": true,
+      "resource_name": true
     }
   },
   "recent_paths": [
     "res://assets/data/config/",
     "res://assets/data/config/adventurer_create_config/",
-    "res://assets/data/config/building_config/"
+    "res://assets/data/config/building_config/",
+    "res://assets/data/config/dungeon_create_config/"
   ],
   "table_functions": {
     "filter": [
