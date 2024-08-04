@@ -55,7 +55,12 @@ func get_random_level(tier : Adventurer.Tier) -> int:
 	return randi() % Adventurer.MAX_LEVEL
 
 
-func create_random_adventurer(tier : Adventurer.Tier) -> Adventurer:
+func create_test_adventure(tier : Adventurer.Tier = Adventurer.Tier.Normal) -> void:
+	var adventurer : Adventurer = create_random_adventurer(tier)
+	EventBus.push_event(GameEvents.ADVENTURER_CREATED, adventurer)
+
+
+func create_random_adventurer(tier : Adventurer.Tier = Adventurer.Tier.Normal) -> Adventurer:
 	var adv : Adventurer = adventurer_prefab.instantiate() as Adventurer
 	adv.tier = tier
 	adv.attribute.tendency = random_tendency()
@@ -81,5 +86,3 @@ func random_tendency() -> Adventurer.PotentialTendency:
 
 func get_growth(min : float, max : float) -> float:
 	return randf_range(min, max)
-
-

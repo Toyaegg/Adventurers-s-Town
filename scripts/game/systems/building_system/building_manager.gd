@@ -74,5 +74,3 @@ func open_build_menu(slot_id : int, open_pos : Vector2) -> void:
 func enter_build_mode(v: bool) -> void:
 		for slot_id in slots_dic:
 			slots_dic[slot_id].show_build_item(v)
-
-

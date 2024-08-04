@@ -45,4 +45,3 @@ const ADVENTURER_LIFT := "adventurer_lift"
 const ADVENTURER_BLESSING := "adventurer_blessing"
 const ADVENTURER_REST := "adventurer_rest"
 const ADVENTURER_TRAINING := "adventurer_training"
-

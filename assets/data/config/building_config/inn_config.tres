@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="BuildingConfig" load_steps=4 format=3 uid="uid://dd2kwsnc2xopr"]
+[gd_resource type="Resource" script_class="BuildingConfig" load_steps=5 format=3 uid="uid://dd2kwsnc2xopr"]
 
+[ext_resource type="Script" path="res://scripts/game/systems/building_system/features/building_feature.gd" id="1_hevww"]
 [ext_resource type="Resource" uid="uid://c8gr14x7qbvtd" path="res://assets/data/config/building_feature/rest.tres" id="1_jhty1"]
 [ext_resource type="Script" path="res://scripts/game/data_res/building_config.gd" id="1_voy7u"]
 [ext_resource type="Texture2D" uid="uid://b5mdu7yqqi7s8" path="res://assets/texture/game/building/i.png" id="2_wy0qy"]
@@ -9,7 +10,7 @@ script = ExtResource("1_voy7u")
 id = &"i"
 display_name = "小酒馆"
 description = "为冒险者提供临时的居住场所。"
-feature = Array[Resource("res://scripts/game/systems/building_system/features/building_feature.gd")]([ExtResource("1_jhty1")])
+feature = Array[ExtResource("1_hevww")]([ExtResource("1_jhty1")])
 icon = ExtResource("2_wy0qy")
 exp_per_level = Array[int]([100, 200])
 max_member = Array[int]([])

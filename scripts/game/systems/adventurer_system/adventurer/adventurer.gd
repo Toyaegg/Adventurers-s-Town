@@ -14,25 +14,6 @@ enum PotentialTendency{
 	HP,
 }
 
-enum State{
-	Idel,
-	Rest,
-	Shopping,
-	Selling,
-	ToDungeons,
-	Back,
-	Continue,
-	Treat,
-	Dispel,
-	Cursed,
-	Wounded,
-	TakeMoney,
-	SubmitTask,
-	AcceptTask,
-	ChallengeDungeon,
-	EnhanceStrength,
-}
-
 const MAX_LEVEL = 1000
 
 const GRAVITY = 200.0
@@ -41,7 +22,6 @@ const GRAVITY = 200.0
 
 @export var display_name : String
 @export var tier : Tier
-@export var state : State
 
 @export var move_speed : float = 200
 @export var animation : AnimatedSprite2D
@@ -59,7 +39,12 @@ var id : int
 
 var busy : bool = false
 var target_building : Building
-#var
+var target_building_id : StringName
+var target_task : Task
+var target_dungeon : Node
+var target_Weapon : Node
+
+var move_direction : int
 
 var sundries_count : int:
 	get:
@@ -68,6 +53,8 @@ var sundries_count : int:
 signal my_feature_complete
 
 func _ready() -> void:
+	get_tree().create_timer(1).timeout.connect(func():state_chart.send_event("init"))
+	
 	print("adventurer created")
 
 func _process(delta: float) -> void:
@@ -84,6 +71,14 @@ func _physics_process(delta) -> void:
 	move_and_collide(motion)
 
 func move_dir(dir : int, tick : float) -> void:
+	var distance : float = target_building.global_position.x - global_position.x
+	if abs(distance) < 10:
+		state_chart.send_event("%s_arrived" % target_building.building_config.id)
+		velocity.x = 0
+		animation.play(&"idle")
+		return
+	
+	
 	if dir > 0:
 		velocity.x = Vector2.RIGHT.x * move_speed * tick
 		animation.flip_h = false
@@ -95,8 +90,6 @@ func move_dir(dir : int, tick : float) -> void:
 
 	if abs(velocity.x) > 0.1:
 		animation.play(&"walk")
-	else:
-		animation.play(&"idle")
 
 	move_and_slide()
 
@@ -128,20 +121,69 @@ func add_item() -> void:
 func use_item() -> void:
 	print("使用物品")
 
+func has_enough_mp() -> bool:
+	return mp.cur_mp > 50
+
+func has_enough_money() -> bool:
+	return wallet.gold < 20
+
+func _on_make_money_entered() -> void:
+	print("开始赚钱")
+	if has_enough_mp() and target_task == null:
+		print("可以接任务")
+		state_chart.send_event("want_to_accept_task")
+	
+	if not has_enough_mp():
+		print("只能去休息")
+		state_chart.send_event("have_to_reat")
+	
+	if not has_enough_mp() and not has_enough_money():
+		print("变卖贵重物品")
+		state_chart.send_event("the_final_way")
 
 
+func _on_move_to_building(delta: float) -> void:
+	if target_building == null:
+		_on_find_building(target_building_id)
+		return
+	
+	if not target_building.build_completed:
+		return
+		
+	var dir : int = target_building.global_position.x - global_position.x
+	if dir < 10:
+		move_direction = -1
+	if dir > 10:
+		move_direction = 1
+		
+	move_dir(move_direction, delta)
+
+func _on_find_building(extra_arg_0: StringName) -> void:
+	print("寻找id[%s]" % extra_arg_0)
+	target_building_id = extra_arg_0
+	var buildings : Array[Building] = GameManager.town_model.find_buildings(extra_arg_0)
+	if buildings.size() == 1:
+		target_building = buildings[0]
+	else:
+		for building in buildings:
+			if building.belong_to == display_name:
+				target_building = building
+	
+	if target_building == null:
+		print("没找到")
 
 
+func _on_accept_task() -> void:
+	target_building.enter(self)
+	target_building.use(self, Building.Feature.AcceptTask)
+	print("开始接任务")
+	await my_feature_complete
+	var nsme = str(target_task)
+	print("接到任务【%s】" % nsme)
+	state_chart.send_event("task_accepted")
+	target_building.exit(self)
 
-func _on_idle_state_processing(delta: float) -> void:
-	#检查冒险者状态
-	if attribute.hp_amount < 0.2:
-		state_chart.send_event("hp_low")
-	elif wallet.gold < 100:
-		state_chart.send_event("gold_low")
-	elif mp.cur_mp < 15:
-		state_chart.send_event("mp_low")
-	elif busy:
-		state_chart.send_event("skill_low")
-	elif mp.cur_mp < 15:
-		state_chart.send_event("skill_low")
+
+func _on_find_dungeon() -> void:
+	print("寻找适的地牢")
+	pass # Replace with function body.

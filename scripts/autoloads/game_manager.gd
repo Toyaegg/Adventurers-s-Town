@@ -19,11 +19,15 @@ var audio_manager : AudioManager
 var models : Node
 var town_model : TownModel
 var adventurer_model : AdventurerModel
+var task_model : TaskModel
+var dungeon_model : DungeonModel
 
 var systems : Node
 var building_system : BuildingSystem
 var time_system : TimeSystem
 var adventurer_system : AdventurerSystem
+var dungeon_system : DungeonSystem
+var task_system : TaskSystem
 
 var player_display_name : String = "test"
 
@@ -59,6 +63,8 @@ func initialize_models() -> void:
 
 	create_town_model()
 	create_adventurer_model()
+	create_task_model()
+	create_dungeon_model()
 
 func initialize_systems() -> void:
 	systems = Node.new()
@@ -68,6 +74,8 @@ func initialize_systems() -> void:
 	create_time_system()
 	create_building_system()
 	create_adventurer_system()
+	create_task_system()
+	create_dungeon_system()
 
 func subscribe_events() -> void:
 	EventBus.subscribe(GameEvents.GAME_START, start_game)
@@ -97,6 +105,16 @@ func create_adventurer_model() -> void:
 	adventurer_model.name = "AdventurerModel"
 	models.add_child(adventurer_model)
 
+func create_task_model() -> void:
+	task_model = TaskModel.new()
+	task_model.name = "TaskModel"
+	models.add_child(task_model)
+
+func create_dungeon_model() -> void:
+	dungeon_model = DungeonModel.new()
+	dungeon_model.name = "DungeonModel"
+	models.add_child(dungeon_model)
+
 func create_building_system() -> void:
 	building_system = BuildingSystem.new()
 	building_system.name = "BuildingSystem"
@@ -106,6 +124,16 @@ func create_adventurer_system() -> void:
 	adventurer_system = AdventurerSystem.new()
 	adventurer_system.name = "AdventurerSystem"
 	systems.add_child(adventurer_system)
+
+func create_task_system() -> void:
+	task_system = TaskSystem.new()
+	task_system.name = "TaskSystem"
+	systems.add_child(task_system)
+
+func create_dungeon_system() -> void:
+	dungeon_system = DungeonSystem.new()
+	dungeon_system.name = "DungeonSystem"
+	systems.add_child(dungeon_system)
 
 func create_time_system() -> void:
 	time_system = TimeSystem.new()

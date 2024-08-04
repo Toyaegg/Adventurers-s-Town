@@ -27,8 +27,10 @@ var focused : ValueWithSignal
 var belong_to : StringName
 
 @onready var visitors : Visitors
-var feature_componnents : Array
+var feature_components : Array
 var build_completed : bool = false
+
+signal feature_complete
 
 func _ready() -> void:
 	focused = ValueWithSignal.new()
@@ -67,10 +69,12 @@ func has_feature(f : Feature) -> bool:
 	return result
 
 func enter(user : Adventurer) -> void:
+	user.hide()
 	visitors.enter(user)
 	print(user.display_name, "进入", building_config.display_name)
 
 func exit(user : Adventurer) -> void:
+	user.show()
 	visitors.exit(user)
 	print(user.display_name, "退出", building_config.display_name)
 

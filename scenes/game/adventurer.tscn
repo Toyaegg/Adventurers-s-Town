@@ -66,174 +66,446 @@ script = ExtResource("9_b0syd")
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("9_hd4x2")
+track_in_editor = true
 
 [node name="Root" type="Node" parent="StateChart"]
 script = ExtResource("10_1vxh8")
-initial_state = NodePath("Idle")
+initial_state = NodePath("Initialize")
 
-[node name="Idle" type="Node" parent="StateChart/Root"]
+[node name="Initialize" type="Node" parent="StateChart/Root"]
 script = ExtResource("11_nvecf")
 
-[node name="ToDungeon" type="Node" parent="StateChart/Root/Idle"]
+[node name="ToMakeMoney" type="Node" parent="StateChart/Root/Initialize"]
 script = ExtResource("12_qlvpi")
-to = NodePath("../../Dungeon")
-event = &"gold_low"
+to = NodePath("../../MakeMoney")
+event = &"init"
 delay_in_seconds = "0.0"
 
-[node name="ToRest" type="Node" parent="StateChart/Root/Idle"]
+[node name="MakeMoney" type="Node" parent="StateChart/Root"]
+script = ExtResource("10_1vxh8")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/Root/MakeMoney"]
+script = ExtResource("11_nvecf")
+
+[node name="OnAcceptTask" type="Node" parent="StateChart/Root/MakeMoney/Idle"]
 script = ExtResource("12_qlvpi")
-to = NodePath("../../Rest")
+to = NodePath("../../AcceptTask")
+event = &"want_to_accept_task"
 delay_in_seconds = "0.0"
 
-[node name="ToTraining" type="Node" parent="StateChart/Root/Idle"]
+[node name="OnSellImportItem" type="Node" parent="StateChart/Root/MakeMoney/Idle"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../SellItem")
+event = &"the_final_way"
+delay_in_seconds = "0.0"
+
+[node name="ToRest" type="Node" parent="StateChart/Root/MakeMoney/Idle"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../Rest")
+event = &"have_to_reat"
+delay_in_seconds = "0.0"
+
+[node name="AcceptTask" type="Node" parent="StateChart/Root/MakeMoney"]
+script = ExtResource("10_1vxh8")
+initial_state = NodePath("MoveToAdventurerUnion")
+
+[node name="MoveToAdventurerUnion" type="Node" parent="StateChart/Root/MakeMoney/AcceptTask"]
+script = ExtResource("11_nvecf")
+
+[node name="AdventurerUnionArrived" type="Node" parent="StateChart/Root/MakeMoney/AcceptTask/MoveToAdventurerUnion"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../Accept")
+event = &"au_arrived"
+delay_in_seconds = "0.0"
+
+[node name="Accept" type="Node" parent="StateChart/Root/MakeMoney/AcceptTask"]
+script = ExtResource("11_nvecf")
+
+[node name="Accepted" type="Node" parent="StateChart/Root/MakeMoney/AcceptTask/Accept"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Dungeon")
+event = &"task_accepted"
+delay_in_seconds = "0.0"
+
+[node name="SellItem" type="Node" parent="StateChart/Root/MakeMoney"]
+script = ExtResource("10_1vxh8")
+initial_state = NodePath("MoveToFlashGold")
+
+[node name="MoveToFlashGold" type="Node" parent="StateChart/Root/MakeMoney/SellItem"]
+script = ExtResource("11_nvecf")
+
+[node name="FlashGoldArrived" type="Node" parent="StateChart/Root/MakeMoney/SellItem/MoveToFlashGold"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../Selling")
+event = &"fg_arrived"
+delay_in_seconds = "0.0"
+
+[node name="Selling" type="Node" parent="StateChart/Root/MakeMoney/SellItem"]
+script = ExtResource("11_nvecf")
+
+[node name="ToUpgrade" type="Node" parent="StateChart/Root/MakeMoney/SellItem/Selling"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Upgrade")
+event = &"have_nothing_to_do"
+delay_in_seconds = "0.0"
+
+[node name="ToChurch" type="Node" parent="StateChart/Root/MakeMoney/SellItem/Selling"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Church")
+event = &"restore"
+delay_in_seconds = "0.0"
+
+[node name="Dungeon" type="Node" parent="StateChart/Root"]
+script = ExtResource("10_1vxh8")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/Root/Dungeon"]
+script = ExtResource("11_nvecf")
+
+[node name="FindSuitableDungeon" type="Node" parent="StateChart/Root/Dungeon/Idle"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../ChallengeDungeon")
+event = &"find_dungeon"
+delay_in_seconds = "0.0"
+
+[node name="ChallengeDungeon" type="Node" parent="StateChart/Root/Dungeon"]
+script = ExtResource("10_1vxh8")
+initial_state = NodePath("Transport")
+
+[node name="Transport" type="Node" parent="StateChart/Root/Dungeon/ChallengeDungeon"]
+script = ExtResource("11_nvecf")
+
+[node name="TransportArrived" type="Node" parent="StateChart/Root/Dungeon/ChallengeDungeon/Transport"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../Challenging")
+event = &"tp_arrived"
+delay_in_seconds = "0.0"
+
+[node name="Challenging" type="Node" parent="StateChart/Root/Dungeon/ChallengeDungeon"]
+script = ExtResource("11_nvecf")
+
+[node name="DungeonFinish" type="Node" parent="StateChart/Root/Dungeon/ChallengeDungeon/Challenging"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../Finish")
+event = &"dungeon_finish"
+delay_in_seconds = "0.0"
+
+[node name="Finish" type="Node" parent="StateChart/Root/Dungeon/ChallengeDungeon"]
+script = ExtResource("11_nvecf")
+
+[node name="SellItem" type="Node" parent="StateChart/Root/Dungeon/ChallengeDungeon/Finish"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../MakeMoney/SellItem")
+event = &"sell_sundries"
+delay_in_seconds = "0.0"
+
+[node name="CompleteTask" type="Node" parent="StateChart/Root/Dungeon"]
+script = ExtResource("10_1vxh8")
+initial_state = NodePath("MoveToAdventurerUnion")
+
+[node name="MoveToAdventurerUnion" type="Node" parent="StateChart/Root/Dungeon/CompleteTask"]
+script = ExtResource("11_nvecf")
+
+[node name="AdventurerUnionArrived" type="Node" parent="StateChart/Root/Dungeon/CompleteTask/MoveToAdventurerUnion"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../Complete")
+event = &"au_arrived"
+delay_in_seconds = "0.0"
+
+[node name="Complete" type="Node" parent="StateChart/Root/Dungeon/CompleteTask"]
+script = ExtResource("11_nvecf")
+
+[node name="Upgrade" type="Node" parent="StateChart/Root/Dungeon/CompleteTask/Complete"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Upgrade")
+event = &"task_completed"
+delay_in_seconds = "0.0"
+
+[node name="Upgrade" type="Node" parent="StateChart/Root"]
+script = ExtResource("10_1vxh8")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/Root/Upgrade"]
+script = ExtResource("11_nvecf")
+
+[node name="ToShopping" type="Node" parent="StateChart/Root/Upgrade/Idle"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../Shopping")
+event = &"money_enough"
+delay_in_seconds = "0.0"
+
+[node name="ToTrain" type="Node" parent="StateChart/Root/Upgrade/Idle"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../Train")
+event = &"upgrade_skill"
+delay_in_seconds = "0.0"
+
+[node name="ToDungeon" type="Node" parent="StateChart/Root/Upgrade/Idle"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../Dungeon")
+event = &"want_to_dungeon"
+delay_in_seconds = "0.0"
+
+[node name="ToBlessing" type="Node" parent="StateChart/Root/Upgrade/Idle"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../Church")
+event = &"blessing"
+delay_in_seconds = "0.0"
+
+[node name="NoMoney" type="Node" parent="StateChart/Root/Upgrade/Idle"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../MakeMoney")
+event = &"no_money"
+delay_in_seconds = "0.0"
+
+[node name="Train" type="Node" parent="StateChart/Root/Upgrade"]
+script = ExtResource("10_1vxh8")
+initial_state = NodePath("MoveToTrainingGround")
+
+[node name="MoveToTrainingGround" type="Node" parent="StateChart/Root/Upgrade/Train"]
+script = ExtResource("11_nvecf")
+
+[node name="TrainingGroundArrived" type="Node" parent="StateChart/Root/Upgrade/Train/MoveToTrainingGround"]
 script = ExtResource("12_qlvpi")
 to = NodePath("../../Training")
+event = &"tg_arrived"
 delay_in_seconds = "0.0"
 
-[node name="ToFlashGold" type="Node" parent="StateChart/Root/Idle"]
+[node name="Training" type="Node" parent="StateChart/Root/Upgrade/Train"]
+script = ExtResource("11_nvecf")
+
+[node name="TrainFinish" type="Node" parent="StateChart/Root/Upgrade/Train/Training"]
 script = ExtResource("12_qlvpi")
-to = NodePath("../../FlashGold")
-event = &"gold_low"
+to = NodePath("../../../Idle")
+event = &"train_finish"
 delay_in_seconds = "0.0"
 
-[node name="ToAdventurerUnion" type="Node" parent="StateChart/Root/Idle"]
-script = ExtResource("12_qlvpi")
-to = NodePath("../../AdventurerUnion")
-delay_in_seconds = "0.0"
-
-[node name="ToChurch" type="Node" parent="StateChart/Root/Idle"]
-script = ExtResource("12_qlvpi")
-to = NodePath("../../Church")
-event = &"hp_low"
-delay_in_seconds = "0.0"
-
-[node name="FlashGold" type="Node" parent="StateChart/Root"]
+[node name="Shopping" type="Node" parent="StateChart/Root/Upgrade"]
 script = ExtResource("10_1vxh8")
 initial_state = NodePath("Shopping")
 
-[node name="ToShopping" type="Node" parent="StateChart/Root/FlashGold"]
-script = ExtResource("12_qlvpi")
-to = NodePath("../Shopping")
-delay_in_seconds = "0.0"
-
-[node name="ToSelling" type="Node" parent="StateChart/Root/FlashGold"]
-script = ExtResource("12_qlvpi")
-to = NodePath("../Selling")
-event = &"gold_low"
-delay_in_seconds = "0.0"
-
-[node name="Shopping" type="Node" parent="StateChart/Root/FlashGold"]
+[node name="MoveToFlashGold" type="Node" parent="StateChart/Root/Upgrade/Shopping"]
 script = ExtResource("11_nvecf")
 
-[node name="ToIdle" type="Node" parent="StateChart/Root/FlashGold/Shopping"]
+[node name="FlashGoldArrived" type="Node" parent="StateChart/Root/Upgrade/Shopping/MoveToFlashGold"]
 script = ExtResource("12_qlvpi")
-to = NodePath("../../../Idle")
+to = NodePath("../../Shopping")
+event = &"fg_arrived"
 delay_in_seconds = "0.0"
 
-[node name="Selling" type="Node" parent="StateChart/Root/FlashGold"]
+[node name="Shopping" type="Node" parent="StateChart/Root/Upgrade/Shopping"]
 script = ExtResource("11_nvecf")
 
-[node name="ToIdle" type="Node" parent="StateChart/Root/FlashGold/Selling"]
+[node name="BuyWeapon" type="Node" parent="StateChart/Root/Upgrade/Shopping/Shopping"]
 script = ExtResource("12_qlvpi")
-to = NodePath("../../../Idle")
+to = NodePath("../../..")
+event = &"shopping_finish"
 delay_in_seconds = "0.0"
 
-[node name="AdventurerUnion" type="Node" parent="StateChart/Root"]
+[node name="Rest" type="Node" parent="StateChart/Root"]
 script = ExtResource("10_1vxh8")
-initial_state = NodePath("AcceptTask")
+initial_state = NodePath("Idle")
 
-[node name="AcceptTask" type="Node" parent="StateChart/Root/AdventurerUnion"]
+[node name="Idle" type="Node" parent="StateChart/Root/Rest"]
 script = ExtResource("11_nvecf")
 
-[node name="ToIdle" type="Node" parent="StateChart/Root/AdventurerUnion/AcceptTask"]
+[node name="HasHouse" type="Node" parent="StateChart/Root/Rest/Idle"]
 script = ExtResource("12_qlvpi")
-to = NodePath("../../../Idle")
+to = NodePath("../../HasHouse")
+event = &"has_house"
 delay_in_seconds = "0.0"
 
-[node name="CompleteTask" type="Node" parent="StateChart/Root/AdventurerUnion"]
+[node name="NoHouse" type="Node" parent="StateChart/Root/Rest/Idle"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../NoHouse")
+event = &"no_house"
+delay_in_seconds = "0.0"
+
+[node name="NoHouse" type="Node" parent="StateChart/Root/Rest"]
+script = ExtResource("10_1vxh8")
+initial_state = NodePath("MoveToInn")
+
+[node name="MoveToInn" type="Node" parent="StateChart/Root/Rest/NoHouse"]
 script = ExtResource("11_nvecf")
 
-[node name="ToIdle" type="Node" parent="StateChart/Root/AdventurerUnion/CompleteTask"]
+[node name="InnArrved" type="Node" parent="StateChart/Root/Rest/NoHouse/MoveToInn"]
 script = ExtResource("12_qlvpi")
-to = NodePath("../../../Idle")
+to = NodePath("../../Lodge")
+event = &"i_arrived"
 delay_in_seconds = "0.0"
 
-[node name="ToAcceptTask" type="Node" parent="StateChart/Root/AdventurerUnion"]
+[node name="Lodge" type="Node" parent="StateChart/Root/Rest/NoHouse"]
+script = ExtResource("11_nvecf")
+
+[node name="Lodged" type="Node" parent="StateChart/Root/Rest/NoHouse/Lodge"]
 script = ExtResource("12_qlvpi")
-to = NodePath("../AcceptTask")
+to = NodePath("../../Rest")
+event = &"loged"
 delay_in_seconds = "0.0"
 
-[node name="ToCompleteTask" type="Node" parent="StateChart/Root/AdventurerUnion"]
+[node name="NoRoom" type="Node" parent="StateChart/Root/Rest/NoHouse/Lodge"]
 script = ExtResource("12_qlvpi")
-to = NodePath("../CompleteTask")
+to = NodePath("../../../StandingOutside")
+delay_in_seconds = "0.0"
+
+[node name="Rest" type="Node" parent="StateChart/Root/Rest/NoHouse"]
+script = ExtResource("11_nvecf")
+
+[node name="Upgrade" type="Node" parent="StateChart/Root/Rest/NoHouse/Rest"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Upgrade")
+event = &"rest_finish"
+delay_in_seconds = "0.0"
+
+[node name="HasHouse" type="Node" parent="StateChart/Root/Rest"]
+script = ExtResource("10_1vxh8")
+initial_state = NodePath("MoveToHouse")
+
+[node name="MoveToHouse" type="Node" parent="StateChart/Root/Rest/HasHouse"]
+script = ExtResource("11_nvecf")
+
+[node name="HouseArrived" type="Node" parent="StateChart/Root/Rest/HasHouse/MoveToHouse"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../Rest")
+event = &"h_arrived"
+delay_in_seconds = "0.0"
+
+[node name="Rest" type="Node" parent="StateChart/Root/Rest/HasHouse"]
+script = ExtResource("11_nvecf")
+
+[node name="Upgrade" type="Node" parent="StateChart/Root/Rest/HasHouse/Rest"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Upgrade")
+event = &"rest_finish"
+delay_in_seconds = "0.0"
+
+[node name="StandingOutside" type="Node" parent="StateChart/Root/Rest"]
+script = ExtResource("11_nvecf")
+
+[node name="Upgrade" type="Node" parent="StateChart/Root/Rest/StandingOutside"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../Upgrade")
+event = &"rest_finish"
 delay_in_seconds = "0.0"
 
 [node name="Church" type="Node" parent="StateChart/Root"]
 script = ExtResource("10_1vxh8")
-initial_state = NodePath("Blessing")
+initial_state = NodePath("Idle")
 
-[node name="Blessing" type="Node" parent="StateChart/Root/Church"]
+[node name="Idle" type="Node" parent="StateChart/Root/Church"]
 script = ExtResource("11_nvecf")
 
-[node name="ToIdle" type="Node" parent="StateChart/Root/Church/Blessing"]
+[node name="HPLow" type="Node" parent="StateChart/Root/Church/Idle"]
 script = ExtResource("12_qlvpi")
-to = NodePath("../../../Idle")
-delay_in_seconds = "0.0"
-
-[node name="Treat" type="Node" parent="StateChart/Root/Church"]
-script = ExtResource("11_nvecf")
-
-[node name="ToIdle" type="Node" parent="StateChart/Root/Church/Treat"]
-script = ExtResource("12_qlvpi")
-to = NodePath("../../../Idle")
-delay_in_seconds = "0.0"
-
-[node name="Lift" type="Node" parent="StateChart/Root/Church"]
-script = ExtResource("11_nvecf")
-
-[node name="ToIdle" type="Node" parent="StateChart/Root/Church/Lift"]
-script = ExtResource("12_qlvpi")
-to = NodePath("../../../Idle")
-delay_in_seconds = "0.0"
-
-[node name="ToBlessing" type="Node" parent="StateChart/Root/Church"]
-script = ExtResource("12_qlvpi")
-to = NodePath("../Blessing")
-delay_in_seconds = "0.0"
-
-[node name="ToTreat" type="Node" parent="StateChart/Root/Church"]
-script = ExtResource("12_qlvpi")
-to = NodePath("../Treat")
+to = NodePath("../../Treat")
 event = &"hp_low"
 delay_in_seconds = "0.0"
 
-[node name="ToLift" type="Node" parent="StateChart/Root/Church"]
+[node name="WantBlessing" type="Node" parent="StateChart/Root/Church/Idle"]
 script = ExtResource("12_qlvpi")
-to = NodePath("../Lift")
+to = NodePath("../../Blessing")
+event = &"want_blessing"
 delay_in_seconds = "0.0"
 
-[node name="Dungeon" type="Node" parent="StateChart/Root"]
+[node name="HasCurse" type="Node" parent="StateChart/Root/Church/Idle"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../Lift")
+event = &"has_curse"
+delay_in_seconds = "0.0"
+
+[node name="Treat" type="Node" parent="StateChart/Root/Church"]
+script = ExtResource("10_1vxh8")
+initial_state = NodePath("MoveToChurch")
+
+[node name="MoveToChurch" type="Node" parent="StateChart/Root/Church/Treat"]
 script = ExtResource("11_nvecf")
 
-[node name="ToIdle" type="Node" parent="StateChart/Root/Dungeon"]
+[node name="ChurchArrived" type="Node" parent="StateChart/Root/Church/Treat/MoveToChurch"]
 script = ExtResource("12_qlvpi")
-to = NodePath("../../Idle")
+to = NodePath("../../WaitTreat")
+event = &"c_arrived"
 delay_in_seconds = "0.0"
 
-[node name="Rest" type="Node" parent="StateChart/Root"]
+[node name="WaitTreat" type="Node" parent="StateChart/Root/Church/Treat"]
 script = ExtResource("11_nvecf")
 
-[node name="ToIdle" type="Node" parent="StateChart/Root/Rest"]
+[node name="Finish" type="Node" parent="StateChart/Root/Church/Treat/WaitTreat"]
 script = ExtResource("12_qlvpi")
-to = NodePath("../../Idle")
+to = NodePath("../../TreatFinish")
+event = &"treat_finish"
 delay_in_seconds = "0.0"
 
-[node name="Training" type="Node" parent="StateChart/Root"]
+[node name="TreatFinish" type="Node" parent="StateChart/Root/Church/Treat"]
 script = ExtResource("11_nvecf")
 
-[node name="ToIdle" type="Node" parent="StateChart/Root/Training"]
+[node name="Upgrade" type="Node" parent="StateChart/Root/Church/Treat/TreatFinish"]
 script = ExtResource("12_qlvpi")
-to = NodePath("../../Idle")
+to = NodePath("../../../../Upgrade")
 delay_in_seconds = "0.0"
 
-[connection signal="state_processing" from="StateChart/Root/Idle" to="." method="_on_idle_state_processing"]
+[node name="Lift" type="Node" parent="StateChart/Root/Church"]
+script = ExtResource("10_1vxh8")
+initial_state = NodePath("MoveToChurch")
+
+[node name="MoveToChurch" type="Node" parent="StateChart/Root/Church/Lift"]
+script = ExtResource("11_nvecf")
+
+[node name="ChurchArrived" type="Node" parent="StateChart/Root/Church/Lift/MoveToChurch"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../WaitLift")
+event = &"c_arrived"
+delay_in_seconds = "0.0"
+
+[node name="WaitLift" type="Node" parent="StateChart/Root/Church/Lift"]
+script = ExtResource("11_nvecf")
+
+[node name="Finish" type="Node" parent="StateChart/Root/Church/Lift/WaitLift"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../LiftFinish")
+event = &"lift_finish"
+delay_in_seconds = "0.0"
+
+[node name="LiftFinish" type="Node" parent="StateChart/Root/Church/Lift"]
+script = ExtResource("11_nvecf")
+
+[node name="Upgrade" type="Node" parent="StateChart/Root/Church/Lift/LiftFinish"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Upgrade")
+delay_in_seconds = "0.0"
+
+[node name="Blessing" type="Node" parent="StateChart/Root/Church"]
+script = ExtResource("10_1vxh8")
+initial_state = NodePath("MoveToChurch")
+
+[node name="MoveToChurch" type="Node" parent="StateChart/Root/Church/Blessing"]
+script = ExtResource("11_nvecf")
+
+[node name="ChurchArrived" type="Node" parent="StateChart/Root/Church/Blessing/MoveToChurch"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../WaitBlessing")
+event = &"c_arrived"
+delay_in_seconds = "0.0"
+
+[node name="WaitBlessing" type="Node" parent="StateChart/Root/Church/Blessing"]
+script = ExtResource("11_nvecf")
+
+[node name="Finish" type="Node" parent="StateChart/Root/Church/Blessing/WaitBlessing"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../BlessingFinish")
+event = &"blessing_finish"
+delay_in_seconds = "0.0"
+
+[node name="BlessingFinish" type="Node" parent="StateChart/Root/Church/Blessing"]
+script = ExtResource("11_nvecf")
+
+[node name="Upgrade" type="Node" parent="StateChart/Root/Church/Blessing/BlessingFinish"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Upgrade")
+delay_in_seconds = "0.0"
+
+[connection signal="state_entered" from="StateChart/Root/MakeMoney/Idle" to="." method="_on_make_money_entered"]
+[connection signal="state_entered" from="StateChart/Root/MakeMoney/AcceptTask/MoveToAdventurerUnion" to="." method="_on_find_building" binds= [&"au"]]
+[connection signal="state_physics_processing" from="StateChart/Root/MakeMoney/AcceptTask/MoveToAdventurerUnion" to="." method="_on_move_to_building"]
+[connection signal="state_entered" from="StateChart/Root/MakeMoney/AcceptTask/Accept" to="." method="_on_accept_task"]
+[connection signal="state_entered" from="StateChart/Root/Dungeon/Idle" to="." method="_on_find_dungeon"]

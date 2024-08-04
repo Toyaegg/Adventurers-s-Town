@@ -16,13 +16,13 @@ func build_complete(b : Building) -> void:
 func get_buildings() -> Array[Building]:
 	return buildings
 
-func find_building(id : String, feature : Building.Feature) -> Building:
-	var building : Building
+func find_buildings(id : String) -> Array[Building]:
+	var fbuildings : Array[Building]
 	for b in buildings:
-		if b.has_feature(feature):
-			building = b
+		if b.building_config.id == id:
+			fbuildings.append(b)
 
-	return building
+	return fbuildings
 
 func get_transport_position() -> float:
 	return transport_position
@@ -37,4 +37,3 @@ func has_building_only_one(id : StringName) -> bool:
 			result = building.building_config.only_one
 
 	return result
-

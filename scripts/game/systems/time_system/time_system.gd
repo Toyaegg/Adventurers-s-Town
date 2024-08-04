@@ -60,6 +60,3 @@ static func get_day() -> int:
 
 static func get_is_night() -> bool:
 	return time.in_night
-
-
-

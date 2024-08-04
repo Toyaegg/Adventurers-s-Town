@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="BuildingConfig" load_steps=6 format=3 uid="uid://3gelx8g55jii"]
+[gd_resource type="Resource" script_class="BuildingConfig" load_steps=7 format=3 uid="uid://3gelx8g55jii"]
 
+[ext_resource type="Script" path="res://scripts/game/systems/building_system/features/building_feature.gd" id="1_0dxcx"]
 [ext_resource type="Script" path="res://scripts/game/data_res/building_config.gd" id="1_5nkde"]
 [ext_resource type="Resource" uid="uid://dikq26tjj8ypt" path="res://assets/data/config/building_feature/treat.tres" id="1_vc70j"]
 [ext_resource type="Resource" uid="uid://d3qol2fakbljw" path="res://assets/data/config/building_feature/lift.tres" id="2_vk8pj"]
@@ -11,7 +12,7 @@ script = ExtResource("1_5nkde")
 id = &"c"
 display_name = "教堂"
 description = "勇气与幸运女神的教堂，治疗外伤，驱散诅咒，冒险者的安眠之所。"
-feature = Array[Resource("res://scripts/game/systems/building_system/features/building_feature.gd")]([ExtResource("1_vc70j"), ExtResource("2_vk8pj"), ExtResource("3_jeo58")])
+feature = Array[ExtResource("1_0dxcx")]([ExtResource("1_vc70j"), ExtResource("2_vk8pj"), ExtResource("3_jeo58")])
 icon = ExtResource("4_djwtf")
 exp_per_level = Array[int]([100, 200])
 max_member = Array[int]([])

@@ -65,6 +65,3 @@ func completed() -> void:
 	if feature_complete.is_connected(user.feature_complete):
 		feature_complete.disconnect(user.feature_complete)
 	user = null
-
-
-

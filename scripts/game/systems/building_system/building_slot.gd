@@ -24,4 +24,3 @@ func build(b : Building) -> bool:
 func show_build_item(active : bool) -> void:
 	if not used:
 		build_control.visible = active
-

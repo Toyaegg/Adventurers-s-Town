@@ -21,4 +21,3 @@ func set_data(data : Building) -> void:## : Building) -> void:
 
 func click() -> void:
 		print("%s被点击" % bind_data.building_config.display_name)
-

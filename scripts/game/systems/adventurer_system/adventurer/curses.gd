@@ -6,6 +6,3 @@ var curses : Array[int]
 var has_curse : bool:
 	get:
 		return curses.size() != 0;
-
-
-

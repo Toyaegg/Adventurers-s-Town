@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="BuildingConfig" load_steps=4 format=3 uid="uid://cqttheymusoq"]
+[gd_resource type="Resource" script_class="BuildingConfig" load_steps=5 format=3 uid="uid://cqttheymusoq"]
 
 [ext_resource type="Script" path="res://scripts/game/data_res/building_config.gd" id="1_18kt3"]
+[ext_resource type="Script" path="res://scripts/game/systems/building_system/features/building_feature.gd" id="1_hew01"]
 [ext_resource type="Resource" uid="uid://bbms0j2mvdsry" path="res://assets/data/config/building_feature/training.tres" id="1_tswh1"]
 [ext_resource type="Texture2D" uid="uid://dmx16gtwceyo6" path="res://assets/texture/game/building/tg.png" id="2_xrvgj"]
 
@@ -9,7 +10,7 @@ script = ExtResource("1_18kt3")
 id = &"tg"
 display_name = "训练场"
 description = "提高冒险者技能熟练度。"
-feature = Array[Resource("res://scripts/game/systems/building_system/features/building_feature.gd")]([ExtResource("1_tswh1")])
+feature = Array[ExtResource("1_hew01")]([ExtResource("1_tswh1")])
 icon = ExtResource("2_xrvgj")
 exp_per_level = Array[int]([100, 200])
 max_member = Array[int]([])

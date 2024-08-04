@@ -16,5 +16,3 @@ func add_adventurer(adventurer : Adventurer) -> void:
 	if not adventurers.has(adventurer):
 		adventurers.append(adventurer)
 		adventurer.id = adventurer_count
-
-
