@@ -2,8 +2,7 @@ class_name Building
 extends Node2D
 
 enum Feature{
-	AcceptTask,
-	CompleteTask,
+	ChallengeDungeon,
 	Shopping,
 	Selling,
 	Treat,#治疗

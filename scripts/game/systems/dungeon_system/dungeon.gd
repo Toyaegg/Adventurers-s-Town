@@ -18,6 +18,12 @@ var max_drop_item_count : int
 var failed_effect : Buff
 var failed_effect_probability : float
 
+var min_hp_cast : int
+var max_hp_cast : int
+
+var min_mp_cast : int
+var max_mp_cast : int
+
 var min_exp : int
 var max_exp : int
 

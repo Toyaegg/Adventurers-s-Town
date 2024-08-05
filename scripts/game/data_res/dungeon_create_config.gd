@@ -15,4 +15,6 @@ extends Resource
 @export var failed_effects : Array[Buff]
 @export var success_probabiliy_range : Vector2
 @export var failed_effect_probabiliy_range : Vector2
+@export var hp_cast_range : Vector2i
+@export var mp_cast_range : Vector2i
 @export var exp_range : Vector2i

@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_pounr")
-feature = 6
+feature = 5
 feature_day = 0

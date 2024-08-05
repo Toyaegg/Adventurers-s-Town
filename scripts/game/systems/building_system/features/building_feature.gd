@@ -25,12 +25,9 @@ func _feature_process(_value) -> void:
 		return
 
 	match feature:
-			Building.Feature.AcceptTask:
-				print("【%s】接任务" % user.display_name)
-				EventBus.push_event(GameEvents.ADVENTURER_ACCEPT_TASK, user)
-			Building.Feature.CompleteTask:
-				print("【%s】完成任务" % user.display_name)
-				EventBus.push_event(GameEvents.ADVENTURER_COMPLETE_TASK, user)
+			Building.Feature.ChallengeDungeon:
+				print("【%s】挑战地下城" % user.display_name)
+				EventBus.push_event(GameEvents.ADVENTURER_CHALLENGE_DUNGEON, user)
 			Building.Feature.Shopping:
 				print("【%s】购买" % user.display_name)
 				EventBus.push_event(GameEvents.ADVENTURER_SHOPPING, user)

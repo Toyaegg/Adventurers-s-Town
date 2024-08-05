@@ -15,7 +15,6 @@ enum PotentialTendency{
 }
 
 const MAX_LEVEL = 1000
-
 const GRAVITY = 200.0
 
 #endregion
@@ -40,8 +39,7 @@ var id : int
 var busy : bool = false
 var target_building : Building
 var target_building_id : StringName
-var target_task : Task
-var target_dungeon : Node
+var target_dungeon : Dungeon
 var target_Weapon : Node
 
 var move_direction : int
@@ -98,8 +96,22 @@ func feature_complete() -> void:
 	my_feature_complete.emit()
 
 func add_hp(value : float) -> void:
-	print("血量+", value)
+	print("血量 ", value)
 	attribute.cur_hp += value
+
+func add_mp(value : float) -> void:
+	print("精力 ", value)
+	mp.cur_mp += value
+
+func add_exp(value : float) -> void:
+	print("EXP ", value)
+	exp.cur_exp += value
+
+func add_rewards(rewards : Array[Item], rewards_count : Array[int]) -> void:
+	print("添加奖励")
+	for i in rewards.size():
+		print("[%s] [%d]" % [rewards[i].display_name, rewards_count[i]])
+		inventory.add_item(rewards[i], rewards_count[i])
 
 func lift_curse() -> void:
 	print("诅咒驱散")
@@ -129,9 +141,10 @@ func has_enough_money() -> bool:
 
 func _on_make_money_entered() -> void:
 	print("开始赚钱")
-	if has_enough_mp() and target_task == null:
-		print("可以接任务")
-		state_chart.send_event("want_to_accept_task")
+	
+	if has_enough_mp():
+		print("去地下城")
+		state_chart.send_event("to_dungeon")
 	
 	if not has_enough_mp():
 		print("只能去休息")
@@ -174,25 +187,30 @@ func _on_find_building(extra_arg_0: StringName) -> void:
 				target_building = building
 
 
-func _on_accept_task() -> void:
-	target_building.enter(self)
-	target_building.use(self, Building.Feature.AcceptTask)
-	print("开始接任务")
-	await my_feature_complete
-	var nsme = str(target_task)
-	print("接到任务【%s】" % nsme)
-	state_chart.send_event("task_accepted")
-	target_building.exit(self)
-
-
 func _on_find_dungeon() -> void:
 	print("寻找适的地牢")
 	var dungeons = GameManager.dungeon_model.find_suitable_dungeons(exp.level)
+	
 	for dungeon in dungeons:
-		print("地牢的成功率 [%2f]%" % (dungeon.success_probability * 100))
-		if dungeon.success_drop.filter(func(item : Item): return item.display_name == target_task.target.display_name):
-			target_dungeon = dungeon
+		#print("地牢的成功率 [%2.2f]%%" % (dungeon.success_probability * 100))
+		
+		target_dungeon = dungeon
 	
-	print("找到的地牢名字 [%s]" % target_dungeon.display_name)
+	if target_dungeon != null:
+		print("找到的地牢名字 [%s]" % target_dungeon.display_name)
+		state_chart.send_event("find_dungeon")
 	
-	pass # Replace with function body.
+	
+
+
+func _on_challenge_dungeon() -> void:
+	use_building(Building.Feature.ChallengeDungeon)
+
+
+func use_building(feature : Building.Feature) -> void:
+	target_building.enter(self)
+	target_building.use(self, feature)
+	await my_feature_complete
+	EventBus.push_event(GameEvents.BUILDING_FEATURE_FINISH_DUNGEON, self)
+	state_chart.send_event("dungeon_finish")
+	target_building.exit(self)

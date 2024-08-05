@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_2glry")
-feature = 2
+feature = 1
 feature_day = 0

@@ -9,8 +9,13 @@ var dungeon_config_401_500 := preload("res://assets/data/config/dungeon_create_c
 var dungeon_config_501_600 := preload("res://assets/data/config/dungeon_create_config/dungeon_level_501_600_config.tres")
 var dungeon_config_601_1000 := preload("res://assets/data/config/dungeon_create_config/dungeon_level_601_1000_config.tres")
 
+var dungeon_rng : RandomNumberGenerator = RandomNumberGenerator.new()
+
 func _ready() -> void:
 	initialize()
+	
+	EventBus.subscribe(GameEvents.ADVENTURER_CHALLENGE_DUNGEON, challenge_dungeon)
+	EventBus.subscribe(GameEvents.BUILDING_FEATURE_FINISH_DUNGEON, finish_dungeon)
 
 func initialize() -> void:
 	create_dungeons(dungeon_config_1_100)
@@ -77,3 +82,55 @@ func create_dungeons(config : DungeonCreateConfig) -> void:
 		dungeon.max_exp = config.exp_range.y 
 		
 		EventBus.push_event(GameEvents.DUNGEON_CREATED, dungeon)
+
+
+func finish_dungeon(user : Adventurer) -> void:
+	var success_rng_value = dungeon_rng.randf()
+	var result : bool = success_rng_value < user.target_dungeon.success_probability
+	
+	var cast_hp : int
+	var cast_mp : int
+	var curse : Buff
+	var rewards : Array[Item]
+	var rewards_count : Array[int]
+	var boss_drop : Item
+	var boss_drop_count : int
+	var reward_exp : int
+	
+	if result:
+		cast_hp = dungeon_rng.randi_range(user.target_dungeon.min_hp_cast, user.target_dungeon.max_hp_cast)
+		cast_mp = dungeon_rng.randi_range(user.target_dungeon.min_mp_cast, user.target_dungeon.max_mp_cast)
+		var dr_copy = user.target_dungeon.success_drop.duplicate()
+		dr_copy.shuffle()
+		var drop_type_count : int = dungeon_rng.randi_range(user.target_dungeon.min_drop_item_type, user.target_dungeon.max_drop_item_type)
+		rewards = dr_copy.slice(0, drop_type_count)
+		for i in rewards.size():
+			rewards_count.append(dungeon_rng.randi_range(user.target_dungeon.min_drop_item_count, user.target_dungeon.max_drop_item_count))
+		rewards.append(user.target_dungeon.boss.drop)
+		rewards_count.append(dungeon_rng.randi_range(user.target_dungeon.boss.drop_count_range.x, user.target_dungeon.boss.drop_count_range.y))
+		reward_exp = dungeon_rng.randi_range(user.target_dungeon.min_exp, user.target_dungeon.max_exp)
+	else:
+		cast_hp = dungeon_rng.randi_range(user.target_dungeon.min_hp_cast, user.target_dungeon.max_hp_cast) * 1.5
+		cast_mp = dungeon_rng.randi_range(user.target_dungeon.min_mp_cast, user.target_dungeon.max_mp_cast) * 1.5
+		var dr_copy = user.target_dungeon.success_drop.duplicate()
+		dr_copy.shuffle()
+		var drop_type_count : int = dungeon_rng.randi_range(user.target_dungeon.min_drop_item_type, user.target_dungeon.max_drop_item_type)
+		rewards = dr_copy.slice(0, drop_type_count)
+		for i in rewards.size():
+			rewards_count.append(dungeon_rng.randi_range(user.target_dungeon.min_drop_item_count, user.target_dungeon.max_drop_item_count) * 0.5)
+		var effect_rng_value = dungeon_rng.randf()
+		if effect_rng_value < user.target_dungeon.failed_effect_probability:
+			curse = user.target_dungeon.failed_effect
+		reward_exp = dungeon_rng.randi_range(user.target_dungeon.min_exp, user.target_dungeon.max_exp) * 0.5
+	
+	
+	user.add_hp(-cast_hp)
+	user.add_mp(-cast_mp)
+	user.add_exp(reward_exp)
+	user.add_rewards(rewards, rewards_count)
+	if curse != null:
+		user.add_curse(curse)
+
+
+func challenge_dungeon(user : Adventurer) -> void:
+	print("地下城挑战中……")
