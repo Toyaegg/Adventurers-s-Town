@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://rr31o7uf3xxc"]
+[gd_scene load_steps=16 format=3 uid="uid://rr31o7uf3xxc"]
 
 [ext_resource type="Script" path="res://scripts/game/systems/adventurer_system/adventurer/adventurer.gd" id="1_s6p47"]
 [ext_resource type="SpriteFrames" uid="uid://058l6hpd46jk" path="res://assets/animation/001/idle.tres" id="2_6qk1f"]
@@ -16,6 +16,10 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qn0gv"]
 size = Vector2(20, 14)
+
+[sub_resource type="Curve" id="Curve_ejjfn"]
+_data = [Vector2(0, 0), 0.0, 0.3, 0, 0, Vector2(0.5, 0.3), 0.9, 0.9, 0, 0, Vector2(1, 1), 2.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Adventurer" type="CharacterBody2D" node_paths=PackedStringArray("animation", "state_chart", "attribute", "curses", "buffs", "mp", "exp", "inventory", "wallet")]
 collision_mask = 2
@@ -57,6 +61,7 @@ script = ExtResource("7_raqln")
 
 [node name="EXP" type="Node" parent="."]
 script = ExtResource("8_ctt8d")
+curve = SubResource("Curve_ejjfn")
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("8_amh8k")
