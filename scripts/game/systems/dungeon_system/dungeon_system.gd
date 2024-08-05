@@ -93,8 +93,6 @@ func finish_dungeon(user : Adventurer) -> void:
 	var curse : Buff
 	var rewards : Array[Item]
 	var rewards_count : Array[int]
-	var boss_drop : Item
-	var boss_drop_count : int
 	var reward_exp : int
 	
 	if result:

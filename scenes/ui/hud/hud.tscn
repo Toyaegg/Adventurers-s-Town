@@ -591,6 +591,7 @@ building_list = NodePath("BuildingList")
 adventurer_list = NodePath("AdventurerList")
 
 [node name="AdventurerList" type="Control" parent="Lists" node_paths=PackedStringArray("item_prefab", "content")]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

@@ -75,7 +75,6 @@ func create_random_adventurer(tier : Adventurer.Tier = Adventurer.Tier.Normal) -
 
 	adv.exp.level = get_random_level(tier)
 	adv.attribute.initialize(cof.base_attack, cof.base_defence, cof.base_hp, cof.potential, get_growth(cof.min_growth, cof.max_growth))
-	adv.mp.mp = 100
 	adv.mp.cur_mp = randi_range(50, 100)
 	adv.display_name = str(adv.get_instance_id())
 	return adv

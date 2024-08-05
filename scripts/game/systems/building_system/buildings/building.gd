@@ -22,6 +22,7 @@ var id : String
 var display_name : String
 var pointer_entered : bool = false
 var focused : ValueWithSignal
+var level : int
 
 var belong_to : StringName
 
@@ -101,6 +102,10 @@ func on_pointer_press() -> void:
 func on_pointer_release() -> void:
 	print("on_pointer_release")
 	get_viewport().set_input_as_handled()
+
+func level_up() -> void:
+	if GameManager.town_model.can_level_up(building_config.resource_need[level - 1]):
+		level += 1
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("click") and focused.value:
