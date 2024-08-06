@@ -46,7 +46,7 @@ var move_direction : int
 
 var sundries_count : int:
 	get:
-		return inventory.get_sundries().size()
+		return inventory.items.size()
 
 signal my_feature_complete
 

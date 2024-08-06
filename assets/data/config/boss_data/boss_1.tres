@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="Boss" load_steps=2 format=3 uid="uid://cf28mlc7xxfrf"]
-
-[ext_resource type="Script" path="res://scripts/game/data_res/boss.gd" id="1_2ycfs"]
-
-[resource]
-script = ExtResource("1_2ycfs")
-display_name = &"15445"

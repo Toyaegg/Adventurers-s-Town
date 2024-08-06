@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3 uid="uid://s3ubpyniv11f"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/skill_data.gd" id="1_h7xen"]
+
+[resource]
+script = ExtResource("1_h7xen")
+id = 0
+display_name = &""
+description = ""

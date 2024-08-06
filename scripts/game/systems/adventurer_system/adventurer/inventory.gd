@@ -7,9 +7,7 @@ class ItemSlot:
 
 var items : Array[ItemSlot]
 
-func get_sundries() -> Array[ItemSlot]:
-	var sundries : Array[ItemSlot] = items.filter(func(item : Item): return item.type == Item.ItemType.Sundries)
-	return sundries
+
 
 func add_item(item : Item, count : int) -> void:
 	var t = items.filter(func(item): return item.item == item)

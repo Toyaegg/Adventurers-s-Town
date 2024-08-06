@@ -25,6 +25,7 @@ point_count = 3
 collision_mask = 2
 script = ExtResource("1_s6p47")
 display_name = "kkkkk"
+tier = null
 move_speed = 6000.0
 animation = NodePath("AnimatedSprite2D")
 state_chart = NodePath("StateChart")
