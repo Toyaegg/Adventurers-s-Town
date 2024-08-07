@@ -12,9 +12,11 @@ var creats : Array[Adventurer.Tier]
 func _ready() -> void:
 	EventBus.subscribe(GameEvents.TIME_VALUE_CHANGED, time_changed)
 
+	print("AdventurerSystem ready")
+
 func time_changed(data : TimeSystem.TimeData) -> void:
 	## TODO 检查容量是否达到上限
-	print("冒险者创建检查")
+	#print("冒险者创建检查")
 	if cur_day != data.day:
 		cur_day = data.day
 		if can_create_adventurer():
@@ -73,7 +75,7 @@ func create_random_adventurer(tier : Adventurer.Tier = Adventurer.Tier.Normal) -
 		Adventurer.Tier.Ultimate:
 			cof = config_3
 
-	adv.exp.level = get_random_level(tier)
+	adv.exp.level = 1#get_random_level(tier)
 	adv.attribute.initialize(cof.base_attack, cof.base_defence, cof.base_hp, cof.potential, get_growth(cof.min_growth, cof.max_growth))
 	adv.mp.cur_mp = randi_range(50, 100)
 	adv.display_name = str(adv.get_instance_id())

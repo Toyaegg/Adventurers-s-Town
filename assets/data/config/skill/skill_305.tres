@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3 uid="uid://csnt0lydiqtup"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/skill_data.gd" id="1_40xc8"]
+
+[resource]
+script = ExtResource("1_40xc8")
+id = 305
+display_name = &"大火球术"
+description = "火球术的进阶魔法，对大部分敌人都有强大的杀伤力。"

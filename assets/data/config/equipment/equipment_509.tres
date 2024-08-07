@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://cr04llnu8t5fs"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_0nn4q"]
+
+[resource]
+script = ExtResource("1_0nn4q")
+id = 509
+display_name = &"铁枪"
+description = "最普通的铁制武器"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

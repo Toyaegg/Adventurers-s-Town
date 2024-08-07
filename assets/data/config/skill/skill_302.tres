@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3 uid="uid://bbwu7ql3rtaa6"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/skill_data.gd" id="1_ibsqq"]
+
+[resource]
+script = ExtResource("1_ibsqq")
+id = 302
+display_name = &"附魔剑术"
+description = "将魔法赋予冒险者及其武器之上，使冒险者的战斗能力提高一个或数个段位。"

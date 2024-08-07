@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://cjhiptqm8xsdh"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_423hb"]
+
+[resource]
+script = ExtResource("1_423hb")
+id = 516
+display_name = &"勇者之枪"
+description = "从远古传至今日的历代勇者所用佩剑，其强大的攻击力可以斩杀任何魔王"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

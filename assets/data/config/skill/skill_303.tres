@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3 uid="uid://m06arhak6gth"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/skill_data.gd" id="1_gveri"]
+
+[resource]
+script = ExtResource("1_gveri")
+id = 303
+display_name = &"盾击术"
+description = "利用护盾进行战斗的一种技巧。"

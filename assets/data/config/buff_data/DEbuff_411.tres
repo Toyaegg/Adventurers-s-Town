@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Buff" load_steps=2 format=3 uid="uid://rvn0wakfjcko"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/buff.gd" id="1_w07kt"]
+
+[resource]
+script = ExtResource("1_w07kt")
+id = 411
+display_name = &"流血诅咒"
+description = "冒险者每秒损失体力总上线的5%血量。"
+attribute = ""
+value = 0

@@ -6,9 +6,10 @@ var dungeons : Array[Dungeon]
 func _ready() -> void:
 	EventBus.subscribe(GameEvents.DUNGEON_CREATED, add_dungeon)
 
-func find_suitable_dungeons(level : int) -> Array[Dungeon]:
+func find_suitable_dungeon(level : int) -> Dungeon:
 	var result : Array[Dungeon] = dungeons.filter(func(dungeon : Dungeon): return dungeon.min_enter_level <= level)
-	return result
+	result.sort_custom(func(a : Dungeon, b : Dungeon): return a.min_exp > b.max_exp)
+	return result[0]
 
 
 func add_dungeon(dungeon : Dungeon) -> void:

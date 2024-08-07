@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DungeonCreateConfig" load_steps=7 format=3 uid="uid://bje5vd0irtuio"]
+
+[ext_resource type="Resource" uid="uid://rvn0wakfjcko" path="res://assets/data/config/buff_data/DEbuff_411.tres" id="1_myyjs"]
+[ext_resource type="Script" path="res://scripts/game/data_res/dungeon_create_config.gd" id="2_5qxoi"]
+[ext_resource type="Script" path="res://scripts/game/data_res/items_data.gd" id="3_up2bi"]
+[ext_resource type="Resource" uid="uid://cb8o88de2bow5" path="res://assets/data/config/item_data/item_108.tres" id="4_b5fgk"]
+[ext_resource type="Resource" uid="uid://bm7fpru5m7mrn" path="res://assets/data/config/item_data/item_107.tres" id="5_kjkdi"]
+[ext_resource type="Resource" uid="uid://bax4wnu4hgres" path="res://assets/data/config/item_data/item_109.tres" id="6_c3bco"]
+
+[resource]
+script = ExtResource("2_5qxoi")
+dungeon_name = &"亡者深渊"
+min_enter_level = 401
+max_enter_level = 700
+challenge_days = 5
+success_drops = Array[ExtResource("3_up2bi")]([ExtResource("4_b5fgk"), ExtResource("5_kjkdi"), ExtResource("6_c3bco")])
+success_drop_count = Array[int]([15, 20, 5])
+success_drop_probability = Array[float]([0.5, 1.0, 0.7])
+failed_effect = ExtResource("1_myyjs")
+success_probabiliy = Array[float]([0.5, 0.7, 0.6, 0.4])
+failed_effect_probabiliy = 0.4
+hp_cast_range = Vector2i(1500, 1900)
+mp_cast_range = Vector2i(90, 100)
+exp_range = Vector2i(5000, 7200)

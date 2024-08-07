@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://7hjkp2d88ojq"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_kogn0"]
+
+[resource]
+script = ExtResource("1_kogn0")
+id = 525
+display_name = &"牛皮护甲"
+description = "使用老牛皮制作的甲胄，具有一定的防御能力。"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

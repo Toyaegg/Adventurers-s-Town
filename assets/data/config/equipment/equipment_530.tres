@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://c8n7y3b3ad88"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_tobpj"]
+
+[resource]
+script = ExtResource("1_tobpj")
+id = 630
+display_name = &"冰霜之甲"
+description = "被冰霜精灵加持过的护甲，可以有效的防御冰霜攻击。"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

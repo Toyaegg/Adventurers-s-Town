@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://rr31o7uf3xxc"]
+[gd_scene load_steps=18 format=3 uid="uid://rr31o7uf3xxc"]
 
 [ext_resource type="Script" path="res://scripts/game/systems/adventurer_system/adventurer/adventurer.gd" id="1_s6p47"]
 [ext_resource type="SpriteFrames" uid="uid://058l6hpd46jk" path="res://assets/animation/001/idle.tres" id="2_6qk1f"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://scripts/game/systems/adventurer_system/adventurer/wallet.gd" id="9_b0syd"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="9_hd4x2"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="10_1vxh8"]
+[ext_resource type="Script" path="res://scripts/game/systems/adventurer_system/adventurer/equip_slot.gd" id="10_g82si"]
+[ext_resource type="Script" path="res://scripts/game/systems/adventurer_system/adventurer/potion_slot.gd" id="11_abl4b"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="11_nvecf"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="12_qlvpi"]
 
@@ -21,11 +23,10 @@ size = Vector2(20, 14)
 _data = [Vector2(0, 0), 0.0, 0.3, 0, 0, Vector2(0.5, 0.3), 0.9, 0.9, 0, 0, Vector2(1, 1), 2.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="Adventurer" type="CharacterBody2D" node_paths=PackedStringArray("animation", "state_chart", "attribute", "curses", "buffs", "mp", "exp", "inventory", "wallet")]
+[node name="Adventurer" type="CharacterBody2D" node_paths=PackedStringArray("animation", "state_chart", "attribute", "curses", "buffs", "mp", "exp", "inventory", "wallet", "equip_slot", "potion_slot")]
 collision_mask = 2
 script = ExtResource("1_s6p47")
 display_name = "kkkkk"
-tier = null
 move_speed = 6000.0
 animation = NodePath("AnimatedSprite2D")
 state_chart = NodePath("StateChart")
@@ -36,6 +37,8 @@ mp = NodePath("MP")
 exp = NodePath("EXP")
 inventory = NodePath("Inventory")
 wallet = NodePath("Wallet")
+equip_slot = NodePath("EquipSlot")
+potion_slot = NodePath("PotionSlot")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -30)
@@ -69,6 +72,12 @@ script = ExtResource("8_amh8k")
 
 [node name="Wallet" type="Node" parent="."]
 script = ExtResource("9_b0syd")
+
+[node name="EquipSlot" type="Node" parent="."]
+script = ExtResource("10_g82si")
+
+[node name="PotionSlot" type="Node" parent="."]
+script = ExtResource("11_abl4b")
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("9_hd4x2")
@@ -171,17 +180,17 @@ script = ExtResource("11_nvecf")
 
 [node name="DungeonFinish" type="Node" parent="StateChart/Root/Dungeon/ChallengeDungeon/Challenging"]
 script = ExtResource("12_qlvpi")
-to = NodePath("../../Finish")
+to = NodePath("../../DungeonFinish")
 event = &"dungeon_finish"
 delay_in_seconds = "0.0"
 
-[node name="Finish" type="Node" parent="StateChart/Root/Dungeon/ChallengeDungeon"]
+[node name="DungeonFinish" type="Node" parent="StateChart/Root/Dungeon/ChallengeDungeon"]
 script = ExtResource("11_nvecf")
 
-[node name="SellItem" type="Node" parent="StateChart/Root/Dungeon/ChallengeDungeon/Finish"]
+[node name="SellItem" type="Node" parent="StateChart/Root/Dungeon/ChallengeDungeon/DungeonFinish"]
 script = ExtResource("12_qlvpi")
 to = NodePath("../../../../MakeMoney/SellItem")
-event = &"sell_sundries"
+event = &"sell_items"
 delay_in_seconds = "0.0"
 
 [node name="Upgrade" type="Node" parent="StateChart/Root"]
@@ -259,7 +268,7 @@ delay_in_seconds = "0.0"
 [node name="Shopping" type="Node" parent="StateChart/Root/Upgrade/Shopping"]
 script = ExtResource("11_nvecf")
 
-[node name="BuyWeapon" type="Node" parent="StateChart/Root/Upgrade/Shopping/Shopping"]
+[node name="Finish" type="Node" parent="StateChart/Root/Upgrade/Shopping/Shopping"]
 script = ExtResource("12_qlvpi")
 to = NodePath("../../..")
 event = &"shopping_finish"
@@ -467,7 +476,18 @@ to = NodePath("../../../../Upgrade")
 delay_in_seconds = "0.0"
 
 [connection signal="state_entered" from="StateChart/Root/MakeMoney/Idle" to="." method="_on_make_money_entered"]
+[connection signal="state_entered" from="StateChart/Root/MakeMoney/SellItem/MoveToFlashGold" to="." method="_on_find_building" binds= [&"fg"]]
+[connection signal="state_physics_processing" from="StateChart/Root/MakeMoney/SellItem/MoveToFlashGold" to="." method="_on_move_to_building"]
+[connection signal="state_entered" from="StateChart/Root/MakeMoney/SellItem/Selling" to="." method="_on_sell_item"]
 [connection signal="state_entered" from="StateChart/Root/Dungeon/Idle" to="." method="_on_find_dungeon"]
 [connection signal="state_entered" from="StateChart/Root/Dungeon/ChallengeDungeon/AdventurerUnion" to="." method="_on_find_building" binds= [&"au"]]
 [connection signal="state_physics_processing" from="StateChart/Root/Dungeon/ChallengeDungeon/AdventurerUnion" to="." method="_on_move_to_building"]
 [connection signal="state_entered" from="StateChart/Root/Dungeon/ChallengeDungeon/Challenging" to="." method="_on_challenge_dungeon"]
+[connection signal="state_entered" from="StateChart/Root/Dungeon/ChallengeDungeon/DungeonFinish" to="." method="_on_dungeon_finish"]
+[connection signal="state_entered" from="StateChart/Root/Upgrade/Idle" to="." method="_on_check_for_upgrade"]
+[connection signal="state_entered" from="StateChart/Root/Upgrade/Train/MoveToTrainingGround" to="." method="_on_find_building" binds= [&"tg"]]
+[connection signal="state_physics_processing" from="StateChart/Root/Upgrade/Train/MoveToTrainingGround" to="." method="_on_move_to_building"]
+[connection signal="state_entered" from="StateChart/Root/Upgrade/Train/Training" to="." method="_on_train"]
+[connection signal="state_entered" from="StateChart/Root/Upgrade/Shopping/MoveToFlashGold" to="." method="_on_find_building" binds= [&"fg"]]
+[connection signal="state_physics_processing" from="StateChart/Root/Upgrade/Shopping/MoveToFlashGold" to="." method="_on_move_to_building"]
+[connection signal="state_entered" from="StateChart/Root/Upgrade/Shopping/Shopping" to="." method="_on_shopping"]

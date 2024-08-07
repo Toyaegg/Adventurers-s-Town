@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="DungeonCreateConfig" load_steps=4 format=3 uid="uid://0x56p6ddnmfx"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/dungeon_create_config.gd" id="3_sn4qk"]
+[ext_resource type="Script" path="res://scripts/game/data_res/items_data.gd" id="4_d48cp"]
+[ext_resource type="Resource" uid="uid://dlm5dl6yk4b23" path="res://assets/data/config/item_data/item_101.tres" id="5_36w1c"]
+
+[resource]
+script = ExtResource("3_sn4qk")
+dungeon_name = &"无光洞窟"
+min_enter_level = 1
+max_enter_level = 5
+challenge_days = 3
+success_drops = Array[ExtResource("4_d48cp")]([ExtResource("5_36w1c")])
+success_drop_count = Array[int]([5])
+success_drop_probability = Array[float]([1.0])
+success_probabiliy = Array[float]([1.0])
+failed_effect_probabiliy = 0.0
+hp_cast_range = Vector2i(0, 0)
+mp_cast_range = Vector2i(0, 0)
+exp_range = Vector2i(50, 100)

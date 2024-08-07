@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PotionData" load_steps=2 format=3 uid="uid://dmeg8438plbqb"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/potion_data.gd" id="1_fcgbt"]
+
+[resource]
+script = ExtResource("1_fcgbt")
+id = 205
+display_name = &"复原剂（中）"
+description = "可恢复80点法力。"
+attribute = ""
+value = 0
+price = 30.0

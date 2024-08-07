@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3 uid="uid://bvjwsxrtga8qr"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/skill_data.gd" id="1_u5el7"]
+
+[resource]
+script = ExtResource("1_u5el7")
+id = 307
+display_name = &"恢复术"
+description = "可恢复冒险者一定的精神力（MP）。"

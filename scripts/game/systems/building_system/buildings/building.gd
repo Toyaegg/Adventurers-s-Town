@@ -79,7 +79,7 @@ func exit(user : Adventurer) -> void:
 	print(user.display_name, "退出", building_config.display_name)
 
 func on_pointer_enter() -> void:
-	print("on_pointer_enter")
+	#print("on_pointer_enter")
 	pointer_entered = true
 	get_tree().create_timer(0.3).timeout.connect(
 		func ():
@@ -90,17 +90,17 @@ func on_pointer_enter() -> void:
 	name_label.show()
 
 func on_pointer_exit() -> void:
-	print("on_pointer_exit")
+	#print("on_pointer_exit")
 	pointer_entered = false
 	focused.value = false
 	name_label.hide()
 
 func on_pointer_press() -> void:
-	print("on_pointer_press")
+	#print("on_pointer_press")
 	get_viewport().set_input_as_handled()
 
 func on_pointer_release() -> void:
-	print("on_pointer_release")
+	#print("on_pointer_release")
 	get_viewport().set_input_as_handled()
 
 func level_up() -> void:

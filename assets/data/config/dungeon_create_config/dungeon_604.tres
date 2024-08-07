@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DungeonCreateConfig" load_steps=6 format=3 uid="uid://cq0vpgi7pohyf"]
+
+[ext_resource type="Resource" uid="uid://dicncwlf2vjjg" path="res://assets/data/config/buff_data/DEbuff_409.tres" id="1_uc8ac"]
+[ext_resource type="Script" path="res://scripts/game/data_res/dungeon_create_config.gd" id="2_oidun"]
+[ext_resource type="Script" path="res://scripts/game/data_res/items_data.gd" id="3_b61l4"]
+[ext_resource type="Resource" uid="uid://ddumrokh180yo" path="res://assets/data/config/item_data/item_103.tres" id="4_itd22"]
+[ext_resource type="Resource" uid="uid://bde7670e5scre" path="res://assets/data/config/item_data/item_102.tres" id="4_x6h0j"]
+
+[resource]
+script = ExtResource("2_oidun")
+dungeon_name = &"荒草墓地"
+min_enter_level = 21
+max_enter_level = 35
+challenge_days = 3
+success_drops = Array[ExtResource("3_b61l4")]([ExtResource("4_x6h0j"), ExtResource("4_itd22")])
+success_drop_count = Array[int]([15, 10])
+success_drop_probability = Array[float]([1.0, 1.0])
+failed_effect = ExtResource("1_uc8ac")
+success_probabiliy = Array[float]([0.9])
+failed_effect_probabiliy = 0.4
+hp_cast_range = Vector2i(50, 150)
+mp_cast_range = Vector2i(30, 45)
+exp_range = Vector2i(200, 450)

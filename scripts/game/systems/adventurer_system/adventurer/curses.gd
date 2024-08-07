@@ -1,7 +1,7 @@
 class_name Curses
 extends Node
 
-var curses : Array[int]
+var curses : Array[Buff]
 
 var has_curse : bool:
 	get:

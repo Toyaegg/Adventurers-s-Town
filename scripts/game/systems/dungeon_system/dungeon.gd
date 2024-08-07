@@ -8,9 +8,10 @@ var max_enter_level : int
 var challenge_days : int
 
 var success_drop : Array[Item]
+var drop_item_count : Array[int]
+var drop_item_probability : Array[float]
+
 var success_probability : Array[float]
-var min_drop_item_count : Array[int]
-var max_drop_item_count : Array[int]
 
 var failed_effect : Buff
 var failed_effect_probability : float

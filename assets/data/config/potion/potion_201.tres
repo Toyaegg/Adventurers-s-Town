@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PotionData" load_steps=2 format=3 uid="uid://dhr3dqimg3p8n"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/potion_data.gd" id="1_l68sr"]
+
+[resource]
+script = ExtResource("1_l68sr")
+id = 201
+display_name = &"恢复剂（小）"
+description = "可恢复15点生命。"
+attribute = ""
+value = 0
+price = 2.0

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DungeonCreateConfig" load_steps=7 format=3 uid="uid://p8j3w1n1rgko"]
+
+[ext_resource type="Resource" uid="uid://dicncwlf2vjjg" path="res://assets/data/config/buff_data/DEbuff_409.tres" id="1_qxdjn"]
+[ext_resource type="Script" path="res://scripts/game/data_res/dungeon_create_config.gd" id="2_rlayb"]
+[ext_resource type="Script" path="res://scripts/game/data_res/items_data.gd" id="3_4yqxl"]
+[ext_resource type="Resource" uid="uid://bdso3s34tfyj2" path="res://assets/data/config/item_data/item_105.tres" id="4_kunxq"]
+[ext_resource type="Resource" uid="uid://eojo8l0fgep8" path="res://assets/data/config/item_data/item_106.tres" id="5_unhpx"]
+[ext_resource type="Resource" uid="uid://bm7fpru5m7mrn" path="res://assets/data/config/item_data/item_107.tres" id="6_k1y0c"]
+
+[resource]
+script = ExtResource("2_rlayb")
+dungeon_name = &"深渊地牢"
+min_enter_level = 71
+max_enter_level = 100
+challenge_days = 5
+success_drops = Array[ExtResource("3_4yqxl")]([ExtResource("4_kunxq"), ExtResource("5_unhpx"), ExtResource("6_k1y0c")])
+success_drop_count = Array[int]([15, 10, 10])
+success_drop_probability = Array[float]([1.0, 1.0, 1.0])
+failed_effect = ExtResource("1_qxdjn")
+success_probabiliy = Array[float]([0.5, 0.7, 0.6])
+failed_effect_probabiliy = 0.4
+hp_cast_range = Vector2i(250, 300)
+mp_cast_range = Vector2i(55, 70)
+exp_range = Vector2i(980, 1600)

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3 uid="uid://bqc26trxsypxr"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/skill_data.gd" id="1_o2wyg"]
+
+[resource]
+script = ExtResource("1_o2wyg")
+id = 306
+display_name = &"治愈术"
+description = "可恢复冒险者一定的体力（HP）。"

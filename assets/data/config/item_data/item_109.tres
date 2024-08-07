@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://bax4wnu4hgres"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/items_data.gd" id="1_n6gld"]
+
+[resource]
+script = ExtResource("1_n6gld")
+id = 109
+display_name = "硬鳞"
+description = ""
+price = 20.0

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://bm7fpru5m7mrn"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/items_data.gd" id="1_mnr6h"]
+
+[resource]
+script = ExtResource("1_mnr6h")
+id = 107
+display_name = "魔尘"
+description = ""
+price = 50.0

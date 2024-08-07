@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3 uid="uid://4hjojg1chrr8"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/skill_data.gd" id="1_a0fei"]
+
+[resource]
+script = ExtResource("1_a0fei")
+id = 304
+display_name = &"火球术"
+description = "最基础的魔法攻击。"

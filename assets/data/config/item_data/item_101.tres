@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://dlm5dl6yk4b23"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/items_data.gd" id="1_juq6g"]
+
+[resource]
+script = ExtResource("1_juq6g")
+id = 101
+display_name = "轻皮"
+description = ""
+price = 10.0

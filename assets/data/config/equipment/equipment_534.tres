@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://bib4dd3ugvtco"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_dg4kw"]
+
+[resource]
+script = ExtResource("1_dg4kw")
+id = 534
+display_name = &"法袍"
+description = "由公会为法系冒险者提供的防具，对于法系冒险者来说是最基础的防具了。	"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

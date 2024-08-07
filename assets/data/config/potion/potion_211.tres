@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PotionData" load_steps=2 format=3 uid="uid://d2aujgtgkdcmi"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/potion_data.gd" id="1_moj3e"]
+
+[resource]
+script = ExtResource("1_moj3e")
+id = 211
+display_name = &"生命之水"
+description = "可完全恢复生命的药水。"
+attribute = ""
+value = 0
+price = 120.0

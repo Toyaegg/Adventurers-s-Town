@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3 uid="uid://bb1k82u8b2rok"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/skill_data.gd" id="1_iws56"]
+
+[resource]
+script = ExtResource("1_iws56")
+id = 312
+display_name = &"神圣祈祷"
+description = "虔诚的牧师可以在战斗中通过祈祷使已经丧失战斗力的队员获得重生"

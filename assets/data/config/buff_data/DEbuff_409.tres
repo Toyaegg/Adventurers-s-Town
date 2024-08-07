@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Buff" load_steps=2 format=3 uid="uid://dicncwlf2vjjg"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/buff.gd" id="1_ysnmr"]
+
+[resource]
+script = ExtResource("1_ysnmr")
+id = 409
+display_name = &"贫血诅咒"
+description = "减少冒险者血量上限30%，持续3天。"
+attribute = ""
+value = 0

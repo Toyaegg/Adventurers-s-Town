@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://dvqxikfmeikq6"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_1gayo"]
+
+[resource]
+script = ExtResource("1_1gayo")
+id = 526
+display_name = &"铁护甲"
+description = "厚重的铁制铠甲，防御力有很大的提升但重量也增加了不少。"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

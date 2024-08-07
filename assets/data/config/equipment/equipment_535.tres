@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://d0ksws72f4jei"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_jctgn"]
+
+[resource]
+script = ExtResource("1_jctgn")
+id = 535
+display_name = &"祈祷之袍"
+description = "使用带有祈祷铭文布料所制作的高级法系防具。"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

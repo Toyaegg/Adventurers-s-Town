@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Buff" load_steps=2 format=3 uid="uid://cfn11gobyolol"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/buff.gd" id="1_4m7at"]
+
+[resource]
+script = ExtResource("1_4m7at")
+id = 408
+display_name = &"神圣庇佑"
+description = "为勇者添加一个终极的增加320防御力增益状态。"
+attribute = ""
+value = 0

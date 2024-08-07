@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Buff" load_steps=2 format=3 uid="uid://c4oe8q8w108fr"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/buff.gd" id="1_kpqo7"]
+
+[resource]
+script = ExtResource("1_kpqo7")
+id = 403
+display_name = &"极限狂暴"
+description = "为勇者添加一个顶级的增加110攻击力增益状态。"
+attribute = ""
+value = 0

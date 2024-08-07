@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://bde7670e5scre"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/items_data.gd" id="1_fbm10"]
+
+[resource]
+script = ExtResource("1_fbm10")
+id = 10
+display_name = "中皮"
+description = ""
+price = 18.0

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://etsi7gb5c0wl"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_0wd7s"]
+
+[resource]
+script = ExtResource("1_0wd7s")
+id = 527
+display_name = &"精钢护甲"
+description = "更加高级的防御型甲胄，并且在用料上也做了很多改进，是初期冒险者最喜欢的护甲。"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

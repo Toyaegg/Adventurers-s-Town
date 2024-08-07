@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://dqy2coqakpkc"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_jj4w8"]
+
+[resource]
+script = ExtResource("1_jj4w8")
+id = 537
+display_name = &"精灵法袍"
+description = "被精灵之王所赐福过的法袍，防御力得到了大幅度提升的同时还拥有更加精致的铭文加持。"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

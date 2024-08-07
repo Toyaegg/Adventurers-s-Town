@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DungeonCreateConfig" load_steps=5 format=3 uid="uid://cw2uwy80j36o2"]
+
+[ext_resource type="Resource" uid="uid://rvn0wakfjcko" path="res://assets/data/config/buff_data/DEbuff_411.tres" id="1_0e2wu"]
+[ext_resource type="Script" path="res://scripts/game/data_res/dungeon_create_config.gd" id="2_4sgb6"]
+[ext_resource type="Script" path="res://scripts/game/data_res/items_data.gd" id="3_ot2th"]
+[ext_resource type="Resource" uid="uid://cnufyf3snaovg" path="res://assets/data/config/item_data/item_110.tres" id="4_t4wkh"]
+
+[resource]
+script = ExtResource("2_4sgb6")
+dungeon_name = &"罗刹幻境"
+min_enter_level = 701
+max_enter_level = 1000
+challenge_days = 5
+success_drops = Array[ExtResource("3_ot2th")]([ExtResource("4_t4wkh")])
+success_drop_count = Array[int]([5])
+success_drop_probability = Array[float]([0.7])
+failed_effect = ExtResource("1_0e2wu")
+success_probabiliy = Array[float]([0.5, 0.7, 0.6, 0.4])
+failed_effect_probabiliy = 0.4
+hp_cast_range = Vector2i(2500, 2850)
+mp_cast_range = Vector2i(90, 1000)
+exp_range = Vector2i(12000, 15000)

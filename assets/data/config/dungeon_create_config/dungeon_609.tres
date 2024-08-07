@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DungeonCreateConfig" load_steps=6 format=3 uid="uid://dc5wyhv3hnbnu"]
+
+[ext_resource type="Resource" uid="uid://rvn0wakfjcko" path="res://assets/data/config/buff_data/DEbuff_411.tres" id="1_b2phv"]
+[ext_resource type="Script" path="res://scripts/game/data_res/dungeon_create_config.gd" id="2_bbt43"]
+[ext_resource type="Script" path="res://scripts/game/data_res/items_data.gd" id="3_1pu3r"]
+[ext_resource type="Resource" uid="uid://cb8o88de2bow5" path="res://assets/data/config/item_data/item_108.tres" id="4_2dm2q"]
+[ext_resource type="Resource" uid="uid://bm7fpru5m7mrn" path="res://assets/data/config/item_data/item_107.tres" id="5_316di"]
+
+[resource]
+script = ExtResource("2_bbt43")
+dungeon_name = &"远古战场"
+min_enter_level = 201
+max_enter_level = 400
+challenge_days = 5
+success_drops = Array[ExtResource("3_1pu3r")]([ExtResource("4_2dm2q"), ExtResource("5_316di")])
+success_drop_count = Array[int]([15, 20])
+success_drop_probability = Array[float]([0.5, 1.0])
+failed_effect = ExtResource("1_b2phv")
+success_probabiliy = Array[float]([0.5, 0.7, 0.6, 0.4])
+failed_effect_probabiliy = 0.4
+hp_cast_range = Vector2i(860, 1000)
+mp_cast_range = Vector2i(90, 100)
+exp_range = Vector2i(3200, 4600)

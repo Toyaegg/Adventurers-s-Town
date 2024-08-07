@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_h7xen")
-id = 0
-display_name = &""
-description = ""
+id = 301
+display_name = &"剑击术"
+description = "冒险者最基础的战斗技巧。"

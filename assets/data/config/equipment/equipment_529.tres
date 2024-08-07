@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://b7qs2upancv7j"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_e0t0d"]
+
+[resource]
+script = ExtResource("1_e0t0d")
+id = 529
+display_name = &"火焰之甲"
+description = "被火焰精灵加持过的护甲，可以有效的防御火焰攻击。"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

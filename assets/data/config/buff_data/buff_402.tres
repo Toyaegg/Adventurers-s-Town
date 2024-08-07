@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Buff" load_steps=2 format=3 uid="uid://ceq0du8eb4lnu"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/buff.gd" id="1_6yvce"]
+
+[resource]
+script = ExtResource("1_6yvce")
+id = 402
+display_name = &"战术改良"
+description = "为勇者添加一个强大的增加75攻击力增益状态。"
+attribute = ""
+value = 0

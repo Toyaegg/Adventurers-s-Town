@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://5gev66qsuq5b"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_1wjbc"]
+
+[resource]
+script = ExtResource("1_1wjbc")
+id = 511
+display_name = &"精灵之枪"
+description = "被精灵祝福过的武器，几乎没有重量，所以可以进行快速挥砍。"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

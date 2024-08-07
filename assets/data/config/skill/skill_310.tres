@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3 uid="uid://bii88rh7bs6s4"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/skill_data.gd" id="1_iimvm"]
+
+[resource]
+script = ExtResource("1_iimvm")
+id = 310
+display_name = &"木棍格斗术"
+description = "格斗家在使用长柄武器时的技术，也就是技击术的一种延伸用法。"

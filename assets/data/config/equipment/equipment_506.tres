@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://be56vj47x5ssr"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_we3ac"]
+
+[resource]
+script = ExtResource("1_we3ac")
+id = 506
+display_name = &"冰寒之剑"
+description = "被寒冰精灵祝福过的武器，攻击时带有冰属性伤害。"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

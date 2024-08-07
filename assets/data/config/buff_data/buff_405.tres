@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Buff" load_steps=2 format=3 uid="uid://b5xanqfnr7ctd"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/buff.gd" id="1_dh50k"]
+
+[resource]
+script = ExtResource("1_dh50k")
+id = 405
+display_name = &"护盾术"
+description = "为勇者添加一个增加25防御力的增益状态。"
+attribute = ""
+value = 0

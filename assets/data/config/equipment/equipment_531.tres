@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://nn7dv3gerelf"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_tpc2c"]
+
+[resource]
+script = ExtResource("1_tpc2c")
+id = 531
+display_name = &"大地之甲"
+description = "被大地精灵加持过的护甲，大幅度提高了技术的防御能力。"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

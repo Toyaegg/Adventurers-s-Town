@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://dr3hle8xccctt"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_ul1bp"]
+
+[resource]
+script = ExtResource("1_ul1bp")
+id = 524
+display_name = &"大贤者之杖"
+description = "历任大贤者所用的法杖，其中所含的魔力足以摧毁整个国家。"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Buff" load_steps=2 format=3 uid="uid://b50gmh5twx38n"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/buff.gd" id="1_0kwv6"]
+
+[resource]
+script = ExtResource("1_0kwv6")
+id = 407
+display_name = &"护佑术"
+description = "为勇者添加一个顶级的增加110防御力增益状态。"
+attribute = ""
+value = 0

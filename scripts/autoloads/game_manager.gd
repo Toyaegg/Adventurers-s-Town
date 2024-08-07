@@ -20,12 +20,14 @@ var models : Node
 var town_model : TownModel
 var adventurer_model : AdventurerModel
 var dungeon_model : DungeonModel
+var shop_model : ShopModel
 
 var systems : Node
 var building_system : BuildingSystem
 var time_system : TimeSystem
 var adventurer_system : AdventurerSystem
 var dungeon_system : DungeonSystem
+var shop_system : ShopSystem
 
 
 var player_display_name : String = "test"
@@ -63,6 +65,7 @@ func initialize_models() -> void:
 	create_town_model()
 	create_adventurer_model()
 	create_dungeon_model()
+	create_shop_model()
 
 func initialize_systems() -> void:
 	systems = Node.new()
@@ -73,6 +76,7 @@ func initialize_systems() -> void:
 	create_building_system()
 	create_adventurer_system()
 	create_dungeon_system()
+	create_shop_system()
 
 func subscribe_events() -> void:
 	EventBus.subscribe(GameEvents.GAME_START, start_game)
@@ -107,6 +111,11 @@ func create_dungeon_model() -> void:
 	dungeon_model.name = "DungeonModel"
 	models.add_child(dungeon_model)
 
+func create_shop_model() -> void:
+	shop_model = ShopModel.new()
+	shop_model.name = "ShopModel"
+	models.add_child(shop_model)
+
 func create_building_system() -> void:
 	building_system = BuildingSystem.new()
 	building_system.name = "BuildingSystem"
@@ -121,6 +130,11 @@ func create_dungeon_system() -> void:
 	dungeon_system = DungeonSystem.new()
 	dungeon_system.name = "DungeonSystem"
 	systems.add_child(dungeon_system)
+
+func create_shop_system() -> void:
+	shop_system = ShopSystem.new()
+	shop_system.name = "ShopSystem"
+	systems.add_child(shop_system)
 
 func create_time_system() -> void:
 	time_system = TimeSystem.new()

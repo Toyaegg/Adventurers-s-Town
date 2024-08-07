@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Buff" load_steps=2 format=3 uid="uid://3ix1us4c5awo"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/buff.gd" id="1_56k1h"]
+
+[resource]
+script = ExtResource("1_56k1h")
+id = 406
+display_name = &"石肤术"
+description = "为勇者添加一个强大的增加75防御力增益状态。"
+attribute = ""
+value = 0

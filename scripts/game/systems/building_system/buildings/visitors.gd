@@ -18,11 +18,8 @@ func exit(user : Adventurer) -> void:
 
 func has_user(user : Adventurer) -> bool:
 	var result : bool = users.has(user)
-	print("visitor ",result)
+	#print("visitor ",result)
 	return result
 
 #func use(user : Adventurer, f : Feature) -> bool:
 	#return false
-
-
-

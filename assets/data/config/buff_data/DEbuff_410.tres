@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Buff" load_steps=2 format=3 uid="uid://hs5l5nsiweg0"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/buff.gd" id="1_3qvo0"]
+
+[resource]
+script = ExtResource("1_3qvo0")
+id = 410
+display_name = &"虚弱诅咒"
+description = "减少冒险者一半的攻击强度，持续1天。"
+attribute = ""
+value = 0

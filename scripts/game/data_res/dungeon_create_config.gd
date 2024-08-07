@@ -1,8 +1,7 @@
 class_name DungeonCreateConfig
 extends Resource
 
-@export var pre_names : Array[String]
-@export var last_names : Array[String]
+@export var dungeon_name : StringName
 @export var min_enter_level : int
 @export var max_enter_level : int
 @export var challenge_days : int

@@ -26,7 +26,7 @@ var hp_growth : float
 
 var hp_amount : float:
 	get:
-		return cur_hp / hp;
+		return cur_hp / max_hp;
 
 func initialize(pattack : float, pdefence : float, php : float, ppotential : float, pgrowth : float) -> void:
 	potential = ppotential

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3 uid="uid://cff2nlaapiepi"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/skill_data.gd" id="1_nxuyy"]
+
+[resource]
+script = ExtResource("1_nxuyy")
+id = 308
+display_name = &"格斗体术"
+description = "一种提高自身强度的技能，是所有冒险者都需要的基础技能。"

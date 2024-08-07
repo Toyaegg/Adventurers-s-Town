@@ -1,15 +1,13 @@
 class_name Inventory
 extends Node
 
-class ItemSlot:
-	var item : Item
-	var count : int
-
 var items : Array[ItemSlot]
 
 
 
 func add_item(item : Item, count : int) -> void:
+	store_items()
+	
 	var t = items.filter(func(item): return item.item == item)
 	
 	if t.size() > 0:
@@ -19,3 +17,12 @@ func add_item(item : Item, count : int) -> void:
 		s.item = item
 		s.count += count
 		items.append(s)
+
+func get_items() -> Array[ItemSlot]:
+	return items.filter(func(item): return item.count > 0)
+
+
+func store_items() -> void:
+	for slot in items:
+		if slot.count == 0:
+			items.erase(slot)

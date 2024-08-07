@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://cylvox2w44khl"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_m4i4p"]
+
+[resource]
+script = ExtResource("1_m4i4p")
+id = 513
+display_name = &"大地之枪"
+description = "被大地精灵祝福过的武器，不仅提高了一定的攻击力还附带提高了可观的防御力。"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

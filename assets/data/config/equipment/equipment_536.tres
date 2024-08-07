@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://b8unraiqxy3w0"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_fjyvw"]
+
+[resource]
+script = ExtResource("1_fjyvw")
+id = 536
+display_name = &"魔法之袍"
+description = "使用高级铭文制作的法袍，虽说加个有些昂贵，但法袍上的祝福铭文绝对值得法系冒险者拥有。"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

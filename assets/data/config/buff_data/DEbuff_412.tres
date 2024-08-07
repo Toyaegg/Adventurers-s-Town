@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Buff" load_steps=2 format=3 uid="uid://cswte4tybhdva"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/buff.gd" id="1_6po1p"]
+
+[resource]
+script = ExtResource("1_6po1p")
+id = 412
+display_name = &"脆弱诅咒"
+description = "冒险者的防御降低70%。"
+attribute = ""
+value = 0

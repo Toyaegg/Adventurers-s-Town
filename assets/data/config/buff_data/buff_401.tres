@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Buff" load_steps=2 format=3 uid="uid://bfd4nr3jvxv10"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/buff.gd" id="1_wdk2b"]
+
+[resource]
+script = ExtResource("1_wdk2b")
+id = 401
+display_name = &"挑战者"
+description = "为勇者添加一个增加25攻击力的增益状态。"
+attribute = ""
+value = 0

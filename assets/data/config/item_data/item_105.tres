@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://bdso3s34tfyj2"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/items_data.gd" id="1_fiddk"]
+
+[resource]
+script = ExtResource("1_fiddk")
+id = 105
+display_name = "铜矿石"
+description = ""
+price = 20.0

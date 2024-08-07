@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3 uid="uid://bq7221gw4wb3e"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/skill_data.gd" id="1_au6dp"]
+
+[resource]
+script = ExtResource("1_au6dp")
+id = 309
+display_name = &"格斗术"
+description = "格斗家的基础技击术。"

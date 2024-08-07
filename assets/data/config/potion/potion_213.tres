@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PotionData" load_steps=2 format=3 uid="uid://dsknjqrdmxn3m"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/potion_data.gd" id="1_rrmi2"]
+
+[resource]
+script = ExtResource("1_rrmi2")
+id = 213
+display_name = &"净化之水"
+description = "可化解冒险者身上的中毒状态。"
+attribute = ""
+value = 0
+price = 45.0

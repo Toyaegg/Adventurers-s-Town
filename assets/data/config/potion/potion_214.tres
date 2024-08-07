@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PotionData" load_steps=2 format=3 uid="uid://c8wuowwj1iqra"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/potion_data.gd" id="1_ko746"]
+
+[resource]
+script = ExtResource("1_ko746")
+id = 214
+display_name = &"收复之水"
+description = "可解除冒险者身上的诅咒。"
+attribute = ""
+value = 0
+price = 50.0

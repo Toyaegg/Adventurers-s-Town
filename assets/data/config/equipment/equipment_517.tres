@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EquipmentData" load_steps=2 format=3 uid="uid://cyanypuv1m3lb"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/equipment_data.gd" id="1_m406i"]
+
+[resource]
+script = ExtResource("1_m406i")
+id = 517
+display_name = &"木杖"
+description = "普通的木质法杖。"
+attribute = Array[String]([])
+value = Array[float]([])
+price = 0.0

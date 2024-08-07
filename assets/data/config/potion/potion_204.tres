@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PotionData" load_steps=2 format=3 uid="uid://ctgj4fd3oopiu"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/potion_data.gd" id="1_4kf2e"]
+
+[resource]
+script = ExtResource("1_4kf2e")
+id = 204
+display_name = &"复原剂（小）"
+description = "可恢复20点法力。"
+attribute = ""
+value = 0
+price = 3.0

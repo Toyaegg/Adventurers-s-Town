@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cb8o88de2bow5"]
+
+[ext_resource type="Script" path="res://scripts/game/data_res/items_data.gd" id="1_qpexk"]
+
+[resource]
+script = ExtResource("1_qpexk")
+id = 108
+display_name = "精华魔尘"
+description = ""
+price = 100.0

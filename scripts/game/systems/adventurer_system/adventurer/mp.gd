@@ -4,7 +4,13 @@ extends Node
 const MAX_MP = 100
 
 #var mp : float
-var cur_mp : float
+var cur_mp : float:
+	set(v):
+		cur_mp = v
+		if cur_mp < 0:
+			cur_mp = 0
+		if cur_mp > MAX_MP:
+			cur_mp = MAX_MP
 
 @export var mp_restore : float = 20.0
 
@@ -23,5 +29,3 @@ func time_changed(time : TimeSystem.TimeData) -> void:
 		print("mp 恢复 20 点")
 		cur_day = time.day
 		cur_mp += mp_restore
-		if cur_mp > MAX_MP:
-			cur_mp = MAX_MP

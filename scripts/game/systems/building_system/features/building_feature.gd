@@ -51,7 +51,7 @@ func _feature_process(_value) -> void:
 				EventBus.push_event(GameEvents.ADVENTURER_TRAINING, user)
 
 	used_days = TimeSystem.get_day() - start_day
-	if used_days == feature_day:
+	if used_days >= feature_day or feature_day == 0:
 		completed()
 
 func completed() -> void:
