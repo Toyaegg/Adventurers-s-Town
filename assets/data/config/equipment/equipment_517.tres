@@ -9,4 +9,4 @@ display_name = &"木杖"
 description = "普通的木质法杖。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 150.0

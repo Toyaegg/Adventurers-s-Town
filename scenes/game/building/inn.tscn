@@ -41,6 +41,7 @@ shape = SubResource("RectangleShape2D_rltw4")
 
 [node name="Visitors" type="Node" parent="."]
 script = ExtResource("4_m0hmo")
+max_user_count = 15
 
 [node name="Feature" type="Node" parent="."]
 

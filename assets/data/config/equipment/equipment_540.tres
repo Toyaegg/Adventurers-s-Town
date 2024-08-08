@@ -9,4 +9,4 @@ display_name = &"大地法袍"
 description = "被大地精灵加持过的法袍，大幅度提高了技术的防御能力。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 40000.0

@@ -23,7 +23,7 @@ size = Vector2(20, 14)
 _data = [Vector2(0, 0), 0.0, 0.3, 0, 0, Vector2(0.5, 0.3), 0.9, 0.9, 0, 0, Vector2(1, 1), 2.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="Adventurer" type="CharacterBody2D" node_paths=PackedStringArray("animation", "state_chart", "attribute", "curses", "buffs", "mp", "exp", "inventory", "wallet", "equip_slot", "potion_slot")]
+[node name="Adventurer" type="CharacterBody2D" node_paths=PackedStringArray("animation", "state_chart", "attribute", "curses", "buffs", "mp", "exp_comp", "inventory", "wallet", "equip_slot", "potion_slot")]
 collision_mask = 2
 script = ExtResource("1_s6p47")
 display_name = "kkkkk"
@@ -34,7 +34,7 @@ attribute = NodePath("Attribute")
 curses = NodePath("Curses")
 buffs = NodePath("Buffs")
 mp = NodePath("MP")
-exp = NodePath("EXP")
+exp_comp = NodePath("EXP")
 inventory = NodePath("Inventory")
 wallet = NodePath("Wallet")
 equip_slot = NodePath("EquipSlot")
@@ -254,7 +254,7 @@ delay_in_seconds = "0.0"
 
 [node name="Shopping" type="Node" parent="StateChart/Root/Upgrade"]
 script = ExtResource("10_1vxh8")
-initial_state = NodePath("Shopping")
+initial_state = NodePath("MoveToFlashGold")
 
 [node name="MoveToFlashGold" type="Node" parent="StateChart/Root/Upgrade/Shopping"]
 script = ExtResource("11_nvecf")
@@ -318,6 +318,7 @@ delay_in_seconds = "0.0"
 [node name="NoRoom" type="Node" parent="StateChart/Root/Rest/NoHouse/Lodge"]
 script = ExtResource("12_qlvpi")
 to = NodePath("../../../StandingOutside")
+event = &"no_room"
 delay_in_seconds = "0.0"
 
 [node name="Rest" type="Node" parent="StateChart/Root/Rest/NoHouse"]
@@ -356,8 +357,7 @@ script = ExtResource("11_nvecf")
 
 [node name="Upgrade" type="Node" parent="StateChart/Root/Rest/StandingOutside"]
 script = ExtResource("12_qlvpi")
-to = NodePath("../../../Upgrade")
-event = &"rest_finish"
+to = NodePath("../..")
 delay_in_seconds = "0.0"
 
 [node name="Church" type="Node" parent="StateChart/Root"]
@@ -491,3 +491,21 @@ delay_in_seconds = "0.0"
 [connection signal="state_entered" from="StateChart/Root/Upgrade/Shopping/MoveToFlashGold" to="." method="_on_find_building" binds= [&"fg"]]
 [connection signal="state_physics_processing" from="StateChart/Root/Upgrade/Shopping/MoveToFlashGold" to="." method="_on_move_to_building"]
 [connection signal="state_entered" from="StateChart/Root/Upgrade/Shopping/Shopping" to="." method="_on_shopping"]
+[connection signal="state_entered" from="StateChart/Root/Rest/Idle" to="." method="_on_rest"]
+[connection signal="state_entered" from="StateChart/Root/Rest/NoHouse/MoveToInn" to="." method="_on_find_building" binds= [&"i"]]
+[connection signal="state_physics_processing" from="StateChart/Root/Rest/NoHouse/MoveToInn" to="." method="_on_move_to_building"]
+[connection signal="state_entered" from="StateChart/Root/Rest/NoHouse/Lodge" to="." method="_on_lodge_inn_room"]
+[connection signal="state_entered" from="StateChart/Root/Rest/NoHouse/Rest" to="." method="_on_adventurer_rest"]
+[connection signal="state_entered" from="StateChart/Root/Rest/HasHouse/MoveToHouse" to="." method="_on_find_building" binds= [&"h"]]
+[connection signal="state_physics_processing" from="StateChart/Root/Rest/HasHouse/MoveToHouse" to="." method="_on_move_to_building"]
+[connection signal="state_entered" from="StateChart/Root/Rest/HasHouse/Rest" to="." method="_on_adventurer_rest"]
+[connection signal="state_entered" from="StateChart/Root/Church/Idle" to="." method="_on_enter_church"]
+[connection signal="state_entered" from="StateChart/Root/Church/Treat/MoveToChurch" to="." method="_on_find_building" binds= [&"c"]]
+[connection signal="state_processing" from="StateChart/Root/Church/Treat/MoveToChurch" to="." method="_on_move_to_building"]
+[connection signal="state_entered" from="StateChart/Root/Church/Treat/WaitTreat" to="." method="_on_treat"]
+[connection signal="state_entered" from="StateChart/Root/Church/Lift/MoveToChurch" to="." method="_on_find_building" binds= [&"c"]]
+[connection signal="state_physics_processing" from="StateChart/Root/Church/Lift/MoveToChurch" to="." method="_on_move_to_building"]
+[connection signal="state_entered" from="StateChart/Root/Church/Lift/WaitLift" to="." method="_on_lift"]
+[connection signal="state_entered" from="StateChart/Root/Church/Blessing/MoveToChurch" to="." method="_on_find_building" binds= [&"c"]]
+[connection signal="state_physics_processing" from="StateChart/Root/Church/Blessing/MoveToChurch" to="." method="_on_move_to_building"]
+[connection signal="state_entered" from="StateChart/Root/Church/Blessing/WaitBlessing" to="." method="_on_blessing"]

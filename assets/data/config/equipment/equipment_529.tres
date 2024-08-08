@@ -9,4 +9,4 @@ display_name = &"火焰之甲"
 description = "被火焰精灵加持过的护甲，可以有效的防御火焰攻击。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 20000.0

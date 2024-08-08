@@ -9,4 +9,4 @@ display_name = &"冰寒之剑"
 description = "被寒冰精灵祝福过的武器，攻击时带有冰属性伤害。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 6000.0

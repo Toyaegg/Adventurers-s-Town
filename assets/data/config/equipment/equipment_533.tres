@@ -9,4 +9,4 @@ display_name = &"勇者之甲"
 description = "世代勇者传承下来的甲胄，拥有绝对的防御能力，也是所有冒险者梦寐以求的最终防具"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 100000.0

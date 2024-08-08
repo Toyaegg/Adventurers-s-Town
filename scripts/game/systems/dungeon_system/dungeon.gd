@@ -36,7 +36,3 @@ func can_enter(level : int) -> bool:
 func dungeon_challenge_success() -> bool:
 	var result = randf()
 	return result < success_probability
-
-func get_result(user : Adventurer) -> void:
-	#TODO 获取战利品
-	print("获取战利品")

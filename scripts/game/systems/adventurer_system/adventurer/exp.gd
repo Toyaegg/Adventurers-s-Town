@@ -7,10 +7,10 @@ var level : int
 var cur_exp : float:
 	set(v):
 		cur_exp = v
-		var max = max_exp
-		if cur_exp >= max:
+		var m = max_exp
+		if cur_exp >= m:
 			print("升级了")
-			cur_exp -= max
+			cur_exp -= m
 			level += 1
 			level_up.emit(level)
 		EventBus.push_event(GameEvents.ADVENTURER_EXP_CHANGED, cur_exp)
@@ -24,7 +24,7 @@ signal level_up(level : int)
 
 var max_exp : int:
 	get:
-		return MAX_EXP_VALUE * curve.sample(float(level) / Adventurer.MAX_LEVEL) * exp_multiply
+		return int(MAX_EXP_VALUE * curve.sample(float(level) / Adventurer.MAX_LEVEL) * exp_multiply)
 
 
 var exp_amount : float:

@@ -6,6 +6,7 @@
 script = ExtResource("1_6po1p")
 id = 412
 display_name = &"脆弱诅咒"
-description = "冒险者的防御降低70%。"
-attribute = ""
-value = 0
+description = "冒险者的防御降低200,持续3天。"
+attribute = "DEF"
+value = -200
+duration = 3

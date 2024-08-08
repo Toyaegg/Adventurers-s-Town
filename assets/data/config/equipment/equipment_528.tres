@@ -9,4 +9,4 @@ display_name = &"精灵之甲"
 description = "被精灵之王所赐福过的铠甲，防御力超过了精钢护甲而且其重量与牛皮护甲差不多。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 9000.0

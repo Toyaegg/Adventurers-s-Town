@@ -11,6 +11,18 @@ var creats : Array[Adventurer.Tier]
 
 func _ready() -> void:
 	EventBus.subscribe(GameEvents.TIME_VALUE_CHANGED, time_changed)
+	
+	EventBus.subscribe(GameEvents.ADVENTURER_REST, rest)
+	EventBus.subscribe(GameEvents.ADVENTURER_TREAT, treat)
+	EventBus.subscribe(GameEvents.ADVENTURER_BLESSING, blessing)
+	EventBus.subscribe(GameEvents.ADVENTURER_LIFT, lift)
+	EventBus.subscribe(GameEvents.ADVENTURER_TRAINING, train)
+	
+	EventBus.subscribe(GameEvents.BUILDING_FEATURE_FINISH_REST, rest_finish)
+	EventBus.subscribe(GameEvents.BUILDING_FEATURE_FINISH_TREAT, treat_finish)
+	EventBus.subscribe(GameEvents.BUILDING_FEATURE_FINISH_BLESSING, blessing_finish)
+	EventBus.subscribe(GameEvents.BUILDING_FEATURE_FINISH_LIFT, lift_finish)
+	EventBus.subscribe(GameEvents.BUILDING_FEATURE_FINISH_TRAINING, train_finish)
 
 	print("AdventurerSystem ready")
 
@@ -75,7 +87,7 @@ func create_random_adventurer(tier : Adventurer.Tier = Adventurer.Tier.Normal) -
 		Adventurer.Tier.Ultimate:
 			cof = config_3
 
-	adv.exp.level = 1#get_random_level(tier)
+	adv.exp_comp.level = 1#get_random_level(tier)
 	adv.attribute.initialize(cof.base_attack, cof.base_defence, cof.base_hp, cof.potential, get_growth(cof.min_growth, cof.max_growth))
 	adv.mp.cur_mp = randi_range(50, 100)
 	adv.display_name = str(adv.get_instance_id())
@@ -87,3 +99,35 @@ func random_tendency() -> Adventurer.PotentialTendency:
 
 func get_growth(min : float, max : float) -> float:
 	return randf_range(min, max)
+
+func treat(user :Adventurer) -> void:
+	print("治疗中……")
+
+func treat_finish(user :Adventurer) -> void:
+	user.attribute.full_hp()
+
+func lift(user :Adventurer) -> void:
+	print("驱散中……")
+
+func lift_finish(user :Adventurer) -> void:
+	user.curses.clear_curse()
+
+func blessing(user :Adventurer) -> void:
+	print("祈祷中……")
+
+func blessing_finish(user :Adventurer) -> void:
+	var buff : Buff = GameManager.adventurer_model.get_random_buff()
+	user.buffs.add_buff(buff)
+
+func rest(user :Adventurer) -> void:
+	user.mp.start_restore = true
+
+func rest_finish(user :Adventurer) -> void:
+	user.mp.start_restore = false
+
+func train(user :Adventurer) -> void:
+	print("训练中……")
+
+func train_finish(user :Adventurer) -> void:
+	user.wallet.gold -= 50
+	user.mp.cost_mp(30)

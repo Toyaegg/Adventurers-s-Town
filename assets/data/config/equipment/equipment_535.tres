@@ -9,4 +9,4 @@ display_name = &"祈祷之袍"
 description = "使用带有祈祷铭文布料所制作的高级法系防具。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 1000.0

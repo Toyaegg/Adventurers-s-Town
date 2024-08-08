@@ -45,9 +45,9 @@ func stop() -> void:
 	EventBus.push_event(GameEvents.TIME_SYSTEM_STOPED)
 
 func time_changed(v : float) -> void:
-	var day : int = v / second_as_day;
+	var day : int = int(v / second_as_day);
 	var time_passed = int(v) % second_as_day
-	var hour_passed = time_passed / second_as_hour
+	var hour_passed = int(time_passed / second_as_hour)
 	var is_night = hour_passed > day_time
 	if time.day != day or time.in_night != is_night :
 		#print("time changed ", v, " ", time.in_night, " ", is_night)

@@ -9,4 +9,4 @@ display_name = &"精灵之剑"
 description = "被精灵祝福过的武器，几乎没有重量，所以可以进行快速挥砍。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 1500.0

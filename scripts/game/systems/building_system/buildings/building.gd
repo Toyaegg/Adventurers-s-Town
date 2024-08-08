@@ -53,7 +53,7 @@ func use(user : Adventurer, f : Feature) -> void:
 		for ft in building_config.feature:
 			if f == ft.feature:
 				feature = ft
-		feature.use(user)
+				feature.use(user)
 
 func update_focused(v : bool) -> void:
 	print("update_focused " + str(v))

@@ -9,4 +9,4 @@ display_name = &"精灵法袍"
 description = "被精灵之王所赐福过的法袍，防御力得到了大幅度提升的同时还拥有更加精致的铭文加持。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 9000.0

@@ -35,7 +35,7 @@ func initialize(pattack : float, pdefence : float, php : float, ppotential : flo
 	defence = pdefence
 	hp = php
 
-	adventurer.exp.exp_multiply = (MAX_GROWTH - growth) * adventurer.exp.exp_multiply_factor
+	adventurer.exp_comp.exp_multiply = (MAX_GROWTH - growth) * adventurer.exp_comp.exp_multiply_factor
 
 	compute_growth()
 	compute_attribute()
@@ -59,8 +59,11 @@ func compute_growth() -> void:
 			attack_growth = left_potential - defence_growth
 
 func compute_attribute() -> void:
-	for i in adventurer.exp.level:
+	for i in adventurer.exp_comp.level:
 		cur_attack += attack_growth
 		cur_defence += defence_growth
 		cur_hp += hp_growth
 		max_hp = cur_hp
+
+func full_hp() -> void:
+	cur_hp = max_hp

@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_meolj")
 id = 542
-display_name = &""
-description = ""
+display_name = &"大贤者法袍"
+description = "远古大贤者所留下的法袍。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 100000.0

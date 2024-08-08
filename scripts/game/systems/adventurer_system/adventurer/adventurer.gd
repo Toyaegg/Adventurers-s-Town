@@ -30,7 +30,7 @@ const GRAVITY = 200.0
 @export var curses : Curses
 @export var buffs : Buffs
 @export var mp : MP
-@export var exp : EXP
+@export var exp_comp : EXP
 @export var inventory : Inventory
 @export var wallet : Wallet
 @export var equip_slot : EquipSlot
@@ -39,6 +39,8 @@ const GRAVITY = 200.0
 var id : int
 
 var busy : bool = false
+var arrived : bool = false
+var my_house : Building
 var target_building : Building
 var target_building_id : StringName
 var target_dungeon : Dungeon
@@ -46,6 +48,7 @@ var target_equipment : EquipmentData
 var target_potion : PotionData
 
 var move_direction : int
+var rng : RandomNumberGenerator
 
 var sundries_count : int:
 	get:
@@ -56,8 +59,8 @@ signal my_feature_complete
 func _ready() -> void:
 	get_tree().create_timer(1).timeout.connect(func():state_chart.send_event("init"))
 	
-	exp.level_up.connect(func(_v): attribute.compute_attribute())
-	
+	exp_comp.level_up.connect(func(_v): attribute.compute_attribute())
+	rng = RandomNumberGenerator.new()
 	print("adventurer created")
 
 func _process(delta: float) -> void:
@@ -69,13 +72,15 @@ func _process(delta: float) -> void:
 		curses.append(0)
 
 func _physics_process(delta) -> void:
-	velocity.y += delta * GRAVITY
-	var motion = velocity * delta
-	move_and_collide(motion)
+	if not arrived:
+		velocity.y += delta * GRAVITY
+		var motion = velocity * delta
+		move_and_collide(motion)
 
 func move_dir(dir : int, tick : float) -> void:
 	var distance : float = target_building.global_position.x - global_position.x
-	if abs(distance) < 10:
+	if abs(distance) < 10 and not arrived:
+		arrived = true
 		state_chart.send_event("%s_arrived" % target_building.building_config.id)
 		velocity.x = 0
 		animation.play(&"idle")
@@ -104,13 +109,17 @@ func add_hp(value : float) -> void:
 	print("血量 ", value)
 	attribute.cur_hp += value
 
+func full_hp() -> void:
+	attribute.full_hp()
+	print("血量回满 ", attribute.cur_hp)
+
 func add_mp(value : float) -> void:
 	print("精力 ", value)
 	mp.cur_mp += value
 
 func add_exp(value : float) -> void:
 	print("EXP ", value)
-	exp.cur_exp += value
+	exp_comp.cur_exp += value
 
 func add_gold(value : int) -> void:
 	print("金币 ", value)
@@ -211,19 +220,23 @@ func _on_find_building(extra_arg_0: StringName) -> void:
 	
 	if buildings.size() == 0:
 		print("没找到")
+		state_chart.send_event("init")
 	elif buildings.size() == 1:
+		arrived = false
 		target_building = buildings[0]
 	elif buildings.size() > 1:
 		for building in buildings:
 			if building.belong_to == display_name:
 				target_building = building
+				arrived = false
 			else:
 				print("没找到")
+				state_chart.send_event("init")
 
 
 func _on_find_dungeon() -> void:
 	print("寻找适的地牢")
-	target_dungeon = GameManager.dungeon_model.find_suitable_dungeon(exp.level)
+	target_dungeon = GameManager.dungeon_model.find_suitable_dungeon(exp_comp.level)
 	print("找到的地牢名字 [%s]" % target_dungeon.display_name)
 	state_chart.send_event("find_dungeon")
 
@@ -240,12 +253,48 @@ func _on_shopping() -> void:
 func _on_train() -> void:
 	use_building(Building.Feature.Training)
 
+func _on_rest() -> void:
+	if my_house != null:
+		state_chart.send_event("has_house")
+	else:
+		state_chart.send_event("no_house")
+
+func _on_lodge_inn_room() -> void:
+	if target_building.visitors.has_empty():
+		state_chart.send_event("loged")
+	else:
+		state_chart.send_event("no_room")
+
+func _on_adventurer_rest() -> void:
+	use_building(Building.Feature.Rest)
+	
+func _on_enter_church() -> void:
+	if not has_buff():
+		state_chart.send_event("want_blessing")
+		return
+	if has_curse():
+		state_chart.send_event("has_curse")
+		return
+	if not has_enough_hp():
+		state_chart.send_event("hp_low")
+		return
+
+func _on_treat() -> void:
+	use_building(Building.Feature.Treat)
+	
+func _on_blessing() -> void:
+	use_building(Building.Feature.Blessing)
+	
+func _on_lift() -> void:
+	use_building(Building.Feature.Lift)
+
 
 func use_building(feature : Building.Feature) -> void:
 	target_building.enter(self)
 	target_building.use(self, feature)
 	await my_feature_complete
 	target_building.exit(self)
+	target_building = null
 	
 	match feature:
 		Building.Feature.ChallengeDungeon:
@@ -253,7 +302,7 @@ func use_building(feature : Building.Feature) -> void:
 			state_chart.send_event("dungeon_finish")
 			
 			target_dungeon = null
-			target_building = null
+			
 		Building.Feature.Selling:
 			EventBus.push_event(GameEvents.BUILDING_FEATURE_FINISH_SELLING, self)
 			
@@ -262,13 +311,30 @@ func use_building(feature : Building.Feature) -> void:
 			
 			if not has_enough_hp() or has_curse():
 				state_chart.send_event("restore")
-				
+								
 		Building.Feature.Shopping:
 			EventBus.push_event(GameEvents.BUILDING_FEATURE_FINISH_SHOPPING, self)
 			state_chart.send_event("shopping_finish")
+			
 		Building.Feature.Training:
 			EventBus.push_event(GameEvents.BUILDING_FEATURE_FINISH_TRAINING, self)
 			state_chart.send_event("train_finish")
+			
+		Building.Feature.Rest:
+			EventBus.push_event(GameEvents.BUILDING_FEATURE_FINISH_REST, self)
+			state_chart.send_event("rest_finish")
+			
+		Building.Feature.Treat:
+			EventBus.push_event(GameEvents.BUILDING_FEATURE_FINISH_TREAT, self)
+			state_chart.send_event("treat_finish")
+			
+		Building.Feature.Blessing:
+			EventBus.push_event(GameEvents.BUILDING_FEATURE_FINISH_BLESSING, self)
+			state_chart.send_event("blessing_finish")
+			
+		Building.Feature.Lift:
+			EventBus.push_event(GameEvents.BUILDING_FEATURE_FINISH_LIFT, self)
+			state_chart.send_event("lift_finish")
 
 
 func _on_dungeon_finish() -> void:
@@ -285,9 +351,13 @@ func _on_check_for_upgrade() -> void:
 		state_chart.send_event("no_money")
 		return
 		
-	if has_enough_money() and (target_equipment != null or target_potion != null):
-		state_chart.send_event("money_enough")
-		return
+	if (wallet.gold >= target_equipment.price or wallet.gold >= target_potion.price) and (target_equipment != null or target_potion != null):
+		if rng.randf() < 0.5:
+			state_chart.send_event("money_enough")
+			return
+		#else:
+			##TODO 购买房子
+			#return
 		
 	if not has_enough_money() and has_enough_mp() and has_enough_hp():
 		state_chart.send_event("want_to_dungeon")
@@ -296,5 +366,8 @@ func _on_check_for_upgrade() -> void:
 	if not has_buff() and wallet.gold >= 100:
 		state_chart.send_event("blessing")
 		return
-		
-	state_chart.send_event("upgrade_skill")
+	
+	if wallet.gold > 50 and mp.cur_mp > 30:
+		state_chart.send_event("upgrade_skill")
+	
+	state_chart.send_event("init")

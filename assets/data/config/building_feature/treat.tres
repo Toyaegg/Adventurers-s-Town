@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_qig48")
 feature = 7
-feature_day = 0
+feature_day = 1

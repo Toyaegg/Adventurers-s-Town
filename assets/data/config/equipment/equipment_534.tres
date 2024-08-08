@@ -9,4 +9,4 @@ display_name = &"法袍"
 description = "由公会为法系冒险者提供的防具，对于法系冒险者来说是最基础的防具了。	"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 300.0

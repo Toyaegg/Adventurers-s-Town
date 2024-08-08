@@ -9,4 +9,4 @@ display_name = &"冰霜之甲"
 description = "被冰霜精灵加持过的护甲，可以有效的防御冰霜攻击。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 30000.0

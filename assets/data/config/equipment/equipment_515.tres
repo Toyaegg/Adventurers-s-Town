@@ -9,4 +9,4 @@ display_name = &"风雷之枪"
 description = "被风雷精灵祝福过的武器，攻击时带有风和雷属性伤害。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 25000.0

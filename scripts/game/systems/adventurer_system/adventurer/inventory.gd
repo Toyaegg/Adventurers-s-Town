@@ -8,10 +8,10 @@ var items : Array[ItemSlot]
 func add_item(item : Item, count : int) -> void:
 	store_items()
 	
-	var t = items.filter(func(item): return item.item == item)
+	var t = items.filter(func(i): return i.item == item)
 	
 	if t.size() > 0:
-		t.count += count
+		t[0].count += count
 	else:
 		var s : ItemSlot = ItemSlot.new()
 		s.item = item

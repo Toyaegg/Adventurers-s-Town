@@ -6,6 +6,7 @@
 script = ExtResource("1_ysnmr")
 id = 409
 display_name = &"贫血诅咒"
-description = "减少冒险者血量上限30%，持续3天。"
-attribute = ""
-value = 0
+description = "减少冒险者血量上限200，持续2天。"
+attribute = "HP"
+value = -200
+duration = 2

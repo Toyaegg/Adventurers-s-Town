@@ -9,4 +9,4 @@ display_name = &"大地之杖"
 description = "被大地精灵祝福过的武器，不仅提高了一定的攻击力还附带提高了可观的防御力。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 6000.0

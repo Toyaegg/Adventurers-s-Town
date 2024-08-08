@@ -5,3 +5,7 @@ var gold : int:
 	set(v):
 		gold = v
 		EventBus.push_event(GameEvents.ADVENTURER_GOLD_CHANGED, gold)
+
+
+#var cost(value : int) -> void:
+#	go

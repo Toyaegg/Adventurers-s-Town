@@ -9,4 +9,4 @@ display_name = &"魔法之袍"
 description = "使用高级铭文制作的法袍，虽说加个有些昂贵，但法袍上的祝福铭文绝对值得法系冒险者拥有。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 5000.0

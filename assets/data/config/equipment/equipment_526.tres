@@ -9,4 +9,4 @@ display_name = &"铁护甲"
 description = "厚重的铁制铠甲，防御力有很大的提升但重量也增加了不少。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 1000.0

@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_yi6u8")
 id = 505
-display_name = &"大帝之剑"
+display_name = &"大地之剑"
 description = "被大地精灵祝福过的武器，不仅提高了一定的攻击力还附带提高了可观的防御力。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 5000.0

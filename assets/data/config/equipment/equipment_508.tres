@@ -9,4 +9,4 @@ display_name = &"勇者之剑"
 description = "从远古传至今日的历代勇者所用佩剑，其强大的攻击力可以斩杀任何魔王。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 100000.0

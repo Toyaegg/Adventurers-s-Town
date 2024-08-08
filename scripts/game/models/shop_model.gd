@@ -13,9 +13,8 @@ func _ready() -> void:
 	print("ShopModel ready")
 
 func buy_equipment(id : int, user : Adventurer):
-	
 	user.equip_equipment(equipments[id])
 
 
 func buy_potion(id : int, user : Adventurer):
-	return potions[id]
+	user.potion_slot.add_potion(potions[id])

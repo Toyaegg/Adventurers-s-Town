@@ -9,4 +9,4 @@ display_name = &"烈火之枪"
 description = "被火精灵祝福过的武器，攻击时带有火属性伤害。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 2000.0

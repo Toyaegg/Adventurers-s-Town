@@ -9,4 +9,4 @@ display_name = &"大贤者之杖"
 description = "历任大贤者所用的法杖，其中所含的魔力足以摧毁整个国家。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 100000.0

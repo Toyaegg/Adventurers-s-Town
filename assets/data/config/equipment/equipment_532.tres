@@ -9,4 +9,4 @@ display_name = &"风雷之甲"
 description = "被风雷精灵加持过的护甲，可以有效的防御风雷攻击。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 50000.0

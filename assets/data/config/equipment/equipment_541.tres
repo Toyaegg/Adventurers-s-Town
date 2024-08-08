@@ -9,4 +9,4 @@ display_name = &"风雷法袍"
 description = ""
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 50000.0

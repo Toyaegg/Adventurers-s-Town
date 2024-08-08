@@ -9,4 +9,4 @@ display_name = &"祈祷杖"
 description = "由公会制作的可有魔法铭文的高级法杖。"
 attribute = Array[String]([])
 value = Array[float]([])
-price = 0.0
+price = 300.0
