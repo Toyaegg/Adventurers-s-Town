@@ -29,3 +29,6 @@ func get_random_buff() -> Buff:
 	var imax = buff_data.size()
 	var index = 400 + randi_range(1, imax)
 	return buff_data[index]
+
+func get_adventurers() -> Array[Adventurer]:
+	return adventurers

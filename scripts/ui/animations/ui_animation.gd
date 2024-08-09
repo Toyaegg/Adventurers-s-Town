@@ -69,7 +69,12 @@ func setup() -> void:
 	connect_signals()
 
 func add_tween(values : Dictionary, parallel : bool, seconds : float, transition : Tween.TransitionType, easing : Tween.EaseType) -> void:
-	var tween = get_tree().create_tween()
+	var tree = get_tree()
+	if tree == null:
+		return
+		
+	var tween = tree.create_tween()
 	tween.set_parallel(parallel)
 	for property in properties:
 		tween.tween_property(target, str(property), values[property], seconds).set_trans(transition).set_ease(easing)
+	

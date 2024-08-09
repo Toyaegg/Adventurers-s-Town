@@ -213,13 +213,13 @@ func _on_move_to_building(delta: float) -> void:
 	move_dir(move_direction, delta)
 
 func _on_find_building(extra_arg_0: StringName) -> void:
-	print("寻找id[%s]" % extra_arg_0)
+	#print("寻找id[%s]" % extra_arg_0)
 	target_building_id = extra_arg_0
 	
 	var buildings : Array[Building] = GameManager.town_model.find_buildings(extra_arg_0)
 	
 	if buildings.size() == 0:
-		print("没找到")
+		#print("没找到")
 		state_chart.send_event("init")
 	elif buildings.size() == 1:
 		arrived = false
@@ -230,7 +230,7 @@ func _on_find_building(extra_arg_0: StringName) -> void:
 				target_building = building
 				arrived = false
 			else:
-				print("没找到")
+				#print("没找到")
 				state_chart.send_event("init")
 
 

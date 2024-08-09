@@ -37,11 +37,11 @@ var build_mode_progress : ValueWithSignal = ValueWithSignal.new()
 var game_config := preload("res://assets/data/config/game_config/game_config.tres")
 
 func initialize() -> void:
-	create_managers()
-
 	initialize_models()
 
 	initialize_systems()
+
+	create_managers()
 
 	subscribe_events()
 

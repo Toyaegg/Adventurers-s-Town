@@ -531,6 +531,7 @@ texture = ExtResource("10_tahd5")
 offset = Vector2(0, -457.29)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="StateChartDebugger" parent="CanvasLayer" instance=ExtResource("4_6tndb")]
 unique_name_in_owner = true

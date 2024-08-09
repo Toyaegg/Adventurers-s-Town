@@ -7,7 +7,7 @@ extends Resource
 @export var feature : Array[BuildingFeature]
 @export var icon : Texture
 @export var exp_per_level : Array[int]
-@export var max_member : Array[int]
-@export var resource_need : Array[Array]
 @export var max_member_per_level : Array[int]
+@export var max_level : int
+@export var resource_need : Array[Array]
 @export var only_one : bool = true

@@ -1,17 +1,28 @@
-[gd_scene load_steps=14 format=3 uid="uid://bg8lh35rex0fd"]
+[gd_scene load_steps=25 format=3 uid="uid://bg8lh35rex0fd"]
 
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/hud.gd" id="1_gfo3q"]
 [ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="2_rhxao"]
 [ext_resource type="Texture2D" uid="uid://dq0l85rsr887m" path="res://assets/texture/common/logo.jpg" id="3_3kl1t"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/milestone.gd" id="4_7klws"]
+[ext_resource type="Texture2D" uid="uid://cx5evbolcbonf" path="res://assets/texture/game/resource_icon/001.png" id="4_ecbsr"]
 [ext_resource type="PackedScene" uid="uid://crfp4xalea1f4" path="res://scenes/ui/hud/building_info.tscn" id="4_jtqe7"]
 [ext_resource type="Script" path="res://scripts/ui/animations/ui_animation.gd" id="4_lqaur"]
+[ext_resource type="Texture2D" uid="uid://cejpffhkrcgye" path="res://assets/texture/game/resource_icon/002.png" id="5_hhq2l"]
 [ext_resource type="Script" path="res://scripts/common/base/toggle.gd" id="5_s8n8x"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/building_list.gd" id="5_sw8ek"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/adventurer_list.gd" id="6_0hngo"]
+[ext_resource type="Texture2D" uid="uid://l2rld1lg6mi2" path="res://assets/texture/game/resource_icon/003.png" id="6_287nj"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/lists.gd" id="6_ag4ln"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/building_info_item.gd" id="6_m8hrg"]
+[ext_resource type="Script" path="res://scripts/ui/panels/hud/milestone_item.gd" id="8_kxr7x"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/adventurer_info_item.gd" id="8_r84d3"]
+[ext_resource type="Script" path="res://scripts/ui/panels/hud/resource_need.gd" id="12_kox8a"]
+[ext_resource type="Texture2D" uid="uid://fcdxbei6wbw4" path="res://assets/texture/game/building/au.png" id="15_3hcpt"]
+[ext_resource type="Texture2D" uid="uid://baorpnqqkokhj" path="res://assets/texture/game/building/c.png" id="16_bthni"]
+[ext_resource type="Texture2D" uid="uid://cap3lqrpe4r42" path="res://assets/texture/game/building/fg.png" id="17_vaw1g"]
+[ext_resource type="Texture2D" uid="uid://kvpm4qy1gp1n" path="res://assets/texture/game/building/h.png" id="18_hsyop"]
+[ext_resource type="Texture2D" uid="uid://b5mdu7yqqi7s8" path="res://assets/texture/game/building/i.png" id="19_y5ajk"]
+[ext_resource type="Texture2D" uid="uid://dmx16gtwceyo6" path="res://assets/texture/game/building/tg.png" id="20_w78y5"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_1x56v"]
 
@@ -154,7 +165,7 @@ grow_vertical = 2
 mouse_filter = 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-text = "0    (0.0%1级)"
+text = "0    (0.0% 0级)"
 vertical_alignment = 1
 
 [node name="Label" type="Label" parent="AdventurerUnion/EXP"]
@@ -235,7 +246,7 @@ offset_top = -20.0
 offset_right = 50.0
 offset_bottom = 20.0
 grow_vertical = 2
-texture = ExtResource("3_3kl1t")
+texture = ExtResource("4_ecbsr")
 expand_mode = 4
 
 [node name="BiomassValue" type="Label" parent="ResourcesDisplayList/Resources/Biomass"]
@@ -274,7 +285,7 @@ offset_top = -20.0
 offset_right = 50.0
 offset_bottom = 20.0
 grow_vertical = 2
-texture = ExtResource("3_3kl1t")
+texture = ExtResource("5_hhq2l")
 expand_mode = 4
 
 [node name="MineralValue" type="Label" parent="ResourcesDisplayList/Resources/Mineral"]
@@ -313,7 +324,7 @@ offset_top = -20.0
 offset_right = 50.0
 offset_bottom = 20.0
 grow_vertical = 2
-texture = ExtResource("3_3kl1t")
+texture = ExtResource("6_287nj")
 expand_mode = 4
 
 [node name="EnergyCoreValue" type="Label" parent="ResourcesDisplayList/Resources/EnergyCore"]
@@ -538,9 +549,10 @@ grow_vertical = 2
 [node name="Content" type="VBoxContainer" parent="Milestone/Scroll"]
 layout_mode = 2
 
-[node name="Item" type="Control" parent="Milestone/Scroll/Content"]
+[node name="Item" type="TextureButton" parent="Milestone/Scroll/Content"]
 custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
+script = ExtResource("8_kxr7x")
 
 [node name="Background" type="TextureRect" parent="Milestone/Scroll/Content/Item"]
 self_modulate = Color(0.762528, 0.0757468, 7.70092e-07, 1)
@@ -641,10 +653,11 @@ theme_override_constants/margin_bottom = 5
 [node name="HBoxContainer" type="HBoxContainer" parent="Lists/AdventurerList/ScrollContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Adventurer" type="Control" parent="Lists/AdventurerList/ScrollContainer/MarginContainer/HBoxContainer"]
+[node name="Adventurer" type="Control" parent="Lists/AdventurerList/ScrollContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("adventurer_name")]
 custom_minimum_size = Vector2(120, 160)
 layout_mode = 2
 script = ExtResource("8_r84d3")
+adventurer_name = NodePath("AdventurerName")
 
 [node name="Background" type="TextureRect" parent="Lists/AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Adventurer"]
 self_modulate = Color(0.493545, 0.493546, 0.493546, 1)
@@ -657,6 +670,7 @@ grow_vertical = 2
 texture = ExtResource("2_rhxao")
 
 [node name="AdventurerIcon" type="TextureRect" parent="Lists/AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Adventurer"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -818,10 +832,19 @@ theme_override_constants/margin_bottom = 5
 [node name="HBoxContainer" type="HBoxContainer" parent="Lists/BuildingList/ScrollContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Building" type="TextureButton" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer"]
+[node name="Building" type="TextureButton" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("resource_need_prefab")]
 custom_minimum_size = Vector2(120, 160)
 layout_mode = 2
 script = ExtResource("6_m8hrg")
+icons = {
+"au": ExtResource("15_3hcpt"),
+"c": ExtResource("16_bthni"),
+"fg": ExtResource("17_vaw1g"),
+"h": ExtResource("18_hsyop"),
+"i": ExtResource("19_y5ajk"),
+"tg": ExtResource("20_w78y5")
+}
+resource_need_prefab = NodePath("Control/VBoxContainer/ResourceNeed")
 
 [node name="Background" type="TextureRect" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
 self_modulate = Color(0.493545, 0.493546, 0.493546, 1)
@@ -847,6 +870,8 @@ offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_rhxao")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="BuildingName" type="Label" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
 layout_mode = 1
@@ -896,9 +921,10 @@ alignment = 2
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 mouse_filter = 1
+script = ExtResource("12_kox8a")
+res_icons = Array[Texture]([ExtResource("4_ecbsr"), ExtResource("5_hhq2l"), ExtResource("6_287nj")])
 
 [node name="ResourceIcon" type="TextureRect" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
-self_modulate = Color(1, 0.454902, 1, 1)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -908,6 +934,7 @@ offset_right = 15.0
 offset_bottom = 7.5
 grow_vertical = 2
 texture = ExtResource("2_rhxao")
+expand_mode = 1
 
 [node name="ResourceNeedValue" type="Label" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
 layout_mode = 1
@@ -927,6 +954,21 @@ theme_override_font_sizes/font_size = 15
 text = "3000"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="Levelup" type="Button" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -51.0
+offset_right = 29.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "升    级"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Lists"]
 layout_mode = 0
@@ -984,6 +1026,10 @@ offset_top = -100.0
 offset_right = 150.0
 offset_bottom = 100.0
 
+[connection signal="pressed" from="Milestone/Scroll/Content/Item" to="Milestone/Scroll/Content/Item" method="clicked"]
+[connection signal="selected" from="Lists/AdventurerList/VBoxContainer/FilterToggle/CheckButton" to="Lists/AdventurerList" method="filter_list"]
+[connection signal="selected" from="Lists/AdventurerList/VBoxContainer/FilterToggle2/CheckButton" to="Lists/AdventurerList" method="filter_list"]
+[connection signal="selected" from="Lists/AdventurerList/VBoxContainer/FilterToggle3/CheckButton" to="Lists/AdventurerList" method="filter_list"]
 [connection signal="pressed" from="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building" to="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building" method="click"]
 [connection signal="selected" from="Lists/VBoxContainer/FilterToggle/CheckButton" to="Lists" method="_on_check_button_selected"]
 [connection signal="unselected" from="Lists/VBoxContainer/FilterToggle/CheckButton" to="Lists" method="_on_check_button_unselected"]

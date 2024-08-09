@@ -89,6 +89,15 @@ func finish_dungeon(user : Adventurer) -> void:
 	user.add_mp(-cast_mp)
 	user.add_exp(reward_exp)
 	user.busy = false
+	
+	EventBus.push_event(
+		GameEvents.RESOURCE_ADD, [dungeon.max_enter_level, int(
+			0.8 * dungeon.max_enter_level), int(
+				0.5 * dungeon.max_enter_level)])
+	
+	EventBus.push_event(GameEvents.DUNGEON_FINISH_MESSAGE, [user.display_name, dungeon.display_name])
+	
+	EventBus.push_event(GameEvents.BUILDING_ADVENTURER_UNION_ADD_EXP, [dungeon.max_enter_level])
 
 
 func challenge_dungeon(user : Adventurer) -> void:
