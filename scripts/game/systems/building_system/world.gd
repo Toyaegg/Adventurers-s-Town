@@ -8,7 +8,7 @@ extends Node2D
 @export var moon : Sprite2D
 
 func _ready() -> void:
-	#EventBus.subscribe(GameEvents.TIME_VALUE_CHANGED, change_color)
+	EventBus.subscribe(GameEvents.TIME_VALUE_CHANGED, change_color)
 	pass
 
 func change_color(data : TimeSystem.TimeData) -> void:

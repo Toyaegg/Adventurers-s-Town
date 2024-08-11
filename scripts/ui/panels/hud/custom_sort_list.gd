@@ -10,6 +10,12 @@ var items : Dictionary
 func refresh_data(datas : Array) -> void:
 	var i := 0
 	print("此次显示%d个数据" % datas.size())
+	if datas.size() < items.size():
+		for data in items:
+			print(items[data] is Control)
+			items[data].queue_free()
+		items.clear()
+
 	for data in datas:
 		if items.has(data):
 			content.move_child(items[data], i)

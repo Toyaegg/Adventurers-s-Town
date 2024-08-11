@@ -58,7 +58,7 @@ signal my_feature_complete
 
 func _ready() -> void:
 	get_tree().create_timer(1).timeout.connect(func():state_chart.send_event("init"))
-	
+
 	exp_comp.level_up.connect(func(_v): attribute.compute_attribute())
 	rng = RandomNumberGenerator.new()
 	print("adventurer created")
@@ -85,8 +85,8 @@ func move_dir(dir : int, tick : float) -> void:
 		velocity.x = 0
 		animation.play(&"idle")
 		return
-	
-	
+
+
 	if dir > 0:
 		velocity.x = Vector2.RIGHT.x * move_speed * tick
 		animation.flip_h = false
@@ -182,15 +182,15 @@ func buy_potion(potion : PotionData) -> void:
 
 func _on_make_money_entered() -> void:
 	print("开始赚钱")
-	
+
 	if has_enough_mp():
 		print("去地下城")
 		state_chart.send_event("to_dungeon")
-	
+
 	if not has_enough_mp():
 		print("只能去休息")
 		state_chart.send_event("have_to_reat")
-	
+
 	if not has_enough_mp() and not has_enough_money():
 		print("变卖贵重物品")
 		state_chart.send_event("the_final_way")
@@ -200,24 +200,24 @@ func _on_move_to_building(delta: float) -> void:
 	if target_building == null:
 		_on_find_building(target_building_id)
 		return
-	
+
 	if not target_building.build_completed:
 		return
-		
-	var dir : int = target_building.global_position.x - global_position.x
+
+	var dir : float = target_building.global_position.x - global_position.x
 	if dir < 10:
 		move_direction = -1
 	if dir > 10:
 		move_direction = 1
-		
+
 	move_dir(move_direction, delta)
 
 func _on_find_building(extra_arg_0: StringName) -> void:
 	#print("寻找id[%s]" % extra_arg_0)
 	target_building_id = extra_arg_0
-	
+
 	var buildings : Array[Building] = GameManager.town_model.find_buildings(extra_arg_0)
-	
+
 	if buildings.size() == 0:
 		#print("没找到")
 		state_chart.send_event("init")
@@ -267,7 +267,7 @@ func _on_lodge_inn_room() -> void:
 
 func _on_adventurer_rest() -> void:
 	use_building(Building.Feature.Rest)
-	
+
 func _on_enter_church() -> void:
 	if not has_buff():
 		state_chart.send_event("want_blessing")
@@ -281,10 +281,10 @@ func _on_enter_church() -> void:
 
 func _on_treat() -> void:
 	use_building(Building.Feature.Treat)
-	
+
 func _on_blessing() -> void:
 	use_building(Building.Feature.Blessing)
-	
+
 func _on_lift() -> void:
 	use_building(Building.Feature.Lift)
 
@@ -295,43 +295,43 @@ func use_building(feature : Building.Feature) -> void:
 	await my_feature_complete
 	target_building.exit(self)
 	target_building = null
-	
+
 	match feature:
 		Building.Feature.ChallengeDungeon:
 			EventBus.push_event(GameEvents.BUILDING_FEATURE_FINISH_DUNGEON, self)
 			state_chart.send_event("dungeon_finish")
-			
+
 			target_dungeon = null
-			
+
 		Building.Feature.Selling:
 			EventBus.push_event(GameEvents.BUILDING_FEATURE_FINISH_SELLING, self)
-			
+
 			if has_enough_hp() and has_enough_mp():
 				state_chart.send_event("have_nothing_to_do")
-			
+
 			if not has_enough_hp() or has_curse():
 				state_chart.send_event("restore")
-								
+
 		Building.Feature.Shopping:
 			EventBus.push_event(GameEvents.BUILDING_FEATURE_FINISH_SHOPPING, self)
 			state_chart.send_event("shopping_finish")
-			
+
 		Building.Feature.Training:
 			EventBus.push_event(GameEvents.BUILDING_FEATURE_FINISH_TRAINING, self)
 			state_chart.send_event("train_finish")
-			
+
 		Building.Feature.Rest:
 			EventBus.push_event(GameEvents.BUILDING_FEATURE_FINISH_REST, self)
 			state_chart.send_event("rest_finish")
-			
+
 		Building.Feature.Treat:
 			EventBus.push_event(GameEvents.BUILDING_FEATURE_FINISH_TREAT, self)
 			state_chart.send_event("treat_finish")
-			
+
 		Building.Feature.Blessing:
 			EventBus.push_event(GameEvents.BUILDING_FEATURE_FINISH_BLESSING, self)
 			state_chart.send_event("blessing_finish")
-			
+
 		Building.Feature.Lift:
 			EventBus.push_event(GameEvents.BUILDING_FEATURE_FINISH_LIFT, self)
 			state_chart.send_event("lift_finish")
@@ -339,18 +339,18 @@ func use_building(feature : Building.Feature) -> void:
 
 func _on_dungeon_finish() -> void:
 	state_chart.send_event("sell_items")
-		
+
 
 
 
 func _on_check_for_upgrade() -> void:
 	target_equipment = GameManager.shop_system.get_random_equipment()
 	target_potion = GameManager.shop_system.get_random_potion()
-	
+
 	if not has_enough_money():
 		state_chart.send_event("no_money")
 		return
-		
+
 	if (wallet.gold >= target_equipment.price or wallet.gold >= target_potion.price) and (target_equipment != null or target_potion != null):
 		if rng.randf() < 0.5:
 			state_chart.send_event("money_enough")
@@ -358,16 +358,16 @@ func _on_check_for_upgrade() -> void:
 		#else:
 			##TODO 购买房子
 			#return
-		
+
 	if not has_enough_money() and has_enough_mp() and has_enough_hp():
 		state_chart.send_event("want_to_dungeon")
 		return
-		
+
 	if not has_buff() and wallet.gold >= 100:
 		state_chart.send_event("blessing")
 		return
-	
+
 	if wallet.gold > 50 and mp.cur_mp > 30:
 		state_chart.send_event("upgrade_skill")
-	
+
 	state_chart.send_event("init")

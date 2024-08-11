@@ -11,10 +11,10 @@ var adventurers : Array[Adventurer]
 
 func _ready() -> void:
 	EventBus.subscribe(GameEvents.ADVENTURER_CREATED, add_adventurer)
-	
+
 	for i in range(1, 8):
 		buff_data[400 + i] = load("res://assets/data/config/buff_data/buff_4%02d.tres" % i)
-	
+
 	print("AdventurerModel ready")
 
 

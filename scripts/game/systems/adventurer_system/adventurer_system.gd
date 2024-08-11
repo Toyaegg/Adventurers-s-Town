@@ -11,13 +11,13 @@ var creats : Array[Adventurer.Tier]
 
 func _ready() -> void:
 	EventBus.subscribe(GameEvents.TIME_VALUE_CHANGED, time_changed)
-	
+
 	EventBus.subscribe(GameEvents.ADVENTURER_REST, rest)
 	EventBus.subscribe(GameEvents.ADVENTURER_TREAT, treat)
 	EventBus.subscribe(GameEvents.ADVENTURER_BLESSING, blessing)
 	EventBus.subscribe(GameEvents.ADVENTURER_LIFT, lift)
 	EventBus.subscribe(GameEvents.ADVENTURER_TRAINING, train)
-	
+
 	EventBus.subscribe(GameEvents.BUILDING_FEATURE_FINISH_REST, rest_finish)
 	EventBus.subscribe(GameEvents.BUILDING_FEATURE_FINISH_TREAT, treat_finish)
 	EventBus.subscribe(GameEvents.BUILDING_FEATURE_FINISH_BLESSING, blessing_finish)
@@ -94,25 +94,25 @@ func create_random_adventurer(tier : Adventurer.Tier = Adventurer.Tier.Normal) -
 	return adv
 
 func random_tendency() -> Adventurer.PotentialTendency:
-	return randi_range(0, 2)
+	return randi_range(0, 2) as Adventurer.PotentialTendency
 
 
-func get_growth(min : float, max : float) -> float:
-	return randf_range(min, max)
+func get_growth(min_g : float, max_g : float) -> float:
+	return randf_range(min_g, max_g)
 
-func treat(user :Adventurer) -> void:
+func treat(_user :Adventurer) -> void:
 	print("治疗中……")
 
 func treat_finish(user :Adventurer) -> void:
 	user.attribute.full_hp()
 
-func lift(user :Adventurer) -> void:
+func lift(_user :Adventurer) -> void:
 	print("驱散中……")
 
 func lift_finish(user :Adventurer) -> void:
 	user.curses.clear_curse()
 
-func blessing(user :Adventurer) -> void:
+func blessing(_user :Adventurer) -> void:
 	print("祈祷中……")
 
 func blessing_finish(user :Adventurer) -> void:
@@ -125,7 +125,7 @@ func rest(user :Adventurer) -> void:
 func rest_finish(user :Adventurer) -> void:
 	user.mp.start_restore = false
 
-func train(user :Adventurer) -> void:
+func train(_user :Adventurer) -> void:
 	print("训练中……")
 
 func train_finish(user :Adventurer) -> void:

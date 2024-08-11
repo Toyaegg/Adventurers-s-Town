@@ -11,7 +11,7 @@ func _ready() -> void:
 func set_data(data : Adventurer) -> void:
 	bind_data = data
 	adventurer_name.text = "冒险者  %d" % data.id
-	
+
 	match bind_data.tier:
 		Adventurer.Tier.Normal:
 			adventurer_name.self_modulate = Color.GRAY

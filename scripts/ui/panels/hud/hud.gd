@@ -20,21 +20,22 @@ func _ready() -> void:
 	building_info.hide()
 	EventBus.subscribe(GameEvents.BUILD_ENTER_BUILD_MODE, enter_build_mode)
 	EventBus.subscribe(GameEvents.TIME_VALUE_CHANGED, update_time)
-	EventBus.subscribe(GameEvents.RESOURVE_CHANGED, update_resource_data)
+	EventBus.subscribe(GameEvents.RESOURCE_CHANGED, update_resource_data)
 	EventBus.subscribe(GameEvents.BUILDING_ADVENTURER_UNION_LEVEL_UP, update_union_exp)
+	EventBus.subscribe(GameEvents.RESOURCE_REPUTATION_CHANGED, update_reptutation)
 
 	EventBus.push_event(GameEvents.TIME_SYSTEM_START)
 	EventBus.push_event(GameEvents.BUILDING_ADVENTURER_UNION_ADD_EXP, 0)
 	EventBus.push_event(GameEvents.RESOURCE_ADD, [0, 0, 0])
 
 func update_time(data : TimeSystem.TimeData) -> void:
-	var str : String = "第%d天 " % data.day
+	var dstr : String = "第%d天 " % data.day
 	if data.in_night:
-		str += "夜晚"
+		dstr += "夜晚"
 	else:
-		str += "白天"
+		dstr += "白天"
 
-	time.text = str
+	time.text = dstr
 
 func enter_build_mode(v: bool) -> void:
 		visible = not v
@@ -51,6 +52,9 @@ func update_union_exp(exp_v : int, max_exp : int, level : int) -> void:
 	print("更新公会经验")
 	union_exp.max_value = max_exp
 	union_exp.value = exp_v
-	
+
 	ulevel.text = "公会等级   %d级" % level
 	union_exp_value.text = "%d  (%2.2f%% %d级 )" % [exp_v, float(exp_v) / max_exp, level]
+
+func update_reptutation(rep : int) -> void:
+	reputation_value.text = str(rep)

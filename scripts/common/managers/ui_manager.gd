@@ -10,6 +10,7 @@ func initialize() -> void:
 	EventBus.subscribe(GameEvents.UI_OPEN, open_ui)
 	EventBus.subscribe(GameEvents.UI_CLOSE, close_ui)
 	EventBus.subscribe(GameEvents.UI_TIPS_OPEN, open_tips)
+	EventBus.subscribe(GameEvents.UI_POP_TEXT_TIP, pop_text_tip)
 
 	print("ui manager initialized")
 
@@ -39,3 +40,10 @@ func open_tips(tip_type : Tip.TipType, content : String, conf : Callable = Calla
 	open_ui(UIPanel.Tips)
 	opened_ui[UIPanel.Tips].set_type(tip_type)
 	opened_ui[UIPanel.Tips].set_tip(content, conf, canc, title)
+
+func pop_text_tip(c : String, from : float, to : float) -> void:
+	if opened_ui.has(UIPanel.TextTip):
+		return
+	open_ui(UIPanel.TextTip)
+	opened_ui[UIPanel.TextTip].set_text(c)
+	opened_ui[UIPanel.TextTip].pop(from, to)

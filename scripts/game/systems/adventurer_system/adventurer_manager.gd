@@ -11,6 +11,6 @@ func add_adventurer(adventurer : Adventurer) -> void:
 	state_chart_debugger.debug_node(adventurer)
 	add_child(adventurer)
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_released("ui_accept"):
-		GameManager.adventurer_system.create_test_adventure()
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_released("ui_accept"):
+		#GameManager.adventurer_system.create_test_adventure()

@@ -32,7 +32,7 @@ func cost_mp(cost : int) -> void:
 func time_changed(time : TimeSystem.TimeData) -> void:
 	if not start_restore:
 		return
-		
+
 	if cur_day != time.day:
 		print("mp 恢复 20 点")
 		cur_day = time.day

@@ -10,8 +10,18 @@ func _ready() -> void:
 
 
 func show_message(dname : StringName, uname : StringName) -> void:
-	print("【%s】完成了【%s】" % [uname, dname])
 	var item = item_prefab.duplicate()
+	content.add_child(item)
+	print("【%s】完成了【%s】" % [uname, dname])
 	var lab : Label = item.get_node("Content")
 	lab.text = "【%s】完成了【%s】" % [uname, dname]
-	content.add_child(item)
+	item.set_milestone(self)
+	refresh()
+
+func refresh() -> void:
+	for item in content.get_children():
+		item.refresh()
+
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_released(&"ui_cancel"):
+		#show_message("ddd", "fddf")

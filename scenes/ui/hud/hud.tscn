@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/milestone.gd" id="4_7klws"]
 [ext_resource type="Texture2D" uid="uid://cx5evbolcbonf" path="res://assets/texture/game/resource_icon/001.png" id="4_ecbsr"]
 [ext_resource type="PackedScene" uid="uid://crfp4xalea1f4" path="res://scenes/ui/hud/building_info.tscn" id="4_jtqe7"]
-[ext_resource type="Script" path="res://scripts/ui/animations/ui_animation.gd" id="4_lqaur"]
 [ext_resource type="Texture2D" uid="uid://cejpffhkrcgye" path="res://assets/texture/game/resource_icon/002.png" id="5_hhq2l"]
 [ext_resource type="Script" path="res://scripts/common/base/toggle.gd" id="5_s8n8x"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/building_list.gd" id="5_sw8ek"]
@@ -23,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://kvpm4qy1gp1n" path="res://assets/texture/game/building/h.png" id="18_hsyop"]
 [ext_resource type="Texture2D" uid="uid://b5mdu7yqqi7s8" path="res://assets/texture/game/building/i.png" id="19_y5ajk"]
 [ext_resource type="Texture2D" uid="uid://dmx16gtwceyo6" path="res://assets/texture/game/building/tg.png" id="20_w78y5"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_tw28r"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_1x56v"]
 
@@ -581,11 +582,7 @@ justification_flags = 161
 clip_text = true
 text_overrun_behavior = 4
 
-[node name="UIAnimation" type="Node" parent="Milestone/Scroll/Content/Item"]
-script = ExtResource("4_lqaur")
-hover_position = Vector2(-250, 0)
-
-[node name="Lists" type="Control" parent="." node_paths=PackedStringArray("building_list", "adventurer_list")]
+[node name="Lists" type="Control" parent="." node_paths=PackedStringArray("building_list", "adventurer_list", "a_btn", "b_btn")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -601,9 +598,10 @@ mouse_filter = 1
 script = ExtResource("6_ag4ln")
 building_list = NodePath("BuildingList")
 adventurer_list = NodePath("AdventurerList")
+a_btn = NodePath("VBoxContainer/FilterToggle/CheckButton")
+b_btn = NodePath("VBoxContainer/FilterToggle2/CheckButton")
 
 [node name="AdventurerList" type="Control" parent="Lists" node_paths=PackedStringArray("item_prefab", "content")]
-visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -737,7 +735,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 20
 toggle_mode = true
-button_group = SubResource("ButtonGroup_1x56v")
+button_group = SubResource("ButtonGroup_tw28r")
 text = "普通冒险者"
 script = ExtResource("5_s8n8x")
 select_color = Color(0.317647, 1, 1, 1)
@@ -757,10 +755,11 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 20
 toggle_mode = true
-button_group = SubResource("ButtonGroup_1x56v")
+button_group = SubResource("ButtonGroup_tw28r")
 text = "精英冒险者"
 script = ExtResource("5_s8n8x")
 select_color = Color(0.317647, 1, 1, 1)
+bind_data = 1
 
 [node name="FilterToggle3" type="Control" parent="Lists/AdventurerList/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -777,12 +776,14 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 20
 toggle_mode = true
-button_group = SubResource("ButtonGroup_1x56v")
+button_group = SubResource("ButtonGroup_tw28r")
 text = "终极冒险者"
 script = ExtResource("5_s8n8x")
 select_color = Color(0.317647, 1, 1, 1)
+bind_data = 2
 
 [node name="BuildingList" type="Control" parent="Lists" node_paths=PackedStringArray("item_prefab", "content")]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -917,12 +918,14 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="ResourceNeed" type="Control" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer"]
+[node name="ResourceNeed" type="Control" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer" node_paths=PackedStringArray("res_icon", "res_need")]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 mouse_filter = 1
 script = ExtResource("12_kox8a")
 res_icons = Array[Texture]([ExtResource("4_ecbsr"), ExtResource("5_hhq2l"), ExtResource("6_287nj")])
+res_icon = NodePath("ResourceIcon")
+res_need = NodePath("ResourceNeedValue")
 
 [node name="ResourceIcon" type="TextureRect" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building/Control/VBoxContainer/ResourceNeed"]
 layout_mode = 1

@@ -44,7 +44,12 @@ func create_slot(id : int) -> void:
 
 func build(slot_id : int, id : StringName) -> void:
 	if GameManager.town_model.has_building_only_one(id):
+		EventBus.push_event(GameEvents.UI_POP_TEXT_TIP, ["唯一建筑，不可以多次建造", 515, -300])
 		print("唯一建筑，不可以多次建造")
+		return
+	if not GameManager.town_model.can_build():
+		EventBus.push_event(GameEvents.UI_POP_TEXT_TIP, ["资源不足，不能建造", 515, -300])
+		print("资源不足，不能建造")
 		return
 
 	print("在[%s]处建造[%s]" % [str(slot_id), id])

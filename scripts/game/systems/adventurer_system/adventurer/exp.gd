@@ -15,7 +15,7 @@ var cur_exp : float:
 			level_up.emit(level)
 		EventBus.push_event(GameEvents.ADVENTURER_EXP_CHANGED, cur_exp)
 		print("exp [%d/%d] %02.2f" % [cur_exp, max_exp, exp_amount])
-		
+
 var exp_multiply : float
 @export var exp_multiply_factor : float = 2
 @export var curve : Curve
@@ -30,7 +30,7 @@ var max_exp : int:
 var exp_amount : float:
 	get:
 		return float(cur_exp) / max_exp
-		
+
 
 func add_exp(value : int) -> void:
 	cur_exp += value

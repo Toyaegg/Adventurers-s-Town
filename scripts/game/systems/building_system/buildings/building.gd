@@ -30,7 +30,7 @@ var belong_to : StringName
 var feature_components : Array
 var build_completed : bool = false
 
-signal feature_complete
+#signal feature_complete
 
 func _ready() -> void:
 	focused = ValueWithSignal.new()

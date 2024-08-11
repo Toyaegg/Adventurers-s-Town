@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbv5wq3mxuanw"]
+
+[ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="1_s2xwr"]
+[ext_resource type="Script" path="res://scripts/ui/panels/tips/text_tip.gd" id="2_ju3s6"]
+
+[node name="Control" type="TextureRect" node_paths=PackedStringArray("content")]
+self_modulate = Color(0, 0, 0, 0.756863)
+custom_minimum_size = Vector2(600, 50)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_s2xwr")
+script = ExtResource("2_ju3s6")
+content = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1

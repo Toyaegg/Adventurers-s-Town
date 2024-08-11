@@ -10,6 +10,11 @@ func build(slot : Node2D, building : Building) -> void:
 	if building.building_config.id == &"au":
 		EventBus.push_event(GameEvents.BUILDING_ADVENTURER_UNION_LEVEL_UP, [0, 1, 0])
 
-func check_level_up(need : Array[int], building : Building) -> void:
+func check_level_up(building : Building) -> void:
+	var need : Array[int]
+	need.append_array(building.building_config.resource_need[building.level])
+
 	if GameManager.town_model.can_level_up(need):
+		GameManager.town_model.use_resource(need[0], need[1], need[2])
+		building.level += 1
 		EventBus.push_event(GameEvents.BUILDING_LEVEL_UP_FINISH, building)

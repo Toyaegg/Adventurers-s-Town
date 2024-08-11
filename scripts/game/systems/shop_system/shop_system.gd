@@ -28,18 +28,18 @@ func shopping(user : Adventurer) -> void:
 	if user.wallet.gold >= user.target_equipment.price:
 		user.buy_equipment(user.target_equipment)
 		print("[%s]购买1个[%s]，花费[%d]金币" % [user.display_name, user.target_equipment.display_name, user.target_equipment.price])
-		user.add_gold(-user.target_equipment.price)
+		user.add_gold(-int(user.target_equipment.price))
 	if user.wallet.gold >= user.target_potion.price:
 		user.buy_potion(user.target_potion)
 		print("[%s]购买1个[%s]，花费[%d]金币" % [user.display_name, user.target_potion.display_name, user.target_potion.price])
-		user.add_gold(-user.target_potion.price)
+		user.add_gold(-int(user.target_potion.price))
 
 
 func get_random_equipment() -> EquipmentData:
 	var imax = GameManager.shop_model.equipments.size()
 	var index = 500 + randi_range(1, imax)
 	return GameManager.shop_model.equipments[index]
-	
+
 func get_random_potion() -> PotionData:
 	var imax = GameManager.shop_model.potions.size()
 	var index = 200 + randi_range(1, imax)
