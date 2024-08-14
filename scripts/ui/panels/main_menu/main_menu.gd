@@ -23,9 +23,14 @@ func _ready() -> void:
 
 func on_click_start_game() -> void:
 	print("on_click_start_game")
-	EventBus.push_event(GameEvents.UI_OPEN, UIPanel.HUD)
+	var main = load("res://scenes/game/main.tscn")
+	get_tree().change_scene_to_packed(main)
 	EventBus.push_event(GameEvents.UI_CLOSE, UIPanel.MainMenu)
-	EventBus.push_event(GameEvents.GAME_START, GameManager.NewGame)
+	EventBus.push_event(GameEvents.UI_LOADING, func():
+		EventBus.push_event(GameEvents.UI_OPEN, UIPanel.HUD)
+		EventBus.push_event(GameEvents.GAME_START, GameManager.NewGame)
+		)
+	GameManager.scene_path = "res://scenes/game/main.tscn"
 	EventBus.push_event(GameEvents.AUDIO_PLAY, ["click", "sfx"])
 
 func on_click_continue_game() -> void:

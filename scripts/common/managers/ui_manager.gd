@@ -11,7 +11,9 @@ func initialize() -> void:
 	EventBus.subscribe(GameEvents.UI_CLOSE, close_ui)
 	EventBus.subscribe(GameEvents.UI_TIPS_OPEN, open_tips)
 	EventBus.subscribe(GameEvents.UI_POP_TEXT_TIP, pop_text_tip)
-
+	EventBus.subscribe(GameEvents.UI_TIPS_OPEN, open_tips)
+	EventBus.subscribe(GameEvents.UI_LOADING, open_loading)
+	
 	print("ui manager initialized")
 
 func open_ui(ui_name : String) -> void:
@@ -47,3 +49,9 @@ func pop_text_tip(c : String, from : float, to : float) -> void:
 	open_ui(UIPanel.TextTip)
 	opened_ui[UIPanel.TextTip].set_text(c)
 	opened_ui[UIPanel.TextTip].pop(from, to)
+
+func open_loading(callback : Callable) -> void:
+	if opened_ui.has(UIPanel.Loading):
+		return
+	open_ui(UIPanel.Loading)
+	opened_ui[UIPanel.Loading].callback = callback

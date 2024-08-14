@@ -1,5 +1,5 @@
 class_name ToggleButton
-extends Button
+extends TextureButton
 
 @export var is_on : bool = false
 @export var select_color : Color

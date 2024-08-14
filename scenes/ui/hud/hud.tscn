@@ -1,9 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://bg8lh35rex0fd"]
+[gd_scene load_steps=33 format=3 uid="uid://bg8lh35rex0fd"]
 
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/hud.gd" id="1_gfo3q"]
-[ext_resource type="Texture2D" uid="uid://c37km52smjvn2" path="res://assets/texture/ui/Panel01.png" id="2_03v8k"]
 [ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="2_rhxao"]
+[ext_resource type="Texture2D" uid="uid://dmthw2lbx8bwr" path="res://assets/texture/ui/框.png" id="2_uurrh"]
 [ext_resource type="Texture2D" uid="uid://dq0l85rsr887m" path="res://assets/texture/common/logo.jpg" id="3_3kl1t"]
+[ext_resource type="Texture2D" uid="uid://v00n6nh1kol" path="res://assets/texture/ui/20240707dragon9SlicesB.png" id="3_fipyh"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/milestone.gd" id="4_7klws"]
 [ext_resource type="Texture2D" uid="uid://dl4snwwne4go1" path="res://assets/texture/ui/BarV9_Bar.png" id="4_78s0p"]
 [ext_resource type="Texture2D" uid="uid://cx5evbolcbonf" path="res://assets/texture/game/resource_icon/001.png" id="4_ecbsr"]
@@ -21,12 +22,12 @@
 [ext_resource type="Texture2D" uid="uid://ds7e5gy3fq3u7" path="res://assets/texture/ui/Button01.png" id="9_6ei70"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/resource_need.gd" id="12_kox8a"]
 [ext_resource type="Texture2D" uid="uid://fcdxbei6wbw4" path="res://assets/texture/game/building/au.png" id="15_3hcpt"]
-[ext_resource type="Texture2D" uid="uid://dfpd8elp6yt8s" path="res://assets/texture/ui/BarV8_Bar.png" id="15_b6v5n"]
 [ext_resource type="Texture2D" uid="uid://baorpnqqkokhj" path="res://assets/texture/game/building/c.png" id="16_bthni"]
 [ext_resource type="Texture2D" uid="uid://bq8sncp3dpuyo" path="res://assets/texture/ui/Cell01.png" id="17_70saq"]
 [ext_resource type="Texture2D" uid="uid://cap3lqrpe4r42" path="res://assets/texture/game/building/fg.png" id="17_vaw1g"]
 [ext_resource type="Texture2D" uid="uid://kvpm4qy1gp1n" path="res://assets/texture/game/building/h.png" id="18_hsyop"]
 [ext_resource type="Texture2D" uid="uid://db5b7rfqsgqqt" path="res://assets/texture/game/adventurer/adv.png" id="18_pjf5h"]
+[ext_resource type="Texture2D" uid="uid://8yc0dj080cr7" path="res://assets/texture/ui/按钮.png" id="19_ofopb"]
 [ext_resource type="Texture2D" uid="uid://b5mdu7yqqi7s8" path="res://assets/texture/game/building/i.png" id="19_y5ajk"]
 [ext_resource type="Texture2D" uid="uid://dmx16gtwceyo6" path="res://assets/texture/game/building/tg.png" id="20_w78y5"]
 
@@ -68,7 +69,7 @@ mouse_filter = 1
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 100.0
-texture = ExtResource("2_03v8k")
+texture = ExtResource("2_uurrh")
 patch_margin_left = 25
 patch_margin_top = 25
 patch_margin_right = 25
@@ -122,12 +123,27 @@ offset_right = 100.0
 offset_bottom = 230.0
 mouse_filter = 1
 
-[node name="TextureRect" type="TextureRect" parent="AdventurerUnion/Sign"]
+[node name="Background" type="TextureRect" parent="AdventurerUnion/Sign"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_fipyh")
+expand_mode = 1
+
+[node name="SignTexture" type="TextureRect" parent="AdventurerUnion/Sign"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_3kl1t")
@@ -573,7 +589,7 @@ layout_mode = 2
 script = ExtResource("8_kxr7x")
 
 [node name="Background" type="TextureRect" parent="Milestone/Scroll/Content/Item"]
-self_modulate = Color(0.762528, 0.0757468, 7.70092e-07, 1)
+self_modulate = Color(1, 0.418088, 0.334742, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -642,11 +658,11 @@ anchor_bottom = 1.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("15_b6v5n")
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
+texture = ExtResource("2_uurrh")
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 25
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Lists/AdventurerList"]
 layout_mode = 1
@@ -744,65 +760,123 @@ offset_bottom = 180.0
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="CheckButton" type="Button" parent="Lists/AdventurerList/VBoxContainer/FilterToggle"]
+[node name="CheckButton" type="TextureButton" parent="Lists/AdventurerList/VBoxContainer/FilterToggle"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 20
 toggle_mode = true
 button_group = SubResource("ButtonGroup_tw28r")
-text = "普通冒险者"
+texture_normal = ExtResource("19_ofopb")
+texture_pressed = ExtResource("19_ofopb")
+texture_hover = ExtResource("19_ofopb")
+texture_disabled = ExtResource("19_ofopb")
+texture_focused = ExtResource("19_ofopb")
+stretch_mode = 0
 script = ExtResource("5_s8n8x")
 select_color = Color(0.317647, 1, 1, 1)
+
+[node name="Label" type="Label" parent="Lists/AdventurerList/VBoxContainer/FilterToggle/CheckButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "普通冒险者"
 
 [node name="FilterToggle2" type="Control" parent="Lists/AdventurerList/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="CheckButton" type="Button" parent="Lists/AdventurerList/VBoxContainer/FilterToggle2"]
+[node name="CheckButton" type="TextureButton" parent="Lists/AdventurerList/VBoxContainer/FilterToggle2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 20
 toggle_mode = true
 button_group = SubResource("ButtonGroup_tw28r")
-text = "精英冒险者"
+texture_normal = ExtResource("19_ofopb")
+texture_pressed = ExtResource("19_ofopb")
+texture_hover = ExtResource("19_ofopb")
+texture_disabled = ExtResource("19_ofopb")
+texture_focused = ExtResource("19_ofopb")
+stretch_mode = 0
 script = ExtResource("5_s8n8x")
 select_color = Color(0.317647, 1, 1, 1)
 bind_data = 1
+
+[node name="Label" type="Label" parent="Lists/AdventurerList/VBoxContainer/FilterToggle2/CheckButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "精英冒险者"
 
 [node name="FilterToggle3" type="Control" parent="Lists/AdventurerList/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="CheckButton" type="Button" parent="Lists/AdventurerList/VBoxContainer/FilterToggle3"]
+[node name="CheckButton" type="TextureButton" parent="Lists/AdventurerList/VBoxContainer/FilterToggle3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 20
 toggle_mode = true
 button_group = SubResource("ButtonGroup_tw28r")
-text = "终极冒险者"
+texture_normal = ExtResource("19_ofopb")
+texture_pressed = ExtResource("19_ofopb")
+texture_hover = ExtResource("19_ofopb")
+texture_disabled = ExtResource("19_ofopb")
+texture_focused = ExtResource("19_ofopb")
+stretch_mode = 0
 script = ExtResource("5_s8n8x")
 select_color = Color(0.317647, 1, 1, 1)
 bind_data = 2
 
+[node name="Label" type="Label" parent="Lists/AdventurerList/VBoxContainer/FilterToggle3/CheckButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "终极冒险者"
+
 [node name="BuildingList" type="Control" parent="Lists" node_paths=PackedStringArray("item_prefab", "content")]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -826,11 +900,11 @@ anchor_bottom = 1.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("15_b6v5n")
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
+texture = ExtResource("2_uurrh")
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 25
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Lists/BuildingList"]
 layout_mode = 1
@@ -1003,27 +1077,46 @@ offset_bottom = 180.0
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="CheckButton" type="Button" parent="Lists/VBoxContainer/FilterToggle"]
+[node name="CheckButton" type="TextureButton" parent="Lists/VBoxContainer/FilterToggle"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 20
 toggle_mode = true
 button_group = SubResource("ButtonGroup_1x56v")
-text = "建筑"
+texture_normal = ExtResource("19_ofopb")
+texture_pressed = ExtResource("19_ofopb")
+texture_hover = ExtResource("19_ofopb")
+texture_disabled = ExtResource("19_ofopb")
+texture_focused = ExtResource("19_ofopb")
+stretch_mode = 0
 script = ExtResource("5_s8n8x")
 select_color = Color(0.317647, 1, 1, 1)
+
+[node name="Label" type="Label" parent="Lists/VBoxContainer/FilterToggle/CheckButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "建筑"
 
 [node name="FilterToggle2" type="Control" parent="Lists/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="CheckButton" type="Button" parent="Lists/VBoxContainer/FilterToggle2"]
+[node name="CheckButton" type="TextureButton" parent="Lists/VBoxContainer/FilterToggle2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1032,15 +1125,34 @@ offset_top = -1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 20
 toggle_mode = true
 button_group = SubResource("ButtonGroup_1x56v")
-text = "冒险者"
+texture_normal = ExtResource("19_ofopb")
+texture_pressed = ExtResource("19_ofopb")
+texture_hover = ExtResource("19_ofopb")
+texture_disabled = ExtResource("19_ofopb")
+texture_focused = ExtResource("19_ofopb")
+stretch_mode = 0
 script = ExtResource("5_s8n8x")
 select_color = Color(0.317647, 1, 1, 1)
 bind_data = 1
+
+[node name="Label" type="Label" parent="Lists/VBoxContainer/FilterToggle2/CheckButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "冒险者"
 
 [node name="BuildingInfo" parent="." instance=ExtResource("4_jtqe7")]
 visible = false

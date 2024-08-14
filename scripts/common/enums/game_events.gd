@@ -18,6 +18,7 @@ const UI_TIPS_OPEN := "203"
 const UI_POP_TEXT_TIP := "204"
 const UI_PROGRESS_CHANGED := "205"
 const UI_VISIBLE_BUILDING_INFO := "206"
+const UI_LOADING := "207"
 
 
 ##时间

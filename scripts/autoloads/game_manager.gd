@@ -36,6 +36,8 @@ var build_mode_progress : ValueWithSignal = ValueWithSignal.new()
 
 var game_config := preload("res://assets/data/config/game_config/game_config.tres")
 
+var scene_path : String = ""
+
 func initialize() -> void:
 	initialize_models()
 
@@ -185,3 +187,15 @@ func load_game() -> void:
 	await SaveSystem.loaded
 	print("加载完成")
 	EventBus.push_event(GameEvents.SAVE_FILE_LOADED)
+
+
+#func _process(delta: float) -> void:
+	#if scene_path == "":
+		#return
+	#
+	#var progress : Array
+	#ResourceLoader.load_threaded_get_status(scene_path, progress)
+	#
+	#EventBus.push_event(GameEvents.UI_PROGRESS_CHANGED, progress[0])
+	#if progress[0] >= 1:
+		#scene_path = ""

@@ -12,18 +12,19 @@ func _ready() -> void:
 	exit_game.pressed.connect(_exit_game)
 
 func _save_game() ->void:
-	EventBus.push_event(GameEvents.GAME_SAVE)
 	EventBus.push_event(GameEvents.AUDIO_PLAY, ["sfx", "click"])
+	EventBus.push_event(GameEvents.GAME_SAVE)
 
 func _load_game() ->void:
-	EventBus.push_event(GameEvents.GAME_LOAD)
 	EventBus.push_event(GameEvents.AUDIO_PLAY, ["sfx", "click"])
+	EventBus.push_event(GameEvents.GAME_LOAD)
 
 func _setting() ->void:
-	EventBus.push_event(GameEvents.UI_OPEN, UIPanel.Settings)
 	EventBus.push_event(GameEvents.AUDIO_PLAY, ["sfx", "click"])
+	EventBus.push_event(GameEvents.UI_OPEN, UIPanel.Settings)
 
 func _exit_game() ->void:
+	EventBus.push_event(GameEvents.AUDIO_PLAY, ["click", "sfx"])
 	_save_game()
 	await SaveSystem.saved
 	get_tree().unload_current_scene()
