@@ -1,12 +1,15 @@
-[gd_scene load_steps=25 format=3 uid="uid://bg8lh35rex0fd"]
+[gd_scene load_steps=32 format=3 uid="uid://bg8lh35rex0fd"]
 
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/hud.gd" id="1_gfo3q"]
+[ext_resource type="Texture2D" uid="uid://c37km52smjvn2" path="res://assets/texture/ui/Panel01.png" id="2_03v8k"]
 [ext_resource type="Texture2D" uid="uid://boht884fjrnum" path="res://assets/texture/common/white_block.png" id="2_rhxao"]
 [ext_resource type="Texture2D" uid="uid://dq0l85rsr887m" path="res://assets/texture/common/logo.jpg" id="3_3kl1t"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/milestone.gd" id="4_7klws"]
+[ext_resource type="Texture2D" uid="uid://dl4snwwne4go1" path="res://assets/texture/ui/BarV9_Bar.png" id="4_78s0p"]
 [ext_resource type="Texture2D" uid="uid://cx5evbolcbonf" path="res://assets/texture/game/resource_icon/001.png" id="4_ecbsr"]
 [ext_resource type="PackedScene" uid="uid://crfp4xalea1f4" path="res://scenes/ui/hud/building_info.tscn" id="4_jtqe7"]
 [ext_resource type="Texture2D" uid="uid://cejpffhkrcgye" path="res://assets/texture/game/resource_icon/002.png" id="5_hhq2l"]
+[ext_resource type="Texture2D" uid="uid://cnrtb2i6r3htb" path="res://assets/texture/ui/BarV9_ProgressBar.png" id="5_mae4u"]
 [ext_resource type="Script" path="res://scripts/common/base/toggle.gd" id="5_s8n8x"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/building_list.gd" id="5_sw8ek"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/adventurer_list.gd" id="6_0hngo"]
@@ -15,11 +18,15 @@
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/building_info_item.gd" id="6_m8hrg"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/milestone_item.gd" id="8_kxr7x"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/adventurer_info_item.gd" id="8_r84d3"]
+[ext_resource type="Texture2D" uid="uid://ds7e5gy3fq3u7" path="res://assets/texture/ui/Button01.png" id="9_6ei70"]
 [ext_resource type="Script" path="res://scripts/ui/panels/hud/resource_need.gd" id="12_kox8a"]
 [ext_resource type="Texture2D" uid="uid://fcdxbei6wbw4" path="res://assets/texture/game/building/au.png" id="15_3hcpt"]
+[ext_resource type="Texture2D" uid="uid://dfpd8elp6yt8s" path="res://assets/texture/ui/BarV8_Bar.png" id="15_b6v5n"]
 [ext_resource type="Texture2D" uid="uid://baorpnqqkokhj" path="res://assets/texture/game/building/c.png" id="16_bthni"]
+[ext_resource type="Texture2D" uid="uid://bq8sncp3dpuyo" path="res://assets/texture/ui/Cell01.png" id="17_70saq"]
 [ext_resource type="Texture2D" uid="uid://cap3lqrpe4r42" path="res://assets/texture/game/building/fg.png" id="17_vaw1g"]
 [ext_resource type="Texture2D" uid="uid://kvpm4qy1gp1n" path="res://assets/texture/game/building/h.png" id="18_hsyop"]
+[ext_resource type="Texture2D" uid="uid://db5b7rfqsgqqt" path="res://assets/texture/game/adventurer/adv.png" id="18_pjf5h"]
 [ext_resource type="Texture2D" uid="uid://b5mdu7yqqi7s8" path="res://assets/texture/game/building/i.png" id="19_y5ajk"]
 [ext_resource type="Texture2D" uid="uid://dmx16gtwceyo6" path="res://assets/texture/game/building/tg.png" id="20_w78y5"]
 
@@ -57,12 +64,15 @@ offset_right = 220.0
 offset_bottom = 120.0
 mouse_filter = 1
 
-[node name="Background" type="TextureRect" parent="AdventurerUnion/DisplayName"]
-self_modulate = Color(0.537011, 0.537011, 0.537011, 1)
+[node name="Background" type="NinePatchRect" parent="AdventurerUnion/DisplayName"]
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 100.0
-texture = ExtResource("2_rhxao")
+texture = ExtResource("2_03v8k")
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 25
 
 [node name="Name" type="Label" parent="AdventurerUnion/DisplayName"]
 unique_name_in_owner = true
@@ -83,7 +93,7 @@ mouse_filter = 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 30
-text = "冒险者工会"
+text = "冒险者公会"
 
 [node name="Level" type="Label" parent="AdventurerUnion/DisplayName"]
 unique_name_in_owner = true
@@ -146,10 +156,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 nine_patch_stretch = true
-texture_under = ExtResource("2_rhxao")
-texture_progress = ExtResource("2_rhxao")
-tint_under = Color(0.381703, 0.381703, 0.381703, 1)
-tint_progress = Color(0.126492, 0.750547, 4.62055e-06, 1)
+texture_under = ExtResource("4_78s0p")
+texture_progress = ExtResource("5_mae4u")
 
 [node name="UnionEXPValue" type="Label" parent="AdventurerUnion/EXP"]
 unique_name_in_owner = true
@@ -186,7 +194,7 @@ grow_vertical = 2
 mouse_filter = 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-text = "工会经验值"
+text = "公会经验值"
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -349,6 +357,17 @@ text = "2000"
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="Description" type="Label" parent="ResourcesDisplayList"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 49.0
+offset_right = 636.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 40
+text = "按B进入退出建造模式"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Reputation" type="Control" parent="ResourcesDisplayList"]
 anchors_preset = 0
 offset_left = 30.0
@@ -358,14 +377,13 @@ offset_bottom = 46.0
 mouse_filter = 1
 
 [node name="Background" type="TextureRect" parent="ResourcesDisplayList/Reputation"]
-self_modulate = Color(0.65834, 0.65834, 0.65834, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_rhxao")
+texture = ExtResource("9_6ei70")
 
 [node name="Label" type="Label" parent="ResourcesDisplayList/Reputation"]
 layout_mode = 1
@@ -417,14 +435,13 @@ grow_vertical = 0
 mouse_filter = 1
 
 [node name="Background" type="TextureRect" parent="ResourcesDisplayList/Gold"]
-self_modulate = Color(0.65834, 0.65834, 0.65834, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_rhxao")
+texture = ExtResource("9_6ei70")
 
 [node name="Label" type="Label" parent="ResourcesDisplayList/Gold"]
 layout_mode = 1
@@ -617,8 +634,7 @@ script = ExtResource("6_0hngo")
 item_prefab = NodePath("ScrollContainer/MarginContainer/HBoxContainer/Adventurer")
 content = NodePath("ScrollContainer/MarginContainer/HBoxContainer")
 
-[node name="Background" type="TextureRect" parent="Lists/AdventurerList"]
-self_modulate = Color(0.336608, 0.336608, 0.336608, 1)
+[node name="Background" type="NinePatchRect" parent="Lists/AdventurerList"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -626,7 +642,11 @@ anchor_bottom = 1.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_rhxao")
+texture = ExtResource("15_b6v5n")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Lists/AdventurerList"]
 layout_mode = 1
@@ -658,17 +678,15 @@ script = ExtResource("8_r84d3")
 adventurer_name = NodePath("AdventurerName")
 
 [node name="Background" type="TextureRect" parent="Lists/AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Adventurer"]
-self_modulate = Color(0.493545, 0.493546, 0.493546, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_rhxao")
+texture = ExtResource("17_70saq")
 
 [node name="AdventurerIcon" type="TextureRect" parent="Lists/AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Adventurer"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -681,7 +699,9 @@ offset_right = 50.0
 offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_rhxao")
+texture = ExtResource("18_pjf5h")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="AdventurerName" type="Label" parent="Lists/AdventurerList/ScrollContainer/MarginContainer/HBoxContainer/Adventurer"]
 layout_mode = 1
@@ -783,7 +803,6 @@ select_color = Color(0.317647, 1, 1, 1)
 bind_data = 2
 
 [node name="BuildingList" type="Control" parent="Lists" node_paths=PackedStringArray("item_prefab", "content")]
-visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -799,8 +818,7 @@ script = ExtResource("5_sw8ek")
 item_prefab = NodePath("ScrollContainer/MarginContainer/HBoxContainer/Building")
 content = NodePath("ScrollContainer/MarginContainer/HBoxContainer")
 
-[node name="Background" type="TextureRect" parent="Lists/BuildingList"]
-self_modulate = Color(0.336608, 0.336608, 0.336608, 1)
+[node name="Background" type="NinePatchRect" parent="Lists/BuildingList"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -808,7 +826,11 @@ anchor_bottom = 1.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_rhxao")
+texture = ExtResource("15_b6v5n")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Lists/BuildingList"]
 layout_mode = 1
@@ -848,14 +870,13 @@ icons = {
 resource_need_prefab = NodePath("Control/VBoxContainer/ResourceNeed")
 
 [node name="Background" type="TextureRect" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
-self_modulate = Color(0.493545, 0.493546, 0.493546, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_rhxao")
+texture = ExtResource("17_70saq")
 
 [node name="BuildingIcon" type="TextureRect" parent="Lists/BuildingList/ScrollContainer/MarginContainer/HBoxContainer/Building"]
 layout_mode = 1

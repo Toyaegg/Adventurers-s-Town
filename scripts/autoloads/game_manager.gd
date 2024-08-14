@@ -82,6 +82,7 @@ func subscribe_events() -> void:
 	EventBus.subscribe(GameEvents.GAME_START, start_game)
 	EventBus.subscribe(GameEvents.GAME_LOAD, load_save_files)
 	EventBus.subscribe(GameEvents.GAME_EXIT, exit_game)
+	EventBus.subscribe(GameEvents.GAME_SAVE, save_game)
 
 func create_ui_manager() -> void:
 	ui_manager = UIManager.new()
@@ -169,3 +170,18 @@ func exit_game() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("build_mode"):
 		build_mode_progress.value = not build_mode_progress.value
+
+func save_game() -> void:
+	print("保存中……")
+	await get_tree().create_timer(0.5).timeout
+	SaveSystem.save()
+	await SaveSystem.saved
+	print("保存完成")
+
+
+func load_game() -> void:
+	print("加载中……")
+	SaveSystem._load()
+	await SaveSystem.loaded
+	print("加载完成")
+	EventBus.push_event(GameEvents.SAVE_FILE_LOADED)

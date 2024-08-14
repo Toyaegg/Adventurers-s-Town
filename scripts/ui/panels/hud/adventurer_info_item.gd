@@ -21,4 +21,5 @@ func set_data(data : Adventurer) -> void:
 			adventurer_name.self_modulate = Color.ORANGE
 
 func click() -> void:
-		print("%s被点击" % bind_data.display_name)
+	print("%s被点击" % bind_data.display_name)
+	EventBus.push_event(GameEvents.AUDIO_PLAY, ["click", "sfx"])

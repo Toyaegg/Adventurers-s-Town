@@ -47,6 +47,9 @@ var target_dungeon : Dungeon
 var target_equipment : EquipmentData
 var target_potion : PotionData
 
+var target_dir : int
+var target_position : float
+
 var move_direction : int
 var rng : RandomNumberGenerator
 
@@ -220,7 +223,8 @@ func _on_find_building(extra_arg_0: StringName) -> void:
 
 	if buildings.size() == 0:
 		#print("没找到")
-		state_chart.send_event("init")
+		state_chart.send_event("not_found")
+		
 	elif buildings.size() == 1:
 		arrived = false
 		target_building = buildings[0]
@@ -231,7 +235,7 @@ func _on_find_building(extra_arg_0: StringName) -> void:
 				arrived = false
 			else:
 				#print("没找到")
-				state_chart.send_event("init")
+				state_chart.send_event("not_found")
 
 
 func _on_find_dungeon() -> void:
@@ -288,6 +292,56 @@ func _on_blessing() -> void:
 func _on_lift() -> void:
 	use_building(Building.Feature.Lift)
 
+func _on_random_target_position() -> void:
+	arrived = false
+	target_position = global_position.x + randf_range(-300, 300)
+	print(target_position)
+	state_chart.send_event("wander")
+
+func _on_move_to(delta: float) -> void:
+	if arrived:
+		return
+	var distance : float = target_position - global_position.x
+	if abs(distance) < 10 and not arrived:
+		arrived = true
+		
+		var buildings : Array[Building] = GameManager.town_model.find_buildings(target_building_id)
+
+		if buildings.size() == 0:
+			#print("没找到")
+			state_chart.send_event("not_found")
+			
+		elif buildings.size() == 1:
+			arrived = false
+			state_chart.send_event("found")
+			target_building = buildings[0]
+		elif buildings.size() > 1:
+			for building in buildings:
+				if building.belong_to == display_name:
+					target_building = building
+					state_chart.send_event("found")
+					arrived = false
+				else:
+					#print("没找到")
+					state_chart.send_event("not_found")
+		velocity.x = 0
+		animation.play(&"idle")
+		return
+
+
+	if distance > 0:
+		velocity.x = Vector2.RIGHT.x * move_speed * delta
+		animation.flip_h = false
+	elif distance < 0:
+		velocity.x = Vector2.LEFT.x * move_speed * delta
+		animation.flip_h = true
+	else:
+		velocity.x = 0
+
+	if abs(velocity.x) > 0.1:
+		animation.play(&"walk")
+
+	move_and_slide()
 
 func use_building(feature : Building.Feature) -> void:
 	target_building.enter(self)

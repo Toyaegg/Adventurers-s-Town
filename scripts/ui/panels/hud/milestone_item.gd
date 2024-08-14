@@ -20,6 +20,7 @@ func set_milestone(m : Milestone) -> void:
 
 func clicked() -> void:
 	milestone.content.remove_child(self)
+	EventBus.push_event(GameEvents.AUDIO_PLAY, ["sfx", "click"])
 	queue_free()
 	milestone.refresh()
 

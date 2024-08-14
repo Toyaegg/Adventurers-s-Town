@@ -16,6 +16,7 @@ func _init() -> void:
 	normal_color = self_modulate
 
 func button_clicked(button : BaseButton) -> void:
+	EventBus.push_event(GameEvents.AUDIO_PLAY, ["click", "sfx"])
 	is_on = button == self
 	if is_on:
 		self_modulate = select_color

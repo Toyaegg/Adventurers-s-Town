@@ -134,6 +134,12 @@ to = NodePath("../../Selling")
 event = &"fg_arrived"
 delay_in_seconds = "0.0"
 
+[node name="NotFound" type="Node" parent="StateChart/Root/MakeMoney/SellItem/MoveToFlashGold"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Wander")
+event = &"not_found"
+delay_in_seconds = "0.0"
+
 [node name="Selling" type="Node" parent="StateChart/Root/MakeMoney/SellItem"]
 script = ExtResource("11_nvecf")
 
@@ -173,6 +179,12 @@ script = ExtResource("11_nvecf")
 script = ExtResource("12_qlvpi")
 to = NodePath("../../Challenging")
 event = &"au_arrived"
+delay_in_seconds = "0.0"
+
+[node name="NotFound" type="Node" parent="StateChart/Root/Dungeon/ChallengeDungeon/AdventurerUnion"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Wander")
+event = &"not_found"
 delay_in_seconds = "0.0"
 
 [node name="Challenging" type="Node" parent="StateChart/Root/Dungeon/ChallengeDungeon"]
@@ -243,6 +255,12 @@ to = NodePath("../../Training")
 event = &"tg_arrived"
 delay_in_seconds = "0.0"
 
+[node name="NotFound" type="Node" parent="StateChart/Root/Upgrade/Train/MoveToTrainingGround"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Wander")
+event = &"not_found"
+delay_in_seconds = "0.0"
+
 [node name="Training" type="Node" parent="StateChart/Root/Upgrade/Train"]
 script = ExtResource("11_nvecf")
 
@@ -263,6 +281,12 @@ script = ExtResource("11_nvecf")
 script = ExtResource("12_qlvpi")
 to = NodePath("../../Shopping")
 event = &"fg_arrived"
+delay_in_seconds = "0.0"
+
+[node name="NotFound" type="Node" parent="StateChart/Root/Upgrade/Shopping/MoveToFlashGold"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Wander")
+event = &"not_found"
 delay_in_seconds = "0.0"
 
 [node name="Shopping" type="Node" parent="StateChart/Root/Upgrade/Shopping"]
@@ -306,6 +330,12 @@ to = NodePath("../../Lodge")
 event = &"i_arrived"
 delay_in_seconds = "0.0"
 
+[node name="NotFound" type="Node" parent="StateChart/Root/Rest/NoHouse/MoveToInn"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Wander")
+event = &"not_found"
+delay_in_seconds = "0.0"
+
 [node name="Lodge" type="Node" parent="StateChart/Root/Rest/NoHouse"]
 script = ExtResource("11_nvecf")
 
@@ -341,6 +371,12 @@ script = ExtResource("11_nvecf")
 script = ExtResource("12_qlvpi")
 to = NodePath("../../Rest")
 event = &"h_arrived"
+delay_in_seconds = "0.0"
+
+[node name="NotFound" type="Node" parent="StateChart/Root/Rest/HasHouse/MoveToHouse"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Wander")
+event = &"not_found"
 delay_in_seconds = "0.0"
 
 [node name="Rest" type="Node" parent="StateChart/Root/Rest/HasHouse"]
@@ -398,6 +434,12 @@ to = NodePath("../../WaitTreat")
 event = &"c_arrived"
 delay_in_seconds = "0.0"
 
+[node name="NotFound" type="Node" parent="StateChart/Root/Church/Treat/MoveToChurch"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Wander")
+event = &"not_found"
+delay_in_seconds = "0.0"
+
 [node name="WaitTreat" type="Node" parent="StateChart/Root/Church/Treat"]
 script = ExtResource("11_nvecf")
 
@@ -426,6 +468,12 @@ script = ExtResource("11_nvecf")
 script = ExtResource("12_qlvpi")
 to = NodePath("../../WaitLift")
 event = &"c_arrived"
+delay_in_seconds = "0.0"
+
+[node name="NotFound" type="Node" parent="StateChart/Root/Church/Lift/MoveToChurch"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Wander")
+event = &"not_found"
 delay_in_seconds = "0.0"
 
 [node name="WaitLift" type="Node" parent="StateChart/Root/Church/Lift"]
@@ -458,6 +506,12 @@ to = NodePath("../../WaitBlessing")
 event = &"c_arrived"
 delay_in_seconds = "0.0"
 
+[node name="NotFound" type="Node" parent="StateChart/Root/Church/Blessing/MoveToChurch"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../../Wander")
+event = &"not_found"
+delay_in_seconds = "0.0"
+
 [node name="WaitBlessing" type="Node" parent="StateChart/Root/Church/Blessing"]
 script = ExtResource("11_nvecf")
 
@@ -473,6 +527,34 @@ script = ExtResource("11_nvecf")
 [node name="Upgrade" type="Node" parent="StateChart/Root/Church/Blessing/BlessingFinish"]
 script = ExtResource("12_qlvpi")
 to = NodePath("../../../../Upgrade")
+delay_in_seconds = "0.0"
+
+[node name="Wander" type="Node" parent="StateChart/Root"]
+script = ExtResource("10_1vxh8")
+initial_state = NodePath("RandomTarget")
+
+[node name="RandomTarget" type="Node" parent="StateChart/Root/Wander"]
+script = ExtResource("11_nvecf")
+
+[node name="ToMove" type="Node" parent="StateChart/Root/Wander/RandomTarget"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../MoveToPosition")
+event = &"wander"
+delay_in_seconds = "0.0"
+
+[node name="MoveToPosition" type="Node" parent="StateChart/Root/Wander"]
+script = ExtResource("11_nvecf")
+
+[node name="CantFindBuilding" type="Node" parent="StateChart/Root/Wander/MoveToPosition"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../..")
+event = &"not_found"
+delay_in_seconds = "1.0"
+
+[node name="FindBuilding" type="Node" parent="StateChart/Root/Wander/MoveToPosition"]
+script = ExtResource("12_qlvpi")
+to = NodePath("../../../MakeMoney")
+event = &"found"
 delay_in_seconds = "0.0"
 
 [connection signal="state_entered" from="StateChart/Root/MakeMoney/Idle" to="." method="_on_make_money_entered"]
@@ -509,3 +591,5 @@ delay_in_seconds = "0.0"
 [connection signal="state_entered" from="StateChart/Root/Church/Blessing/MoveToChurch" to="." method="_on_find_building" binds= [&"c"]]
 [connection signal="state_physics_processing" from="StateChart/Root/Church/Blessing/MoveToChurch" to="." method="_on_move_to_building"]
 [connection signal="state_entered" from="StateChart/Root/Church/Blessing/WaitBlessing" to="." method="_on_blessing"]
+[connection signal="state_entered" from="StateChart/Root/Wander/RandomTarget" to="." method="_on_random_target_position"]
+[connection signal="state_physics_processing" from="StateChart/Root/Wander/MoveToPosition" to="." method="_on_move_to"]

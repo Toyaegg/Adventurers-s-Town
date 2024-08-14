@@ -53,6 +53,7 @@ func set_data(data : Building) -> void:
 
 func click() -> void:
 	print("%s被点击" % bind_data.building_config.display_name)
+	EventBus.push_event(GameEvents.AUDIO_PLAY, ["click", "sfx"])
 
 
 func level_up() -> void:

@@ -7,7 +7,8 @@ const GAME_RESUME := "101"
 const GAME_EXIT := "102"
 const GAME_LOAD := "103"
 const SAVE_FILE_LOADED := "104"
-
+const GAME_SAVE := "105"
+const GAME_RESET := "106"
 
 ##UI控制
 const UI_OPEN := "200"
@@ -79,3 +80,13 @@ const RESOURCE_CHANGED := "702"
 
 const RESOURCE_ADD_REPUTATION := "703"
 const RESOURCE_REPUTATION_CHANGED := "704"
+
+##声音
+const AUDIO_PLAY := "800"
+const AUDIO_STOP := "801"
+
+##设置
+const AUDIO_VOLUM_BGM_UP := "900"
+const AUDIO_VOLUM_BGM_DOWN := "901"
+const AUDIO_VOLUM_SFX_UP := "902"
+const AUDIO_VOLUM_SFX_DOWN := "903"

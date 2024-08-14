@@ -28,6 +28,7 @@ func _ready() -> void:
 
 	EventBus.subscribe(GameEvents.TIME_SYSTEM_START, start)
 	EventBus.subscribe(GameEvents.TIME_SYSTEM_STOP, stop)
+	EventBus.subscribe(GameEvents.GAME_RESET, reset_system)
 
 	print("TimeSystem ready")
 
@@ -57,6 +58,11 @@ func time_changed(v : float) -> void:
 
 static func get_day() -> int:
 	return time.day
-
+	
 static func get_is_night() -> bool:
 	return time.in_night
+
+
+func reset_system() -> void:
+	is_running = false
+	start_time.value = 0

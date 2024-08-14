@@ -15,6 +15,7 @@ func check_level_up(building : Building) -> void:
 	need.append_array(building.building_config.resource_need[building.level])
 
 	if GameManager.town_model.can_level_up(need):
+		EventBus.push_event(GameEvents.AUDIO_PLAY, ["building_levelup", "sfx"])
 		GameManager.town_model.use_resource(need[0], need[1], need[2])
 		building.level += 1
 		EventBus.push_event(GameEvents.BUILDING_LEVEL_UP_FINISH, building)

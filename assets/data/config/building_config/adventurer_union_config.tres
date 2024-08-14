@@ -8,8 +8,8 @@
 [resource]
 script = ExtResource("1_5nkde")
 id = &"au"
-display_name = "冒险者工会"
-description = "由%s创建的冒险者工会"
+display_name = "冒险者公会"
+description = "由%s创建的冒险者公会"
 feature = Array[ExtResource("1_0af2v")]([ExtResource("2_mfthc")])
 icon = ExtResource("3_rl2xy")
 exp_per_level = Array[int]([300, 1000])

@@ -58,3 +58,7 @@ func update_union_exp(exp_v : int, max_exp : int, level : int) -> void:
 
 func update_reptutation(rep : int) -> void:
 	reputation_value.text = str(rep)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_released("ui_cancel"):
+		EventBus.push_event(GameEvents.UI_OPEN, UIPanel.HUDMenu)
